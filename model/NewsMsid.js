@@ -12,7 +12,10 @@ var msid = {
     sports : "4719148",
     cricket : "4719161",
     business : "1898055",
-    tech : "2147478039"
+    tech : "2147478039",
+    education: "913168846",
+    environment: "2647163",
+    science: "2128672765"
 };
 
 module.exports = msid;

@@ -6,6 +6,8 @@ const route = express.Router();
 const requestToi  = require('../utils/requestNews');
 const msid = require('../model/NewsMsid');
 
+route.get('/' , express.static(__dirname + "/public/news"));
+
 //fetch briefs from toi website
 route.get('/briefs' , (req , res)=>{
 
@@ -64,6 +66,33 @@ route.get('/sports' , (req , res)=>{
 route.get('/cricket' , (req , res)=>{
 
     requestToi.fetchNews(msid.cricket, (body)=>{
+        res.send(body);
+    })
+
+});
+
+//fetch business news
+route.get('/business' , (req , res)=>{
+
+    requestToi.fetchNews(msid.business, (body)=>{
+        res.send(body);
+    })
+
+});
+
+//fetch tech news
+route.get('/tech' , (req , res)=>{
+
+    requestToi.fetchNews(msid.tech, (body)=>{
+        res.send(body);
+    })
+
+});
+
+//fetch education
+route.get('/education' , (req , res)=>{
+
+    requestToi.fetchNews(msid.education, (body)=>{
         res.send(body);
     })
 

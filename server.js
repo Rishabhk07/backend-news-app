@@ -5,6 +5,8 @@ function requestNewsJson(msid) {
 
 }
 
+app.use('/' , express.static(__dirname + "/public"));
+
 const routes = {
     news: require('./routes/news')
 };
