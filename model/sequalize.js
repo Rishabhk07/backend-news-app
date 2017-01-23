@@ -86,4 +86,15 @@ function createTestTable(cb){
 
 }
 
-module.exports = {test,checkDbConnection,createTestTable };
+function saveTestData(cb){
+    var saveTest = test.build({
+        name:"Rishabh",
+        profession:"Coder"
+    });
+    saveTest.save().then(function () {
+        console.log("succesfully data saved")
+        cb();
+    })
+}
+
+module.exports = {test,checkDbConnection,createTestTable,saveTestData};

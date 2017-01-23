@@ -17,4 +17,10 @@ route.get('/create',(req, res)=>{
     });
 });
 
+route.get('/save',(req, res)=>{
+    sequelize.saveTestData(()=>{
+        res.send("Table saved succesfully");
+    })
+})
+
 module.exports = route;
