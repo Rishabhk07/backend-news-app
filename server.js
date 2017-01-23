@@ -11,16 +11,12 @@ app.use('/' , express.static(__dirname + "/public"));
 
 const routes = {
     news: require('./routes/news'),
-    sequelize : require('./model/sequalize')
+    sequelize : require('./routes/test')
 };
 
 app.use('/news' , routes.news);
 
-app.get('/test', (req , res)=>{
-    routes.sequelize.checkDbConnection(()=>{
-        res.send("coneection established succesfully");
-    });
-});
+app.use('/test', routes.sequelize);
 
 app.listen('9090' , ()=> {
     console.log("magic happens at 9090");

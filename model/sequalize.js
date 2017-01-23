@@ -7,17 +7,19 @@ var sequelize = new Sequelize('newsapp' , 'rishabh' , 'beyblade',{
     dialect: 'mysql'
 });
 
-var test = sequelize.define('test',{
+var test = sequelize.define('test', {
    name:{
        type:Sequelize.STRING
    },
     profession:{
        type:Sequelize.STRING
     },
-    uid:{
+    uid: {
         type:Sequelize.INTEGER,
         primaryKey:true,
+        autoIncrement:true
     }
+
 });
 
 var news = sequelize.define('newsData', {
@@ -72,4 +74,16 @@ function checkDbConnection(cb){
         });
 }
 
-module.exports = {test,checkDbConnection };
+function createTestTable(cb){
+    test.sync({force: true}).then((err)=>{
+        return test.create({
+            name:"rishabh Khanna",
+            profession:"Coder"
+        })
+    }).catch(function () {
+
+    })
+
+}
+
+module.exports = {test,checkDbConnection,createTestTable };
