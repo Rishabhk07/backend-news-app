@@ -92,7 +92,7 @@ function saveTestData(cb){
         profession:"Coder"
     });
     saveTest.save().then(function () {
-        console.log("succesfully data saved")
+        console.log("succesfully data saved");
         cb();
     })
 }
