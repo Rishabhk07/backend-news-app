@@ -47,6 +47,15 @@ function createTestTable(cb){
 
 }
 
+function callSave() {
+    test.create({name : "yo" , profession : "katna"}).then(function () {
+        console.log("saved succesfulyy");
+    }).catch(function (err) {
+        console.log(err);
+    })
+}
+
+
 //Test Data End ####################################################################
 
 
@@ -112,7 +121,9 @@ var saveNewsToDb = (model)=>{
     news.create(model).then(function (task) {
         console.log("successfully saved the news with id" + task.id);
         console.log(task);
+    }).catch((err)=>{
+        console.log(err);
     })
 };
 
-module.exports = {test,checkDbConnection};
+module.exports = {test,checkDbConnection,saveNewsToDb , callSave};
