@@ -90,7 +90,7 @@ var news = sequelize.define('newsData', {
         type: Sequelize.TEXT,
         field: 'news_heading'
     },
-    imageId: {
+    imageid: {
         type: Sequelize.STRING
     },
     syn: {
@@ -114,6 +114,9 @@ var news = sequelize.define('newsData', {
     key:{
         type:Sequelize.STRING,
         unique:true
+    },
+    msid:{
+        type:Sequelize.STRING
     }
 
 });
@@ -122,6 +125,16 @@ function createTable() {
     news.sync({force:true}).then(function () {
         console.log("Table created succesfully");
     })
+}
+
+function newsFromDb(callback) {
+    var body;
+    news.findAll().then(function (body) {
+        console.log(body);
+        callback(body);
+    })
+
+
 }
 
 
@@ -137,4 +150,4 @@ var saveNewsToDb = (model)=>{
     })
 };
 
-module.exports = {test,checkDbConnection,saveNewsToDb , callSave , createTable};
+module.exports = {test,checkDbConnection,saveNewsToDb , callSave , createTable, newsFromDb};

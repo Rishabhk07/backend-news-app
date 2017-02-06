@@ -21,6 +21,13 @@ route.get('/save',(req, res)=>{
     sequelize.saveTestData(()=>{
         res.send("Table saved succesfully");
     })
+});
+
+
+route.get('/fetch',(req,res)=>{
+    sequelize.newsFromDb(function (body) {
+        res.send(body);
+    })
 })
 
 module.exports = route;

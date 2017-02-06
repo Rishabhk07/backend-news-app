@@ -6,7 +6,7 @@ const model = require('../model/toiNewsModel');
 const sequelize = require('../model/sequalize');
 module.exports= {
     fetchNews(msid , calllback){
-        // sequelize.createTable();
+         // sequelize.createTable();
         var newData = [];
         request('http://timesofindia.indiatimes.com/feeds/newslistingfeed/' +
             'tag-alrt,msid-' + msid + ',feedtype-sjson,type-brief.cms?andver=' +
@@ -17,6 +17,7 @@ module.exports= {
                 json.splice(7,1);
                for(var i  = 0 ; i < json.length ; i++){
                    json[i].key = json[i].id;
+                   json[i].msid = msid;
                    delete json[i].id;
                    newData.push(json[i]);
                    console.log(i + " ");

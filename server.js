@@ -18,6 +18,8 @@ app.use('/news' , routes.news);
 
 app.use('/test', routes.sequelize);
 
+
+
 app.listen('9090' , ()=> {
     console.log("magic happens at 9090");
 });
