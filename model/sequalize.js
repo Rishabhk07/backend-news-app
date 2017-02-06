@@ -42,13 +42,18 @@ function createTestTable(cb){
             profession:"Coder"
         })
     }).catch(function () {
-
     })
 
 }
 
 function callSave() {
-    test.create({name : "yo" , profession : "katna"}).then(function () {
+    test.create(
+        [
+            {name : "yo" , profession : "katna"},
+            {name : "Arnav" , profession : "Best Coder n developer"},
+            {name : "Umair" , profession : "Coder n Developer"},
+            {name : "Rishabh" , profession : "Beginer"},
+            ]).then(function () {
         console.log("saved succesfulyy");
     }).catch(function (err) {
         console.log(err);
@@ -62,18 +67,13 @@ function callSave() {
 function checkDbConnection(cb){
     sequelize
         .authenticate()
-        .then(function(err) {
+        .then(function(test) {
             console.log('Connection has been established successfully.');
             cb();
-        })
-        .catch(function (err) {
+        }).catch(function (err) {
             console.log('Unable to connect to the database:', err);
         });
 }
-
-
-
-
 
 
 var news = sequelize.define('newsData', {
@@ -87,18 +87,20 @@ var news = sequelize.define('newsData', {
         type: Sequelize.STRING
     },
     hl: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         field: 'news_heading'
     },
     imageId: {
         type: Sequelize.STRING
     },
     syn: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         field: 'news_detailed'
     },
     id:{
-        type:Sequelize.STRING
+        type:Sequelize.INTEGER,
+        primaryKey:true,
+        autoIncrement:true
     },
     dm:{
         type:Sequelize.STRING
@@ -110,14 +112,23 @@ var news = sequelize.define('newsData', {
         type:Sequelize.STRING
     },
     key:{
-        type:Sequelize.INTEGER,
-        primaryKey:true
+        type:Sequelize.STRING,
+        unique:true
     }
 
 });
 
+function createTable() {
+    news.sync({force:true}).then(function () {
+        console.log("Table created succesfully");
+    })
+}
+
 
 var saveNewsToDb = (model)=>{
+
+    //create Table
+
     news.create(model).then(function (task) {
         console.log("successfully saved the news with id" + task.id);
         console.log(task);
@@ -126,4 +137,4 @@ var saveNewsToDb = (model)=>{
     })
 };
 
-module.exports = {test,checkDbConnection,saveNewsToDb , callSave};
+module.exports = {test,checkDbConnection,saveNewsToDb , callSave , createTable};
