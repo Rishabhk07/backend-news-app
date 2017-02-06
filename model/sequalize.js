@@ -6,7 +6,7 @@ var sequelize = new Sequelize('newsapp' , 'rishabh' , 'beyblade',{
     host:'localhost',
     dialect: 'mysql'
 });
-
+// Test Data #######################################
 var test = sequelize.define('test', {
    name:{
        type:Sequelize.STRING
@@ -21,6 +21,51 @@ var test = sequelize.define('test', {
     }
 
 });
+
+
+function saveTestData(cb){
+    var saveTest = test.build({
+        name:"Rishabh",
+        profession:"Coder"
+    });
+    saveTest.save().then(function () {
+        console.log("succesfully data saved");
+        cb();
+    })
+}
+
+
+function createTestTable(cb){
+    test.sync({force: true}).then((err)=>{
+        return test.create({
+            name:"rishabh Khanna",
+            profession:"Coder"
+        })
+    }).catch(function () {
+
+    })
+
+}
+
+//Test Data End ####################################################################
+
+
+function checkDbConnection(cb){
+    sequelize
+        .authenticate()
+        .then(function(err) {
+            console.log('Connection has been established successfully.');
+            cb();
+        })
+        .catch(function (err) {
+            console.log('Unable to connect to the database:', err);
+        });
+}
+
+
+
+
+
 
 var news = sequelize.define('newsData', {
     st: {
@@ -44,7 +89,7 @@ var news = sequelize.define('newsData', {
         field: 'news_detailed'
     },
     id:{
-       type:Sequelize.STRING
+        type:Sequelize.STRING
     },
     dm:{
         type:Sequelize.STRING
@@ -62,39 +107,12 @@ var news = sequelize.define('newsData', {
 
 });
 
-function checkDbConnection(cb){
-    sequelize
-        .authenticate()
-        .then(function(err) {
-            console.log('Connection has been established successfully.');
-            cb();
-        })
-        .catch(function (err) {
-            console.log('Unable to connect to the database:', err);
-        });
-}
 
-function createTestTable(cb){
-    test.sync({force: true}).then((err)=>{
-        return test.create({
-            name:"rishabh Khanna",
-            profession:"Coder"
-        })
-    }).catch(function () {
-
+var saveNewsToDb = (model)=>{
+    news.create(model).then(function (task) {
+        console.log("successfully saved the news with id" + task.id);
+        console.log(task);
     })
+};
 
-}
-
-function saveTestData(cb){
-    var saveTest = test.build({
-        name:"Rishabh",
-        profession:"Coder"
-    });
-    saveTest.save().then(function () {
-        console.log("succesfully data saved");
-        cb();
-    })
-}
-
-module.exports = {test,checkDbConnection,createTestTable,saveTestData};
+module.exports = {test,checkDbConnection};
