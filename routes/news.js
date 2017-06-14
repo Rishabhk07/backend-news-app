@@ -3,7 +3,7 @@
  */
 const express = require('express');
 const route = express.Router();
-const requestToi  = require('../utils/requestNews');
+const requestNews  = require('../utils/requestNews');
 const msid = require('../model/NewsMsid');
 
 route.get('/' , express.static(__dirname + "/public/news"));
@@ -11,16 +11,16 @@ route.get('/' , express.static(__dirname + "/public/news"));
 //fetch briefs from toi website
 route.get('/briefs' , (req , res)=>{
 
-    requestToi.fetchNews(msid.briefs, (body)=>{
+    requestNews.fetchNews(msid.briefs, (body)=>{
         res.send(body);
     })
 
 });
 
-//fetch top stories from toi website
+//fetch top stories from toi website  
 route.get('/top' , (req , res)=>{
 
-    requestToi.fetchNews(msid.topNews, (body)=>{
+    requestNews.fetchNews(msid.topNews, (body)=>{
         res.send(body);
     })
 
@@ -29,7 +29,7 @@ route.get('/top' , (req , res)=>{
 //fetch entertainment news
 route.get('/entertainment' , (req , res)=>{
 
-    requestToi.fetchNews(msid.entertainment, (body)=>{
+    requestNews.fetchNews(msid.entertainment, (body)=>{
         res.send(body);
     })
 
@@ -38,7 +38,7 @@ route.get('/entertainment' , (req , res)=>{
 //fetch india news
 route.get('/india' , (req , res)=>{
 
-    requestToi.fetchNews(msid.india, (body)=>{
+    requestNews.fetchNews(msid.india, (body)=>{
         res.send(body);
     })
 
@@ -47,7 +47,7 @@ route.get('/india' , (req , res)=>{
 //fetch world news
 route.get('/world' , (req , res)=>{
 
-    requestToi.fetchNews(msid.world, (body)=>{
+    requestNews.fetchNews(msid.world, (body)=>{
         res.send(body);
     })
 
@@ -56,7 +56,7 @@ route.get('/world' , (req , res)=>{
 //fetch sports
 route.get('/sports' , (req , res)=>{
 
-    requestToi.fetchNews(msid.sports, (body)=>{
+    requestNews.fetchNews(msid.sports, (body)=>{
         res.send(body);
     })
 
@@ -65,7 +65,7 @@ route.get('/sports' , (req , res)=>{
 //fetch cricket
 route.get('/cricket' , (req , res)=>{
 
-    requestToi.fetchNews(msid.cricket, (body)=>{
+    requestNews.fetchNews(msid.cricket, (body)=>{
         res.send(body);
     })
 
@@ -74,7 +74,7 @@ route.get('/cricket' , (req , res)=>{
 //fetch business news
 route.get('/business' , (req , res)=>{
 
-    requestToi.fetchNews(msid.business, (body)=>{
+    requestNews.fetchNews(msid.business, (body)=>{
         res.send(body);
     })
 
@@ -83,7 +83,7 @@ route.get('/business' , (req , res)=>{
 //fetch tech news
 route.get('/tech' , (req , res)=>{
 
-    requestToi.fetchNews(msid.tech, (body)=>{
+    requestNews.fetchNews(msid.tech, (body)=>{
         res.send(body);
     })
 
@@ -92,7 +92,7 @@ route.get('/tech' , (req , res)=>{
 //fetch education
 route.get('/education' , (req , res)=>{
 
-    requestToi.fetchNews(msid.education, (body)=>{
+    requestNews.fetchNews(msid.education, (body)=>{
         res.send(body);
     })
 
