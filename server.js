@@ -5,7 +5,7 @@ function requestNewsJson(msid) {
 
 }
 
-
+var port = process.env.PORT || 9090;
 
 app.use('/' , express.static(__dirname + "/public"));
 
@@ -21,6 +21,6 @@ app.use('/test', routes.sequelize);
 
 app.use('/parse', routes.parse);
 
-app.listen('9090' , ()=> {
-    console.log("magic happens at 9090");
+app.listen(port , ()=> {
+    console.log("magic happens at " + port);
 });
