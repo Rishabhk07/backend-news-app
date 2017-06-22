@@ -12,6 +12,7 @@ module.exports= {
             'tag-alrt,msid-' + msid + ',feedtype-sjson,type-brief.cms?andver=' +
             '417&platform=android&adreqfrm=sec' , (error , response , body)=>{
             if(!error && response.statusCode == 200) {
+                console.log(JSON.stringify(response.body));
                 var json = (JSON.parse(body)).items;
                 json.splice(1,1);
                 json.splice(7,1);
