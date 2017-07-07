@@ -141,7 +141,6 @@ function newsFromDb(callback) {
 var saveNewsToDb = (model)=>{
 
     //create Table
-
     news.create(model).then(function (task) {
         console.log("successfully saved the news with id" + task.id);
         console.log(task);

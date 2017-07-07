@@ -98,5 +98,17 @@ route.get('/education' , (req , res)=>{
 
 });
 
+route.get('/environment',(req , res)=>{
+   requestNews.fetchNews(msid.environment,(body)=>{
+       res.send(body);
+   })
+});
+
+route.get('/science',(req,res)=>{
+   requestNews.fetchNews(msid.science,(body)=>{
+       res.send(body);
+   })
+});
+
 module.exports = route;
 //
