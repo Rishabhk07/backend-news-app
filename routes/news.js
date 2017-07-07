@@ -103,12 +103,32 @@ route.get('/environment',(req , res)=>{
        res.send(body);
    })
 });
-
-route.get('/science',(req,res)=>{
-   requestNews.fetchNews(msid.science,(body)=>{
+route.get('/tv',(req , res)=>{
+   requestNews.fetchNews(msid.tvFeatured,(body)=>{
        res.send(body);
    })
 });
+route.get('/auto',(req , res)=>{
+   requestNews.fetchNews(msid.autoFeatured,(body)=>{
+       res.send(body);
+   })
+});
+route.get('/events',(req , res)=>{
+   requestNews.fetchNews(msid.Events,(body)=>{
+       res.send(body);
+   })
+});
+route.get('/lifestyle',(req , res)=>{
+   requestNews.fetchNews(msid.lifeStyle,(body)=>{
+       res.send(body);
+   })
+});
+route.get('/goodG',(req , res)=>{
+   requestNews.fetchNews(msid.goodGovernance,(body)=>{
+       res.send(body);
+   })
+});
+
 
 module.exports = route;
 //

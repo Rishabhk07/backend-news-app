@@ -50,7 +50,7 @@ function newsFromDb(callback,msid) {
 
 
 var saveNewsToDb = (model,msid)=>{
-
+    console.log(msid.table);
     //create Table
     const db = sequelize.define(msid.table,modelDB);
     db.sync().then(

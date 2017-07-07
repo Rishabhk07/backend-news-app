@@ -6,7 +6,7 @@
 let msid = {
     briefs : {id: "48986328",table: "briefs"},
     topNews : {id:"51396865",table: "top_news"},
-    entertainment : {id:"1081479906",table:"entertainment"},
+    // entertainment : {id:"1081479906",table:"entertainment"},
     india : {id:"4440100",table:"india"},
     world : {id:"296589292",table: "world"},
     sports : {id:"4719148",table: "sports"},
@@ -15,10 +15,9 @@ let msid = {
     education: {id: "913168846",table: "education"},
     environment: {id: "2647163",table: "environment"},
     //wrong id for science
-    science: {id: "2128672765",table: "science"},
-    movieReviewsFeatured: {id: "135762",table:"movie_reviews"},
+    // movieReviewsFeatured: {id: "135762",table:"movie_reviews"},
     tvFeatured: {id:'47553118',table:"tv"},
-    autoFeatured: {id:'49896634',table:"auto"},
+    autoFeatured: {id:'49896634',table:"automotive"},
     Events: {id:"2277129",table: "events"},
     lifeStyle: {id:'2886704',table:"life_style"},
     goodGovernance: {id:'47082088',table:"good_governance"}
