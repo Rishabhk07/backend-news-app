@@ -21,6 +21,6 @@ app.use('/test', routes.sequelize);
 
 app.use('/parse', routes.parse);
 
-app.listen(port , ()=> {
+app.listen(9890 , ()=> {
     console.log("magic happens at " + port);
 });
