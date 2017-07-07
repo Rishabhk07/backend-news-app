@@ -118,7 +118,6 @@ var news = sequelize.define('newsData', {
     msid:{
         type:Sequelize.STRING
     }
-
 });
 
 function createTable() {
@@ -133,8 +132,6 @@ function newsFromDb(callback) {
         console.log(body);
         callback(body);
     })
-
-
 }
 
 

@@ -25,7 +25,7 @@ route.get('/save',(req, res)=>{
 
 
 route.get('/fetch',(req,res)=>{
-    sequelize.newsFromb(function (body) {
+    sequelize.newsFromDb(function (body) {
         res.send(body);
     })
 });
