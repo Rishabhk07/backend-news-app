@@ -3,13 +3,13 @@
  */
 const request = require('request');
 const model = require('../model/toiNewsModel');
-const sequelize = require('../model/sequalize');
+const sequelize = require('../Database/sequalize');
 module.exports = {
     fetchNews(msid, calllback){
         // sequelize.createTable();
         let newData = [];
         request('http://timesofindia.indiatimes.com/feeds/newslistingfeed/' +
-            'tag-alrt,msid-' + msid + ',feedtype-sjson,type-brief.cms?andver=' +
+            'tag-alrt,msid-' + msid.id + ',feedtype-sjson,type-brief.cms?andver=' +
             '417&platform=android&adreqfrm=sec', (error, response, body) => {
             if (!error && response.statusCode == 200) {
                 // console.log(JSON.stringify(response.body));
@@ -19,25 +19,14 @@ module.exports = {
                     if(json[i].tn === "brieflistAd" || json[i].hl == "" ){
                         json.splice(i,1);
                     }
-                    // json[i].key = json[i].id;
-                    // json[i].msid = msid;
-                    // delete json[i].id;
-                    // newData.push(json[i]);
-                    // console.log(i + " ");
-                    // console.log(newData[i]);
-                    // sequelize.saveNewsToDb(json[i]);
-                    console.log(json[i].hl);
+                    json[i].key = json[i].id;
+                    json[i].msid = msid.id;
+                    delete json[i].id;
+                    newData.push(json[i]);
+                    sequelize.saveNewsToDb(json[i],msid);
                 }
-
-                // sequelize.callSave();
-                //
-                // sequelize.saveNewsToDb(newData);
-
                 calllback(body);
-
-                // var newsSet = new model.model(body.items);
-                // console.log(newsSet);
-
+                var newsSet = new model.model(body.items);
             }
         });
 

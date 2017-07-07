@@ -3,25 +3,25 @@
  */
 //msid for all the news
 
-var msid = {
-    briefs : "48986328",
-    topNews : "51396865",
-    entertainment : "1081479906",
-    india : "4440100",
-    world : "296589292",
-    sports : "4719148",
-    cricket : "4719161",
-    business : "1898055",
-    education: "913168846",
-    environment: "2647163",
+let msid = {
+    briefs : {id: "48986328",table: "briefs"},
+    topNews : {id:"51396865",table: "top_news"},
+    entertainment : {id:"1081479906",table:"entertainment"},
+    india : {id:"4440100",table:"india"},
+    world : {id:"296589292",table: "world"},
+    sports : {id:"4719148",table: "sports"},
+    cricket : {id: "4719161",table: "cricket"},
+    business : {id:"1898055",table: "business"},
+    education: {id: "913168846",table: "education"},
+    environment: {id: "2647163",table: "environment"},
     //wrong id for science
-    science: "2128672765",
-    movieReviewsFeatured: "135762",
-    tvFeatured: '47553118',
-    autoFeatured: '49896634',
-    Events: "2277129",
-    lifeStyle: '2886704',
-    goodGovernance: '47082088'
+    science: {id: "2128672765",table: "science"},
+    movieReviewsFeatured: {id: "135762",table:"movie_reviews"},
+    tvFeatured: {id:'47553118',table:"tv"},
+    autoFeatured: {id:'49896634',table:"auto"},
+    Events: {id:"2277129",table: "events"},
+    lifeStyle: {id:'2886704',table:"life_style"},
+    goodGovernance: {id:'47082088',table:"good_governance"}
 };
 
 module.exports = msid;
