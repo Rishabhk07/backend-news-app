@@ -1,2 +1,2 @@
-#!/bin/sh
-node ./cronScripts/scrapeApi.js
+#!/bin/bash
+node ./scrapeApi.js
