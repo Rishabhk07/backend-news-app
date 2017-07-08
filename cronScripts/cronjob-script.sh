@@ -1,3 +1,2 @@
-#!/bin/bash
-node ./scrapeApi.js
-node ./cron.js
+#!/usr/bin/env sh
+node newsapp/backend-news-app/cronScripts/scrapeApi.js
