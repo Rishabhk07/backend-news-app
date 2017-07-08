@@ -11,7 +11,7 @@ for(let key in newsCategory){
             counter++;
             console.log("counter: " + counter);
 
-            fs.appendFile("/home/rishabh/newsapp/backend-news-app/cronScripts/ApiFetched",new Date().toISOString().slice(0,10)+"\n",(err)=>{
+            fs.appendFile("/home/rishabh/newsapp/backend-news-app/cronScripts/ApiFetched",new Date() +"\n",(err)=>{
                 if(err) throw err;
             })
     })
