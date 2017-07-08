@@ -11,7 +11,7 @@ route.get('/' , express.static(__dirname + "/public/news"));
 //fetch briefs from toi website
 route.get('/briefs' , (req , res)=>{
 
-    requestNews.fetchNews(msid.briefs, (body)=>{
+    requestNews.fetchNews(msid.briefs,(body)=>{
         res.send(body);
     })
 

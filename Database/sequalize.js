@@ -35,12 +35,25 @@ function createTable() {
     })
 }
 
-function newsFromDb(callback,msid) {
+function newsFromDb(callback,msid,offset) {
     const db = sequelize.define(msid,modelDB);
     db.findAll({
         limit: 10,
+        offset: 10*offset,
         order: [
             ['createdAt','DESC']
+        ]
+    }).then(function (body) {
+        console.log(body);
+        callback(body);
+    })
+}
+
+function allNewsFromDb(callback,msid,offset) {
+    const db = sequelize.define(msid,modelDB);
+    db.findAll({
+        order: [
+            ['id','DESC']
         ]
     }).then(function (body) {
         console.log(body);
@@ -64,4 +77,4 @@ var saveNewsToDb = (model,msid)=>{
 
 };
 
-module.exports = {checkDbConnection,saveNewsToDb, createTable, newsFromDb};
+module.exports = {checkDbConnection,saveNewsToDb, createTable, newsFromDb,allNewsFromDb};
