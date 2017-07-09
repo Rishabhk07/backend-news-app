@@ -43,6 +43,14 @@ let db = {
     },
     msid:{
         type:Sequelize.STRING
+    },
+    story:{
+        type:Sequelize.TEXT,
+        field: 'news_story'
+    },
+    photoStory: {
+        type:Sequelize.TEXT,
+        field: 'photo_story'
     }
 };
 module.exports = db;
