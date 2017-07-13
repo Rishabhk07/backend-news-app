@@ -30,29 +30,33 @@ module.exports = {
                         json[i].key = json[i].id;
                         json[i].msid = msid.id;
                         delete json[i].id;
-                        console.log(json[i].tn);
+
+                        // newData.push(json[i])
                         // fullStory.fetchFullStory(json[i], calllback);
                         if (json[i].tn === "photostory") {
                             console.log("photostory");
-                            await photoStory.fetchPhotoStory(json[i], function (body) {
+                                console.log("length: " + json.length)
+                                await photoStory.fetchPhotoStory(json[i], function (body) {
                                 sequelize.saveNewsToDb(body, msid);
                                 newData.push(body);
-                                if (i === json.length - 1) {
-                                    calllback(newData);
+                                if(i == json.length - 1){
+                                    calllback(newData)
                                 }
                             });
                         } else {
                             console.log("briefs");
+
                             await fullStory.fetchFullStory(json[i], function (body) {
-                                // sequelize.saveNewsToDb(body,msid);
-                                // calllback(body)
+                                sequelize.saveNewsToDb(body,msid);
+
                                 newData.push(body);
-                                if (i === json.length - 1) {
-                                    calllback(newData);
+                                if(i == json.length - 1){
+                                    calllback(newData)
                                 }
-                            })
+                            });
                         }
                     }
+
                 }
             }).catch(function (error) {
             console.log(error)

@@ -2,8 +2,11 @@
  * Created by rishabhkhanna on 14/01/17.
  */
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('newsapp' , 'rishabh' , 'beyblade',{
+var sequelize = new Sequelize({
     host:'localhost',
+    username: 'rishabh',
+    database: 'newsapp',
+    password: 'beyblade',
     dialect: 'mysql'
 });
 var modelDB = require('./model');
