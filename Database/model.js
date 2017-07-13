@@ -45,7 +45,7 @@ let db = {
         type:Sequelize.DataTypes.STRING
     },
     story:{
-        type:Sequelize.DataTEXT,
+        type:Sequelize.DataTypes.TEXT,
         field: 'news_story'
     },
     photoStory: {
