@@ -15,7 +15,7 @@ module.exports = {
         axios.get('http://timesofindia.indiatimes.com/feeds/newslistingfeed/' +
             'tag-alrt,msid-' + msid.id + ',feedtype-sjson,type-brief.cms?andver=' +
             '417&platform=android&adreqfrm=sec')
-            .then(async function (response) {
+            .then(function (response) {
                 console.log(response.status);
                 console.log(response.data);
                 if (response.status === 200) {
@@ -36,23 +36,23 @@ module.exports = {
                         if (json[i].tn === "photostory") {
                             console.log("photostory");
                                 console.log("length: " + json.length)
-                                await photoStory.fetchPhotoStory(json[i], function (body) {
+                                photoStory.fetchPhotoStory(json[i], function (body) {
                                 sequelize.saveNewsToDb(body, msid);
                                 newData.push(body);
-                                if(i == json.length - 1){
-                                    calllback(newData)
-                                }
+                                // if(i == json.length - 1){
+                                //     calllback(newData)
+                                // }
                             });
                         } else {
                             console.log("briefs");
 
-                            await fullStory.fetchFullStory(json[i], function (body) {
+                                fullStory.fetchFullStory(json[i], function (body) {
                                 sequelize.saveNewsToDb(body,msid);
 
                                 newData.push(body);
-                                if(i == json.length - 1){
-                                    calllback(newData)
-                                }
+                                // if(i == json.length - 1){
+                                //     calllback(newData)
+                                // }
                             });
                         }
                     }

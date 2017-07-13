@@ -1,11 +1,11 @@
 /**
+ * Created by rishabhkhanna on 14/07/17.
+ */
+/**
  * Created by rishabhkhanna on 07/07/17.
  */
 const Sequelize = require('sequelize');
 let db = {
-    st: {
-        type: Sequelize.DataTypes.STRING
-    },
     uid: {
         type: Sequelize.DataTypes.STRING
     },
@@ -43,14 +43,6 @@ let db = {
     },
     msid:{
         type:Sequelize.DataTypes.STRING
-    },
-    story:{
-        type:Sequelize.DataTEXT,
-        field: 'news_story'
-    },
-    photoStory: {
-        type:Sequelize.DataTypes.JSON,
-        field: 'photo_story'
     }
 };
 module.exports = db;
