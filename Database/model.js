@@ -4,52 +4,52 @@
 const Sequelize = require('sequelize');
 let db = {
     st: {
-        type: Sequelize.DataTypes.STRING
+        type: Sequelize.STRING
     },
     uid: {
-        type: Sequelize.DataTypes.STRING
+        type: Sequelize.STRING
     },
     dl: {
-        type: Sequelize.DataTypes.STRING
+        type: Sequelize.STRING
     },
     hl: {
-        type: Sequelize.DataTypes.TEXT,
+        type: Sequelize.TEXT,
         field: 'news_heading'
     },
     imageid: {
-        type: Sequelize.DataTypes.STRING
+        type: Sequelize.STRING
     },
     syn: {
-        type: Sequelize.DataTypes.TEXT,
+        type: Sequelize.TEXT,
         field: 'news_detailed'
     },
     id:{
-        type:Sequelize.DataTypes.INTEGER,
+        type:Sequelize.INTEGER,
         primaryKey:true,
         autoIncrement:true
     },
     dm:{
-        type:Sequelize.DataTypes.STRING
+        type:Sequelize.STRING
     },
     tn:{
-        type:Sequelize.DataTypes.STRING
+        type:Sequelize.STRING
     },
     su:{
-        type:Sequelize.DataTypes.STRING
+        type:Sequelize.STRING
     },
     key:{
-        type:Sequelize.DataTypes.STRING,
+        type:Sequelize.STRING,
         unique:true
     },
     msid:{
-        type:Sequelize.DataTypes.STRING
+        type:Sequelize.STRING
     },
     story:{
-        type:Sequelize.DataTypes.TEXT,
+        type:Sequelize.TEXT,
         field: 'news_story'
     },
     photoStory: {
-        type:Sequelize.DataTypes.JSON,
+        type:Sequelize.JSON,
         field: 'photo_story'
     }
 };
