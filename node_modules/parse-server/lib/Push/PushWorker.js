@@ -44,9 +44,6 @@ var UNSUPPORTED_BADGE_KEY = "unsupported";
 function groupByBadge(installations) {
   return installations.reduce(function (map, installation) {
     var badge = installation.badge + '';
-    if (installation.deviceType != "ios") {
-      badge = UNSUPPORTED_BADGE_KEY;
-    }
     map[badge] = map[badge] || [];
     map[badge].push(installation);
     return map;

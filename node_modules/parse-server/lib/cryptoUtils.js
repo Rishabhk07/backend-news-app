@@ -45,8 +45,9 @@ function randomString(size) {
 
 // Returns a new random alphanumeric string suitable for object ID.
 function newObjectId() {
-  //TODO: increase length to better protect against collisions.
-  return randomString(10);
+  var size = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 10;
+
+  return randomString(size);
 }
 
 // Returns a new random hex string suitable for secure tokens.

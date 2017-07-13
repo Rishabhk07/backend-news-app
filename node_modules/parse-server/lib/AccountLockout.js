@@ -50,23 +50,17 @@ var AccountLockout = exports.AccountLockout = function () {
   }, {
     key: '_isFailedLoginCountSet',
     value: function _isFailedLoginCountSet() {
-      var _this = this;
+      var query = {
+        username: this._user.username,
+        _failed_login_count: { $exists: true }
+      };
 
-      return new Promise(function (resolve, reject) {
-        var query = {
-          username: _this._user.username,
-          _failed_login_count: { $exists: true }
-        };
-
-        _this._config.database.find('_User', query).then(function (users) {
-          if (Array.isArray(users) && users.length > 0) {
-            resolve(true);
-          } else {
-            resolve(false);
-          }
-        }).catch(function (err) {
-          reject(err);
-        });
+      return this._config.database.find('_User', query).then(function (users) {
+        if (Array.isArray(users) && users.length > 0) {
+          return true;
+        } else {
+          return false;
+        }
       });
     }
 
@@ -78,21 +72,12 @@ var AccountLockout = exports.AccountLockout = function () {
   }, {
     key: '_initFailedLoginCount',
     value: function _initFailedLoginCount() {
-      var _this2 = this;
+      var _this = this;
 
-      return new Promise(function (resolve, reject) {
-
-        _this2._isFailedLoginCountSet().then(function (failedLoginCountIsSet) {
-          if (!failedLoginCountIsSet) {
-            return _this2._setFailedLoginCount(0);
-          } else {
-            return Promise.resolve();
-          }
-        }).then(function () {
-          resolve();
-        }).catch(function (err) {
-          reject(err);
-        });
+      return this._isFailedLoginCountSet().then(function (failedLoginCountIsSet) {
+        if (!failedLoginCountIsSet) {
+          return _this._setFailedLoginCount(0);
+        }
       });
     }
 
@@ -121,29 +106,23 @@ var AccountLockout = exports.AccountLockout = function () {
   }, {
     key: '_setLockoutExpiration',
     value: function _setLockoutExpiration() {
-      var _this3 = this;
+      var query = {
+        username: this._user.username,
+        _failed_login_count: { $gte: this._config.accountLockout.threshold }
+      };
 
-      return new Promise(function (resolve, reject) {
-        var query = {
-          username: _this3._user.username,
-          _failed_login_count: { $gte: _this3._config.accountLockout.threshold }
-        };
+      var now = new Date();
 
-        var now = new Date();
+      var updateFields = {
+        _account_lockout_expires_at: _node2.default._encode(new Date(now.getTime() + this._config.accountLockout.duration * 60 * 1000))
+      };
 
-        var updateFields = {
-          _account_lockout_expires_at: _node2.default._encode(new Date(now.getTime() + _this3._config.accountLockout.duration * 60 * 1000))
-        };
-
-        _this3._config.database.update('_User', query, updateFields).then(function () {
-          resolve();
-        }).catch(function (err) {
-          if (err && err.code && err.message && err.code === 101 && err.message === 'Object not found.') {
-            resolve(); // nothing to update so we are good
-          } else {
-            reject(err); // unknown error
-          }
-        });
+      return this._config.database.update('_User', query, updateFields).catch(function (err) {
+        if (err && err.code && err.message && err.code === 101 && err.message === 'Object not found.') {
+          return; // nothing to update so we are good
+        } else {
+          throw err; // unknown error
+        }
       });
     }
 
@@ -157,24 +136,18 @@ var AccountLockout = exports.AccountLockout = function () {
   }, {
     key: '_notLocked',
     value: function _notLocked() {
-      var _this4 = this;
+      var _this2 = this;
 
-      return new Promise(function (resolve, reject) {
-        var query = {
-          username: _this4._user.username,
-          _account_lockout_expires_at: { $gt: _node2.default._encode(new Date()) },
-          _failed_login_count: { $gte: _this4._config.accountLockout.threshold }
-        };
+      var query = {
+        username: this._user.username,
+        _account_lockout_expires_at: { $gt: _node2.default._encode(new Date()) },
+        _failed_login_count: { $gte: this._config.accountLockout.threshold }
+      };
 
-        _this4._config.database.find('_User', query).then(function (users) {
-          if (Array.isArray(users) && users.length > 0) {
-            reject(new _node2.default.Error(_node2.default.Error.OBJECT_NOT_FOUND, 'Your account is locked due to multiple failed login attempts. Please try again after ' + _this4._config.accountLockout.duration + ' minute(s)'));
-          } else {
-            resolve();
-          }
-        }).catch(function (err) {
-          reject(err);
-        });
+      return this._config.database.find('_User', query).then(function (users) {
+        if (Array.isArray(users) && users.length > 0) {
+          throw new _node2.default.Error(_node2.default.Error.OBJECT_NOT_FOUND, 'Your account is locked due to multiple failed login attempts. Please try again after ' + _this2._config.accountLockout.duration + ' minute(s)');
+        }
       });
     }
 
@@ -189,18 +162,12 @@ var AccountLockout = exports.AccountLockout = function () {
   }, {
     key: '_handleFailedLoginAttempt',
     value: function _handleFailedLoginAttempt() {
-      var _this5 = this;
+      var _this3 = this;
 
-      return new Promise(function (resolve, reject) {
-        _this5._initFailedLoginCount().then(function () {
-          return _this5._incrementFailedLoginCount();
-        }).then(function () {
-          return _this5._setLockoutExpiration();
-        }).then(function () {
-          resolve();
-        }).catch(function (err) {
-          reject(err);
-        });
+      return this._initFailedLoginCount().then(function () {
+        return _this3._incrementFailedLoginCount();
+      }).then(function () {
+        return _this3._setLockoutExpiration();
       });
     }
 
@@ -211,24 +178,17 @@ var AccountLockout = exports.AccountLockout = function () {
   }, {
     key: 'handleLoginAttempt',
     value: function handleLoginAttempt(loginSuccessful) {
-      var _this6 = this;
+      var _this4 = this;
 
       if (!this._config.accountLockout) {
         return Promise.resolve();
       }
-
-      return new Promise(function (resolve, reject) {
-        _this6._notLocked().then(function () {
-          if (loginSuccessful) {
-            return _this6._setFailedLoginCount(0);
-          } else {
-            return _this6._handleFailedLoginAttempt();
-          }
-        }).then(function () {
-          resolve();
-        }).catch(function (err) {
-          reject(err);
-        });
+      return this._notLocked().then(function () {
+        if (loginSuccessful) {
+          return _this4._setFailedLoginCount(0);
+        } else {
+          return _this4._handleFailedLoginAttempt();
+        }
       });
     }
   }]);

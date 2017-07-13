@@ -141,6 +141,8 @@ function parseFieldTypeToMongoFieldType(_ref) {
       return 'geopoint';
     case 'File':
       return 'file';
+    case 'Bytes':
+      return 'bytes';
   }
 }
 

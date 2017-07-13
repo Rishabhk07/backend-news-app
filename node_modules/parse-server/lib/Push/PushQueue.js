@@ -15,6 +15,10 @@ var _rest2 = _interopRequireDefault(_rest);
 
 var _utils = require('./utils');
 
+var _deepcopy = require('deepcopy');
+
+var _deepcopy2 = _interopRequireDefault(_deepcopy);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -45,7 +49,10 @@ var PushQueue = exports.PushQueue = function () {
       // Order by badge (because the payload is badge dependant)
       // and createdAt to fix the order
       var order = (0, _utils.isPushIncrementing)(body) ? 'badge,createdAt' : 'createdAt';
-
+      where = (0, _deepcopy2.default)(where);
+      if (!where.hasOwnProperty('deviceToken')) {
+        where['deviceToken'] = { '$exists': true };
+      }
       return Promise.resolve().then(function () {
         return _rest2.default.find(config, auth, '_Installation', where, { limit: 0, count: true });
       }).then(function (_ref) {

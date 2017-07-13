@@ -189,12 +189,16 @@ function getRequestObject(triggerType, auth, parseObject, originalParseObject, c
   return request;
 }
 
-function getRequestQueryObject(triggerType, auth, query, config) {
+function getRequestQueryObject(triggerType, auth, query, count, config, isGet) {
+  isGet = !!isGet;
+
   var request = {
     triggerName: triggerType,
     query: query,
     master: false,
-    log: config.loggerController
+    count: count,
+    log: config.loggerController,
+    isGet: isGet
   };
 
   if (!auth) {
@@ -316,7 +320,7 @@ function maybeRunAfterFindTrigger(triggerType, auth, className, objects, config)
   });
 }
 
-function maybeRunQueryTrigger(triggerType, className, restWhere, restOptions, config, auth) {
+function maybeRunQueryTrigger(triggerType, className, restWhere, restOptions, config, auth, isGet) {
   var trigger = getTrigger(className, triggerType, config.applicationId);
   if (!trigger) {
     return Promise.resolve({
@@ -329,6 +333,7 @@ function maybeRunQueryTrigger(triggerType, className, restWhere, restOptions, co
   if (restWhere) {
     parseQuery._where = restWhere;
   }
+  var count = false;
   if (restOptions) {
     if (restOptions.include && restOptions.include.length > 0) {
       parseQuery._include = restOptions.include.split(',');
@@ -339,8 +344,9 @@ function maybeRunQueryTrigger(triggerType, className, restWhere, restOptions, co
     if (restOptions.limit) {
       parseQuery._limit = restOptions.limit;
     }
+    count = !!restOptions.count;
   }
-  var requestObject = getRequestQueryObject(triggerType, auth, parseQuery, config);
+  var requestObject = getRequestQueryObject(triggerType, auth, parseQuery, count, config, isGet);
   return Promise.resolve().then(function () {
     return trigger(requestObject);
   }).then(function (result) {
@@ -367,6 +373,18 @@ function maybeRunQueryTrigger(triggerType, className, restWhere, restOptions, co
     if (jsonQuery.keys) {
       restOptions = restOptions || {};
       restOptions.keys = jsonQuery.keys;
+    }
+    if (requestObject.readPreference) {
+      restOptions = restOptions || {};
+      restOptions.readPreference = requestObject.readPreference;
+    }
+    if (requestObject.includeReadPreference) {
+      restOptions = restOptions || {};
+      restOptions.includeReadPreference = requestObject.includeReadPreference;
+    }
+    if (requestObject.subqueryReadPreference) {
+      restOptions = restOptions || {};
+      restOptions.subqueryReadPreference = requestObject.subqueryReadPreference;
     }
     return {
       restWhere: restWhere,

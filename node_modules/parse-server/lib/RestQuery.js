@@ -96,13 +96,16 @@ function RestQuery(config, auth, className) {
         break;
       case 'skip':
       case 'limit':
+      case 'readPreference':
         this.findOptions[option] = restOptions[option];
         break;
       case 'order':
         var fields = restOptions.order.split(',');
         this.findOptions.sort = fields.reduce(function (sortMap, field) {
           field = field.trim();
-          if (field[0] == '-') {
+          if (field === '$score') {
+            sortMap.score = { $meta: 'textScore' };
+          } else if (field[0] == '-') {
             sortMap[field.slice(1)] = -1;
           } else {
             sortMap[field] = 1;
@@ -134,6 +137,9 @@ function RestQuery(config, auth, className) {
       case 'redirectClassNameForKey':
         this.redirectKey = restOptions.redirectClassNameForKey;
         this.redirectClassName = null;
+        break;
+      case 'includeReadPreference':
+      case 'subqueryReadPreference':
         break;
       default:
         throw new Parse.Error(Parse.Error.INVALID_JSON, 'bad option: ' + option);
@@ -181,6 +187,8 @@ RestQuery.prototype.buildRestWhere = function () {
     return _this2.replaceInQuery();
   }).then(function () {
     return _this2.replaceNotInQuery();
+  }).then(function () {
+    return _this2.replaceEquality();
   });
 };
 
@@ -293,6 +301,11 @@ RestQuery.prototype.replaceInQuery = function () {
     redirectClassNameForKey: inQueryValue.redirectClassNameForKey
   };
 
+  if (this.restOptions.subqueryReadPreference) {
+    additionalOptions.readPreference = this.restOptions.subqueryReadPreference;
+    additionalOptions.subqueryReadPreference = this.restOptions.subqueryReadPreference;
+  }
+
   var subquery = new RestQuery(this.config, this.auth, inQueryValue.className, inQueryValue.where, additionalOptions);
   return subquery.execute().then(function (response) {
     transformInQuery(inQueryObject, subquery.className, response.results);
@@ -362,6 +375,11 @@ RestQuery.prototype.replaceNotInQuery = function () {
     redirectClassNameForKey: notInQueryValue.redirectClassNameForKey
   };
 
+  if (this.restOptions.subqueryReadPreference) {
+    additionalOptions.readPreference = this.restOptions.subqueryReadPreference;
+    additionalOptions.subqueryReadPreference = this.restOptions.subqueryReadPreference;
+  }
+
   var subquery = new RestQuery(this.config, this.auth, notInQueryValue.className, notInQueryValue.where, additionalOptions);
   return subquery.execute().then(function (response) {
     transformNotInQuery(notInQueryObject, subquery.className, response.results);
@@ -429,6 +447,11 @@ RestQuery.prototype.replaceSelect = function () {
     redirectClassNameForKey: selectValue.query.redirectClassNameForKey
   };
 
+  if (this.restOptions.subqueryReadPreference) {
+    additionalOptions.readPreference = this.restOptions.subqueryReadPreference;
+    additionalOptions.subqueryReadPreference = this.restOptions.subqueryReadPreference;
+  }
+
   var subquery = new RestQuery(this.config, this.auth, selectValue.query.className, selectValue.query.where, additionalOptions);
   return subquery.execute().then(function (response) {
     transformSelect(selectObject, selectValue.key, response.results);
@@ -494,6 +517,11 @@ RestQuery.prototype.replaceDontSelect = function () {
     redirectClassNameForKey: dontSelectValue.query.redirectClassNameForKey
   };
 
+  if (this.restOptions.subqueryReadPreference) {
+    additionalOptions.readPreference = this.restOptions.subqueryReadPreference;
+    additionalOptions.subqueryReadPreference = this.restOptions.subqueryReadPreference;
+  }
+
   var subquery = new RestQuery(this.config, this.auth, dontSelectValue.query.className, dontSelectValue.query.where, additionalOptions);
   return subquery.execute().then(function (response) {
     transformDontSelect(dontSelectObject, dontSelectValue.key, response.results);
@@ -546,6 +574,39 @@ var cleanResultAuthData = function cleanResultAuthData(result) {
     if (Object.keys(result.authData).length == 0) {
       delete result.authData;
     }
+  }
+};
+
+var replaceEqualityConstraint = function replaceEqualityConstraint(constraint) {
+  if ((typeof constraint === 'undefined' ? 'undefined' : _typeof(constraint)) !== 'object') {
+    return constraint;
+  }
+  var equalToObject = {};
+  var hasDirectConstraint = false;
+  var hasOperatorConstraint = false;
+  for (var key in constraint) {
+    if (key.indexOf('$') !== 0) {
+      hasDirectConstraint = true;
+      equalToObject[key] = constraint[key];
+    } else {
+      hasOperatorConstraint = true;
+    }
+  }
+  if (hasDirectConstraint && hasOperatorConstraint) {
+    constraint['$eq'] = equalToObject;
+    Object.keys(equalToObject).forEach(function (key) {
+      delete constraint[key];
+    });
+  }
+  return constraint;
+};
+
+RestQuery.prototype.replaceEquality = function () {
+  if (_typeof(this.restWhere) !== 'object') {
+    return;
+  }
+  for (var key in this.restWhere) {
+    this.restWhere[key] = replaceEqualityConstraint(this.restWhere[key]);
   }
 };
 
@@ -750,6 +811,11 @@ function includePath(config, auth, response, path) {
     if (keySet.size > 0) {
       includeRestOptions.keys = Array.from(keySet).join(',');
     }
+  }
+
+  if (restOptions.includeReadPreference) {
+    includeRestOptions.readPreference = restOptions.includeReadPreference;
+    includeRestOptions.includeReadPreference = restOptions.includeReadPreference;
   }
 
   var queryPromises = Object.keys(pointersHash).map(function (className) {

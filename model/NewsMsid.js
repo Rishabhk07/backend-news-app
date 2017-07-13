@@ -14,6 +14,7 @@ let msid = {
     business : {id:"1898055",table: "business"},
     education: {id: "913168846",table: "education"},
     environment: {id: "2647163",table: "environment"},
+    entertainment: {id:"1081479906",table:"entertainment"},
     //wrong id for science
     // movieReviewsFeatured: {id: "135762",table:"movie_reviews"},
     tvFeatured: {id:'47553118',table:"tv"},

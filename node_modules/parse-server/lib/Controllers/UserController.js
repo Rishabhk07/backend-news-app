@@ -80,6 +80,8 @@ var UserController = exports.UserController = function (_AdaptableController) {
   }, {
     key: 'verifyEmail',
     value: function verifyEmail(username, token) {
+      var _this2 = this;
+
       if (!this.shouldVerifyEmails) {
         // Trying to verify email when not enabled
         // TODO: Better error here.
@@ -97,18 +99,19 @@ var UserController = exports.UserController = function (_AdaptableController) {
 
         updateFields._email_verify_token_expires_at = { __op: 'Delete' };
       }
-
-      return this.config.database.update('_User', query, updateFields).then(function (document) {
-        if (!document) {
-          throw undefined;
+      var masterAuth = Auth.master(this.config);
+      var checkIfAlreadyVerified = new RestQuery(this.config, Auth.master(this.config), '_User', { username: username, emailVerified: true });
+      return checkIfAlreadyVerified.execute().then(function (result) {
+        if (result.results.length) {
+          return Promise.resolve(result.results.length[0]);
         }
-        return Promise.resolve(document);
+        return _rest2.default.update(_this2.config, masterAuth, '_User', query, updateFields);
       });
     }
   }, {
     key: 'checkResetTokenValidity',
     value: function checkResetTokenValidity(username, token) {
-      var _this2 = this;
+      var _this3 = this;
 
       return this.config.database.find('_User', {
         username: username,
@@ -118,7 +121,7 @@ var UserController = exports.UserController = function (_AdaptableController) {
           throw undefined;
         }
 
-        if (_this2.config.passwordPolicy && _this2.config.passwordPolicy.resetTokenValidityDuration) {
+        if (_this3.config.passwordPolicy && _this3.config.passwordPolicy.resetTokenValidityDuration) {
           var expiresDate = results[0]._perishable_token_expires_at;
           if (expiresDate && expiresDate.__type == 'Date') {
             expiresDate = new Date(expiresDate.iso);
@@ -154,7 +157,7 @@ var UserController = exports.UserController = function (_AdaptableController) {
   }, {
     key: 'sendVerificationEmail',
     value: function sendVerificationEmail(user) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (!this.shouldVerifyEmails) {
         return;
@@ -164,17 +167,32 @@ var UserController = exports.UserController = function (_AdaptableController) {
       this.getUserIfNeeded(user).then(function (user) {
         var username = encodeURIComponent(user.username);
 
-        var link = buildEmailLink(_this3.config.verifyEmailURL, username, token, _this3.config);
+        var link = buildEmailLink(_this4.config.verifyEmailURL, username, token, _this4.config);
         var options = {
-          appName: _this3.config.appName,
+          appName: _this4.config.appName,
           link: link,
           user: (0, _triggers.inflate)('_User', user)
         };
-        if (_this3.adapter.sendVerificationEmail) {
-          _this3.adapter.sendVerificationEmail(options);
+        if (_this4.adapter.sendVerificationEmail) {
+          _this4.adapter.sendVerificationEmail(options);
         } else {
-          _this3.adapter.sendMail(_this3.defaultVerificationEmail(options));
+          _this4.adapter.sendMail(_this4.defaultVerificationEmail(options));
         }
+      });
+    }
+  }, {
+    key: 'resendVerificationEmail',
+    value: function resendVerificationEmail(username) {
+      var _this5 = this;
+
+      return this.getUserIfNeeded({ username: username }).then(function (aUser) {
+        if (!aUser || aUser.emailVerified) {
+          throw undefined;
+        }
+        _this5.setEmailVerifyToken(aUser);
+        return _this5.config.database.update('_User', { username: username }, aUser).then(function () {
+          _this5.sendVerificationEmail(aUser);
+        });
       });
     }
   }, {
@@ -191,7 +209,7 @@ var UserController = exports.UserController = function (_AdaptableController) {
   }, {
     key: 'sendPasswordResetEmail',
     value: function sendPasswordResetEmail(email) {
-      var _this4 = this;
+      var _this6 = this;
 
       if (!this.adapter) {
         throw "Trying to send a reset password but no adapter is set";
@@ -202,17 +220,17 @@ var UserController = exports.UserController = function (_AdaptableController) {
         var token = encodeURIComponent(user._perishable_token);
         var username = encodeURIComponent(user.username);
 
-        var link = buildEmailLink(_this4.config.requestResetPasswordURL, username, token, _this4.config);
+        var link = buildEmailLink(_this6.config.requestResetPasswordURL, username, token, _this6.config);
         var options = {
-          appName: _this4.config.appName,
+          appName: _this6.config.appName,
           link: link,
           user: (0, _triggers.inflate)('_User', user)
         };
 
-        if (_this4.adapter.sendPasswordResetEmail) {
-          _this4.adapter.sendPasswordResetEmail(options);
+        if (_this6.adapter.sendPasswordResetEmail) {
+          _this6.adapter.sendPasswordResetEmail(options);
         } else {
-          _this4.adapter.sendMail(_this4.defaultResetPasswordEmail(options));
+          _this6.adapter.sendMail(_this6.defaultResetPasswordEmail(options));
         }
 
         return Promise.resolve(user);
@@ -221,14 +239,14 @@ var UserController = exports.UserController = function (_AdaptableController) {
   }, {
     key: 'updatePassword',
     value: function updatePassword(username, token, password) {
-      var _this5 = this;
+      var _this7 = this;
 
       return this.checkResetTokenValidity(username, token).then(function (user) {
-        return updateUserPassword(user.objectId, password, _this5.config);
+        return updateUserPassword(user.objectId, password, _this7.config);
       })
       // clear reset password token
       .then(function () {
-        return _this5.config.database.update('_User', { username: username }, {
+        return _this7.config.database.update('_User', { username: username }, {
           _perishable_token: { __op: 'Delete' },
           _perishable_token_expires_at: { __op: 'Delete' }
         });
@@ -260,7 +278,7 @@ var UserController = exports.UserController = function (_AdaptableController) {
           user = _ref2.user,
           appName = _ref2.appName;
 
-      var text = "Hi,\n\n" + "You requested to reset your password for " + appName + ".\n\n" + "" + "Click here to reset it:\n" + link;
+      var text = "Hi,\n\n" + "You requested to reset your password for " + appName + (user.get('username') ? " (your username is '" + user.get('username') + "')" : "") + ".\n\n" + "" + "Click here to reset it:\n" + link;
       var to = user.get("email") || user.get('username');
       var subject = 'Password Reset for ' + appName;
       return { text: text, to: to, subject: subject };
@@ -279,7 +297,7 @@ var UserController = exports.UserController = function (_AdaptableController) {
 
 
 function updateUserPassword(userId, password, config) {
-  return _rest2.default.update(config, Auth.master(config), '_User', userId, {
+  return _rest2.default.update(config, Auth.master(config), '_User', { objectId: userId }, {
     password: password
   });
 }

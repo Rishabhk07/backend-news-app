@@ -81,7 +81,36 @@ var PublicAPIRouter = exports.PublicAPIRouter = function (_PromiseRouter) {
           location: config.verifyEmailSuccessURL + '?' + params
         });
       }, function () {
-        return _this2.invalidLink(req);
+        return _this2.invalidVerificationLink(req);
+      });
+    }
+  }, {
+    key: 'resendVerificationEmail',
+    value: function resendVerificationEmail(req) {
+      var username = req.body.username;
+      var appId = req.params.appId;
+      var config = new _Config2.default(appId);
+
+      if (!config.publicServerURL) {
+        return this.missingPublicServerURL();
+      }
+
+      if (!username) {
+        return this.invalidLink(req);
+      }
+
+      var userController = config.userController;
+
+      return userController.resendVerificationEmail(username).then(function () {
+        return Promise.resolve({
+          status: 302,
+          location: '' + config.linkSendSuccessURL
+        });
+      }, function () {
+        return Promise.resolve({
+          status: 302,
+          location: '' + config.linkSendFailURL
+        });
       });
     }
   }, {
@@ -180,6 +209,20 @@ var PublicAPIRouter = exports.PublicAPIRouter = function (_PromiseRouter) {
       });
     }
   }, {
+    key: 'invalidVerificationLink',
+    value: function invalidVerificationLink(req) {
+      var config = req.config;
+      if (req.query.username && req.params.appId) {
+        var params = _querystring2.default.stringify({ username: req.query.username, appId: req.params.appId });
+        return Promise.resolve({
+          status: 302,
+          location: config.invalidVerificationLinkURL + '?' + params
+        });
+      } else {
+        return this.invalidLink(req);
+      }
+    }
+  }, {
     key: 'missingPublicServerURL',
     value: function missingPublicServerURL() {
       return Promise.resolve({
@@ -202,6 +245,12 @@ var PublicAPIRouter = exports.PublicAPIRouter = function (_PromiseRouter) {
         _this4.setConfig(req);
       }, function (req) {
         return _this4.verifyEmail(req);
+      });
+
+      this.route('POST', '/apps/:appId/resend_verification_email', function (req) {
+        _this4.setConfig(req);
+      }, function (req) {
+        return _this4.resendVerificationEmail(req);
       });
 
       this.route('GET', '/apps/choose_password', function (req) {

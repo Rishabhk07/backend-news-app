@@ -6,6 +6,8 @@ var _express2 = _interopRequireDefault(_express);
 
 var _index = require('../index');
 
+var _index2 = _interopRequireDefault(_index);
+
 var _parseServer = require('./definitions/parse-server');
 
 var _parseServer2 = _interopRequireDefault(_parseServer);
@@ -63,9 +65,9 @@ function startServer(options, callback) {
     app.use(middleware);
   }
 
-  var api = new _index.ParseServer(options);
+  var parseServer = new _index2.default(options);
   var sockets = {};
-  app.use(options.mountPath, api);
+  app.use(options.mountPath, parseServer.app);
 
   var server = app.listen(options.port, options.host, callback);
   server.on('connection', initializeConnections);
@@ -77,7 +79,7 @@ function startServer(options, callback) {
         console.log('ParseLiveQuery listening on ' + options.liveQueryPort);
       });
     }
-    _index.ParseServer.createLiveQueryServer(liveQueryServer, options.liveQueryServerOptions);
+    _index2.default.createLiveQueryServer(liveQueryServer, options.liveQueryServerOptions);
   }
 
   function initializeConnections(socket) {
@@ -103,9 +105,8 @@ function startServer(options, callback) {
   var handleShutdown = function handleShutdown() {
     console.log('Termination signal received. Shutting down.');
     destroyAliveConnections();
-    server.close(function () {
-      process.exit(0);
-    });
+    server.close();
+    parseServer.handleShutdown();
   };
   process.on('SIGTERM', handleShutdown);
   process.on('SIGINT', handleShutdown);

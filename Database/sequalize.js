@@ -66,13 +66,16 @@ var saveNewsToDb = (model,msid)=>{
     console.log(msid.table);
     //create Table
     const db = sequelize.define(msid.table,modelDB);
-    db.sync().then(
-        db.create(model).then(function (task) {
-            console.log("successfully saved the news with id" + task.id);
-            console.log(task);
-        }).catch((err)=>{
-            console.log(err);
-        })
+
+    db.sync({alter: true}).then(function (body) {
+            console.log("Promise Body : " + body);
+            db.create(model).then(function (task) {
+                console.log("successfully saved the news with id" + task.id);
+                console.log(task);
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
     );
 
 };

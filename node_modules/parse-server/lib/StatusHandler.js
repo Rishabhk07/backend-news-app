@@ -69,7 +69,7 @@ function statusHandler(className, database) {
 
 function jobStatusHandler(config) {
   var jobStatus = void 0;
-  var objectId = (0, _cryptoUtils.newObjectId)();
+  var objectId = (0, _cryptoUtils.newObjectId)(config.objectIdSize);
   var database = config.database;
   var handler = statusHandler(JOB_STATUS_COLLECTION, database);
   var setRunning = function setRunning(jobName, params) {
@@ -123,7 +123,7 @@ function jobStatusHandler(config) {
 }
 
 function pushStatusHandler(config) {
-  var objectId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _cryptoUtils.newObjectId)();
+  var objectId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _cryptoUtils.newObjectId)(config.objectIdSize);
 
 
   var pushStatus = void 0;
@@ -135,6 +135,18 @@ function pushStatusHandler(config) {
     var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : { source: 'rest' };
 
     var now = new Date();
+    var pushTime = new Date();
+    var status = 'pending';
+    if (body.hasOwnProperty('push_time')) {
+      if (config.hasPushScheduledSupport) {
+        pushTime = body.push_time;
+        status = 'scheduled';
+      } else {
+        _logger.logger.warn('Trying to schedule a push while server is not configured.');
+        _logger.logger.warn('Push will be sent immediately');
+      }
+    }
+
     var data = body.data || {};
     var payloadString = JSON.stringify(data);
     var pushHash = void 0;
@@ -148,13 +160,13 @@ function pushStatusHandler(config) {
     var object = {
       objectId: objectId,
       createdAt: now,
-      pushTime: now.toISOString(),
+      pushTime: pushTime.toISOString(),
       query: JSON.stringify(where),
       payload: payloadString,
       source: options.source,
       title: options.title,
       expiry: body.expiration_time,
-      status: "pending",
+      status: status,
       numSent: 0,
       pushHash: pushHash,
       // lockdown!

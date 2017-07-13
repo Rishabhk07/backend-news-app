@@ -206,7 +206,8 @@ var ClassesRouter = exports.ClassesRouter = function (_PromiseRouter) {
   }, {
     key: 'handleUpdate',
     value: function handleUpdate(req) {
-      return _rest2.default.update(req.config, req.auth, req.params.className, req.params.objectId, req.body, req.info.clientSDK);
+      var where = { objectId: req.params.objectId };
+      return _rest2.default.update(req.config, req.auth, req.params.className, where, req.body, req.info.clientSDK);
     }
   }, {
     key: 'handleDelete',
