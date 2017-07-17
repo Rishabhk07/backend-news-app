@@ -10,8 +10,8 @@ var port = process.env.PORT || 9890;
 app.use('/' , express.static(__dirname + "/public"));
 
 const routes = {
-    news: require('./routes/news'),
-    sequelize : require('./routes/test'),
+    news: require('./routes/newsApiTest'),
+    sequelize : require('./routes/newsApiRoutes'),
     parse: require('./routes/parse')
 };
 

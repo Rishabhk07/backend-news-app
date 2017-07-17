@@ -2,9 +2,9 @@
  * Created by rishabhkhanna on 14/07/17.
  */
 const Sequelize = require('sequelize');
-const msid = require('../model/NewsMsid');
+const msid = require('../model/newsMsid');
 var modelDB = require('../Database/scratchModel');
-var request = require('../utils/requestNews');
+var request = require('../FetchLibrary/requestNews');
 const db = new Sequelize({
    host: 'localhost',
     username: 'rishabh',
