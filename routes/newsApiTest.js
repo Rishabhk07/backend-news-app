@@ -4,7 +4,7 @@
 const express = require('express');
 const route = express.Router();
 const requestNews  = require('../FetchLibrary/requestNews');
-const msid = require('../model/newsMsid');
+const msid = require('../msid/newsMsid');
 
 route.get('/' , express.static(__dirname + "/public/news"));
 

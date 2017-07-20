@@ -10,7 +10,7 @@ var sequelize = new Sequelize({
     dialect: 'mysql'
 });
 var modelDB = require('../models/NewsModel');
-const msidKey = require('../model/newsMsid');
+const msidKey = require('../msid/newsMsid');
 // Test Data #######################################
 
 

@@ -2,7 +2,7 @@
  * Created by rishabhkhanna on 14/07/17.
  */
 const Sequelize = require('sequelize');
-const msid = require('../model/newsMsid');
+const msid = require('../msid/newsMsid');
 var modelDB = require('../Database/scratchModel');
 var request = require('../FetchLibrary/requestNews');
 const db = new Sequelize({

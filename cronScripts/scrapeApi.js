@@ -1,7 +1,7 @@
 /**
  * Created by rishabhkhanna on 07/07/17.
  */
-const newsCategory = require("../model/newsMsid");
+const newsCategory = require("../msid/newsMsid");
 const requestNews = require("../FetchLibrary/requestNews");
 for(let key in newsCategory){
     console.log(newsCategory[key]);
