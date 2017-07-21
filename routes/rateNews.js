@@ -20,7 +20,7 @@ let News = newsModel("briefs", sequelize);
 // News.belongsToMany(News,{through: userNews("briefs"), as: "Briefs" });
 setupJoin();
 route.post('/like', (req, res) => {
-    console.log(req.body);
+
     let thisRating = req.body;
     console.log("LOG" + req.body.news_msid);
     let table = selectTable(req.body.news_msid);
@@ -52,7 +52,33 @@ route.post('/like', (req, res) => {
 });
 
 route.post('/dislike', (req, res) => {
-    console.log(req.body);
+    let thisRating = req.body;
+    console.log("LOG" + req.body.news_msid);
+    let table = selectTable(req.body.news_msid);
+    console.log(table);
+    News.sync();
+
+    console.log(User.associations);
+    console.log(News.associations);
+    User.findOne({
+        where: {facebook_user_id: thisRating.user_id}
+    }).then(function (user) {
+
+        News.findOne({
+            where: {id: thisRating.news_id}
+        }).then(function (news) {
+            // here with the help of closure user will be available in inner function
+            let foo = "add" + table;
+            user[foo](news, {through: {rating: 0}});
+            res.send({success: true})
+        }).catch(err=>{
+            res.send({success: false})
+            throw err;
+        })
+    }).catch(err => {
+        res.send({success: false});
+        throw err;
+    })
 });
 
 module.exports = route;
