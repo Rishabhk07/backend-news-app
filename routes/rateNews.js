@@ -15,19 +15,21 @@ const sequelize = new Sequelize({
     password: 'beyblade',
     dialect: 'mysql'
 });
-let News = newsModel("briefs", sequelize);
+let NewsAssociation = {};
 setupJoin();
 console.log("YO Calling from inside");
+
 route.post('/like', (req, res) => {
 
     let thisRating = req.body;
     console.log("LOG" + req.body.news_msid);
     let table = selectTable(req.body.news_msid);
     console.log(table);
-    News.sync();
+    let News = NewsAssociation[req.body.news_msid];
+    console.log(NewsAssociation[req.body.news_msid])
 
-    console.log(User.associations);
-    console.log(News.associations);
+    // console.log(User.associations);
+    // console.log(News.associations);
     User.findOne({
         where: {facebook_user_id: thisRating.user_id}
     }).then(function (user) {
@@ -55,8 +57,7 @@ route.post('/dislike', (req, res) => {
     console.log("LOG" + req.body.news_msid);
     let table = selectTable(req.body.news_msid);
     console.log(table);
-    News.sync();
-
+    let News = NewsAssociation[req.body.news_msid];
     console.log(User.associations);
     console.log(News.associations);
     User.findOne({
@@ -115,7 +116,7 @@ function selectTable(news_id) {
         case msid.lifeStyle.id:
             return msid.lifeStyle.table.charAt(0).toUpperCase()   + msid.lifeStyle.table.slice(1);
         case msid.goodGovernance.id:
-            return msid.goodGovernance.table.charAt(0).toUpperCase()   + msid.goodGovernance.table.slice(1);
+            return msid.goodGovernance.table.charAt(0).toUpperCase()   + msid.goodGovernance.table;
     }
 }
 
@@ -123,6 +124,8 @@ function setupJoin() {
     for (let key in msid) {
         console.log(msid[key].table);
         let thisTable = userNews(msid[key].table);
+        let News = newsModel(msid[key].table, sequelize);
+        NewsAssociation[msid[key].id] = News;
         User.belongsToMany(News, {through: thisTable, as: msid[key].table});
         News.belongsToMany(User, {through: thisTable, as: msid[key].table});
         User.sync();
