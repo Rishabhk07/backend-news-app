@@ -19,6 +19,7 @@ let News = newsModel("briefs", sequelize);
 // User.belongsToMany(News,{through: userNews("briefs"), as: "Briefs" });
 // News.belongsToMany(News,{through: userNews("briefs"), as: "Briefs" });
 setupJoin();
+console.log("YO Calling from inside");
 route.post('/like', (req, res) => {
 
     let thisRating = req.body;
@@ -123,7 +124,13 @@ function selectTable(news_id){
 
 function setupJoin(){
     for(let key in msid){
-        User.belongsToMany(News,{through: userNews(msid[key].table), as: msid[key].table });
-        News.belongsToMany(News,{through: userNews(msid[key]), as: msid[key].table });
+        console.log(msid[key].table);
+        let thisTable = userNews(msid[key].table);
+        User.belongsToMany(News,{through: thisTable , as: msid[key].table });
+        News.belongsToMany(User,{through: thisTable, as: msid[key].table });
+        User.sync();
+        News.sync();
+        thisTable.sync();
     }
 }
+
