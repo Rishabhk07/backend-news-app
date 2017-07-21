@@ -16,8 +16,6 @@ const sequelize = new Sequelize({
     dialect: 'mysql'
 });
 let News = newsModel("briefs", sequelize);
-// User.belongsToMany(News,{through: userNews("briefs"), as: "Briefs" });
-// News.belongsToMany(News,{through: userNews("briefs"), as: "Briefs" });
 setupJoin();
 console.log("YO Calling from inside");
 route.post('/like', (req, res) => {
@@ -34,18 +32,18 @@ route.post('/like', (req, res) => {
         where: {facebook_user_id: thisRating.user_id}
     }).then(function (user) {
 
-            News.findOne({
-                where: {id: thisRating.news_id}
-            }).then(function (news) {
-                // here with the help of closure user will be available in inner function
-                let foo = "add" + table;
-                user[foo](news, {through: {rating: 1}});
-                res.send({success: true})
-            }).catch(err=>{
-                res.send({success: false})
-                throw err;
-            })
+        News.findOne({
+            where: {id: thisRating.news_id}
+        }).then(function (news) {
+            // here with the help of closure user will be available in inner function
+            let foo = "add" + table;
+            user[foo](news, {through: {rating: 1}});
+            res.send({success: true})
         }).catch(err => {
+            res.send({success: false})
+            throw err;
+        })
+    }).catch(err => {
         res.send({success: false});
         throw err;
     })
@@ -72,7 +70,7 @@ route.post('/dislike', (req, res) => {
             let foo = "add" + table;
             user[foo](news, {through: {rating: 0}});
             res.send({success: true})
-        }).catch(err=>{
+        }).catch(err => {
             res.send({success: false})
             throw err;
         })
@@ -85,49 +83,48 @@ route.post('/dislike', (req, res) => {
 module.exports = route;
 
 
-
-function selectTable(news_id){
-    switch(news_id){
+function selectTable(news_id) {
+    switch (news_id) {
         case msid.briefs.id:
             console.log("briefs")
-            return msid.briefs.table.charAt(0).toUpperCase()  + msid.briefs.table.slice(1);
+            return msid.briefs.table.charAt(0).toUpperCase() + msid.briefs.table.slice(1);
         case msid.topNews.id:
-            return msid.topNews.table;
+            return msid.topNews.table.charAt(0).toUpperCase()  + msid.topNews.table.slice(1);
         case msid.india.id:
-            return msid.india.table;
+            return msid.india.table.charAt(0).toUpperCase()  + msid.india.table.slice(1);
         case msid.world.id:
-            return msid.world.table;
+            return msid.world.table.charAt(0).toUpperCase()   + msid.world.table.slice(1);
         case msid.sports.id:
-            return msid.sports.table;
+            return msid.sports.table.charAt(0).toUpperCase()   + msid.sports.table.slice(1);
         case msid.cricket.id:
-            return msid.cricket.table;
+            return msid.cricket.table.charAt(0).toUpperCase()   + msid.cricket.table.slice(1);
         case msid.business.id:
-            return msid.business.table;
+            return msid.business.table.charAt(0).toUpperCase()   + msid.business.table.slice(1);
         case msid.education.id:
-            return msid.education.table;
+            return msid.education.table.charAt(0).toUpperCase()   + msid.education.table.slice(1);
         case msid.environment.id:
-            return msid.environment.table;
+            return msid.environment.table.charAt(0).toUpperCase()   + msid.environment.table.slice(1);
         case msid.entertainment.id:
-            return msid.entertainment.table;
+            return msid.entertainment.table.charAt(0).toUpperCase()   + msid.entertainment.table.slice(1);
         case msid.tvFeatured.id:
-            return msid.tvFeatured.table;
+            return msid.tvFeatured.table.charAt(0).toUpperCase()   + msid.tvFeatured.table.slice(1);
         case msid.autoFeatured.id:
-            return msid.autoFeatured.table;
+            return msid.autoFeatured.table.charAt(0).toUpperCase()   + msid.autoFeatured.table.slice(1);
         case msid.Events.id:
-            return msid.Events.table;
+            return msid.Events.table.charAt(0).toUpperCase()   + msid.Events.table.slice(1);
         case msid.lifeStyle.id:
-            return msid.lifeStyle.table;
+            return msid.lifeStyle.table.charAt(0).toUpperCase()   + msid.lifeStyle.table.slice(1);
         case msid.goodGovernance.id:
-            return msid.goodGovernance.table;
+            return msid.goodGovernance.table.charAt(0).toUpperCase()   + msid.goodGovernance.table.slice(1);
     }
 }
 
-function setupJoin(){
-    for(let key in msid){
+function setupJoin() {
+    for (let key in msid) {
         console.log(msid[key].table);
         let thisTable = userNews(msid[key].table);
-        User.belongsToMany(News,{through: thisTable , as: msid[key].table });
-        News.belongsToMany(User,{through: thisTable, as: msid[key].table });
+        User.belongsToMany(News, {through: thisTable, as: msid[key].table});
+        News.belongsToMany(User, {through: thisTable, as: msid[key].table});
         User.sync();
         News.sync();
         thisTable.sync();

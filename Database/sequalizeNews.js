@@ -10,8 +10,6 @@ var sequelize = new Sequelize({
     dialect: 'mysql'
 });
 var modelNews = require('../models/NewsModel');
-const msidKey = require('../msid/newsMsid');
-const userNews = require('../models/userNews');
 const User = require('../models/userModel');
 // Test Data #######################################
 
@@ -72,14 +70,6 @@ var saveNewsToDb = (model,msid)=>{
     console.log(msid.table);
     //create Table
     const News = modelNews(msid.table,sequelize);
-    const thisTable = userNews(msid.table);
-    // News.belongsToMany(User,{through: thisTable });
-    // User.belongsToMany(News,{through: thisTable});
-    // User.sync();
-    // thisTable.sync();
-    // console.log("PROTO");
-    // console.log(User.associations);
-    // console.log("PROTO");
     News.sync().then(function (body) {
             console.log("Promise Body : " + body);
             News.create(model).then(function (task) {
