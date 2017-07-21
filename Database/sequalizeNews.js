@@ -9,8 +9,10 @@ var sequelize = new Sequelize({
     password: 'beyblade',
     dialect: 'mysql'
 });
-var modelDB = require('../models/NewsModel');
+var modelNews = require('../models/NewsModel');
 const msidKey = require('../msid/newsMsid');
+const userNews = require('../models/userNews');
+const User = require('../models/userModel');
 // Test Data #######################################
 
 
@@ -39,7 +41,8 @@ function createTable() {
 }
 
 function newsFromDb(callback,msid,offset) {
-    const db = sequelize.define(msid,modelDB);
+    // const db = sequelize.define(msid,modelDB);
+    const db = sequelize.define(msid,sequelize);
     db.findAll({
         limit: 10,
         offset: 10*offset,
@@ -53,7 +56,7 @@ function newsFromDb(callback,msid,offset) {
 }
 
 function allNewsFromDb(callback,msid,offset) {
-    const db = sequelize.define(msid,modelDB);
+    const db = modelNews(msid,sequelize);
     db.findAll({
         order: [
             ['id','DESC']
@@ -68,8 +71,12 @@ function allNewsFromDb(callback,msid,offset) {
 var saveNewsToDb = (model,msid)=>{
     console.log(msid.table);
     //create Table
-    const db = sequelize.define(msid.table,modelDB);
-
+    const db = modelNews(msid.table,sequelize);
+    const thisTable = userNews(msid.table);
+    db.belongsToMany(User,{through: thisTable});
+    User.belongsToMany(db,{through: thisTable});
+    User.sync();
+    thisTable.sync();
     db.sync().then(function (body) {
             console.log("Promise Body : " + body);
             db.create(model).then(function (task) {
