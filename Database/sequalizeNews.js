@@ -42,7 +42,7 @@ function createTable() {
 
 function newsFromDb(callback,msid,offset) {
     // const db = sequelize.define(msid,modelDB);
-    const db = sequelize.define(msid,sequelize);
+    const db = modelNews(msid,sequelize);
     db.findAll({
         limit: 10,
         offset: 10*offset,
@@ -71,15 +71,19 @@ function allNewsFromDb(callback,msid,offset) {
 var saveNewsToDb = (model,msid)=>{
     console.log(msid.table);
     //create Table
-    const db = modelNews(msid.table,sequelize);
+    const News = modelNews(msid.table,sequelize);
     const thisTable = userNews(msid.table);
-    db.belongsToMany(User,{through: thisTable});
-    User.belongsToMany(db,{through: thisTable});
+    News.belongsToMany(User,{through: thisTable });
+    User.belongsToMany(News,{through: thisTable});
     User.sync();
     thisTable.sync();
-    db.sync().then(function (body) {
+    console.log("PROTO");
+    console.log(User.associations);
+    console.log("PROTO");
+    News.sync().then(function (body) {
             console.log("Promise Body : " + body);
-            db.create(model).then(function (task) {
+            News.create(model).then(function (task) {
+                User.addWorlds(task);
                 console.log("successfully saved the news with id" + task.id);
                 console.log(task);
             }).catch((err)=>{

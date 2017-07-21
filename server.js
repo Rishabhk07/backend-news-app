@@ -2,6 +2,7 @@ const  express = require('express');
 const request = require('request');
 const app = express();
 const bodyParser = require('body-parser');
+
 function requestNewsJson(msid) {
 
 }
@@ -13,7 +14,8 @@ app.use('/' , express.static(__dirname + "/public"));
 const routes = {
     news: require('./routes/newsApiTest'),
     sequelize : require('./routes/newsApiRoutes'),
-    auth : require('./routes/userAuth')
+    auth : require('./routes/userAuth'),
+    rate: require('./routes/rateNews')
 };
 
 app.use('/news' , routes.news);
@@ -22,6 +24,7 @@ app.use('/test', routes.sequelize);
 
 app.use('/auth',routes.auth);
 
+app.use('/rate',routes.rate);
 
 app.listen(9890 , ()=> {
     console.log("magic happens at " + port);

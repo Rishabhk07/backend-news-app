@@ -53,4 +53,7 @@ let db = {
         field: 'photo_story'
     }
 };
-module.exports = db;
+function getTable(tableName,sequelize) {
+    return sequelize.define(tableName,db)
+}
+module.exports = getTable;

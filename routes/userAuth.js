@@ -19,11 +19,12 @@ route.post('/fbUpdateAcessToken',(req,res)=>{
     stratergy.updateFacebookAccessToken(req.body.access_token,req.body.user_id,function (body) {
         res.send(body)
     })
-})
+});
 
 route.get('/facebook',(req,res)=>{
     console.log("YYOOYOYO")
     res.send("YO")
-})
+});
+
 
 module.exports = route

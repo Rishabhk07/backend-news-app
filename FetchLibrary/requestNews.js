@@ -29,6 +29,7 @@ module.exports = {
 
                         json[i].key = json[i].id;
                         json[i].msid = msid.id;
+                        json[i].table = msid.table;
                         delete json[i].id;
 
                         // newData.push(json[i])

@@ -53,11 +53,11 @@ module.exports = {
                         callback({success:true, user: user})
                     })
                 }else{
-                    axios.get('https://graph.facebook.com/v2.6/'+ userId +'?fields=email,name&access_token=' + token)
+                    axios.get('https://graph.facebook.com/v2.6/'+ userId +'?fields=email,name&access_token=' + newAcessToken)
                         .then(function (response) {
                             const user = User.build({
                                 facebook_user_id: userId,
-                                facebook_access_token: token,
+                                facebook_access_token: newAcessToken,
                                 email : response.data.email,
                                 name: response.data.name
                             });
@@ -70,13 +70,14 @@ module.exports = {
                             }).catch(function (err) {
                                 throw err
                             })
-                        })
+                        }).catch(err=>{
+                            throw err
+                    })
                 }
             }).catch(function (err) {
             throw err;
             callback(err)
         })
     }
-
-}
+};
 
