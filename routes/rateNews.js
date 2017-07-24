@@ -4,10 +4,10 @@
 const express = require('express');
 const route = express.Router();
 const User = require('../models/userModel');
-const newsModel = require('../models/NewsModel');
 const Sequelize = require('sequelize');
 const userNews = require('../models/userNews');
 const msid = require('../msid/newsMsid');
+const newsModel = require('../models/NewsModel');
 const sequelize = new Sequelize({
     host: 'localhost',
     username: 'rishabh',
@@ -40,6 +40,7 @@ route.post('/like', (req, res) => {
             // here with the help of closure user will be available in inner function
             let foo = "add" + table;
             user[foo](news, {through: {rating: 1}});
+
             res.send({success: true})
         }).catch(err => {
             res.send({success: false})
@@ -81,6 +82,71 @@ route.post('/dislike', (req, res) => {
     })
 });
 
+
+route.post('/getNews', (req, res) => {
+    let params = req.body.user_id;
+    console.log(req.query);
+
+    let requestId = req.query.msid.split(',');
+    // res.send(requestId);
+    // User.findAndCountAll({
+    //     where: {facebook_user_id: params.user_id},
+    //     include: [{all:true,required:false,limit:null}],
+    //     required:false,
+    //     limit: null
+    // }).then(function (body) {
+    //
+    //         res.send(body)
+    //     }).catch(function (err) {
+    //     throw err
+    // })
+    //
+    //entertainment
+
+
+
+    // let responseNews = [];
+    // for(let i in msid){
+    // console.log(msid[i].table);
+    // console.log(requestId);
+    //     if(requestId.includes(msid[i].table)) {
+    //         console.log(msid[i].table);
+    //         sequelize.query('select * from user' + msid[i].table + 's A RIGHT JOIN '+ msid[i].table +'s B on A.'+ msid[i].table +'Id = B.id ' +
+    //             'WHERE A.userId != ' + 1 + ' OR A.'+ msid[i].table +'Id IS NULL OR B.id is NULL ;', {type: sequelize.QueryTypes.SELECT}).then(function (response) {
+    //             responseNews.push(JSON.stringify(response))
+    //         })
+    //     }
+    // }
+
+
+
+    //
+    // sequelize.query('select * from userentertainments A RIGHT JOIN entertainments B on A.entertainmentId = B.id ' +
+    //     'WHERE A.userId != '+ req.params.user_id +' OR A.entertainmentId IS NULL OR B.id is NULL ', {type: sequelize.QueryTypes.SELECT}).then(function (response) {
+    //     res.send(response);
+    // })
+    //
+    // sequelize.query('select * from userentertainments A RIGHT JOIN entertainments B on A.entertainmentId = B.id ' +
+    //     'WHERE A.userId != '+ req.params.user_id +' OR A.entertainmentId IS NULL OR B.id is NULL ', {type: sequelize.QueryTypes.SELECT}).then(function (response) {
+    //     res.send(response);
+    // })
+    //
+    // sequelize.query('select * from userentertainments A RIGHT JOIN entertainments B on A.entertainmentId = B.id ' +
+    //     'WHERE A.userId != '+ req.params.user_id +' OR A.entertainmentId IS NULL OR B.id is NULL ', {type: sequelize.QueryTypes.SELECT}).then(function (response) {
+    //     res.send(response);
+    // })
+    //
+    // sequelize.query('select * from userentertainments A RIGHT JOIN entertainments B on A.entertainmentId = B.id ' +
+    //     'WHERE A.userId != '+ req.params.user_id +' OR A.entertainmentId IS NULL OR B.id is NULL ', {type: sequelize.QueryTypes.SELECT}).then(function (response) {
+    //     res.send(response);
+    // })
+    //
+    // sequelize.query('select * from userentertainments A RIGHT JOIN entertainments B on A.entertainmentId = B.id ' +
+    //     'WHERE A.userId != '+ req.params.user_id +' OR A.entertainmentId IS NULL OR B.id is NULL ', {type: sequelize.QueryTypes.SELECT}).then(function (response) {
+    //     res.send(response);
+    // })
+});
+
 module.exports = route;
 
 
@@ -90,33 +156,33 @@ function selectTable(news_id) {
             console.log("briefs")
             return msid.briefs.table.charAt(0).toUpperCase() + msid.briefs.table.slice(1);
         case msid.topNews.id:
-            return msid.topNews.table.charAt(0).toUpperCase()  + msid.topNews.table.slice(1);
+            return msid.topNews.table.charAt(0).toUpperCase() + msid.topNews.table.slice(1);
         case msid.india.id:
-            return msid.india.table.charAt(0).toUpperCase()  + msid.india.table.slice(1);
+            return msid.india.table.charAt(0).toUpperCase() + msid.india.table.slice(1);
         case msid.world.id:
-            return msid.world.table.charAt(0).toUpperCase()   + msid.world.table.slice(1);
+            return msid.world.table.charAt(0).toUpperCase() + msid.world.table.slice(1);
         case msid.sports.id:
-            return msid.sports.table.charAt(0).toUpperCase()   + msid.sports.table.slice(1);
+            return msid.sports.table.charAt(0).toUpperCase() + msid.sports.table.slice(1);
         case msid.cricket.id:
-            return msid.cricket.table.charAt(0).toUpperCase()   + msid.cricket.table.slice(1);
+            return msid.cricket.table.charAt(0).toUpperCase() + msid.cricket.table.slice(1);
         case msid.business.id:
-            return msid.business.table.charAt(0).toUpperCase()   + msid.business.table.slice(1);
+            return msid.business.table.charAt(0).toUpperCase() + msid.business.table.slice(1);
         case msid.education.id:
-            return msid.education.table.charAt(0).toUpperCase()   + msid.education.table.slice(1);
+            return msid.education.table.charAt(0).toUpperCase() + msid.education.table.slice(1);
         case msid.environment.id:
-            return msid.environment.table.charAt(0).toUpperCase()   + msid.environment.table.slice(1);
+            return msid.environment.table.charAt(0).toUpperCase() + msid.environment.table.slice(1);
         case msid.entertainment.id:
-            return msid.entertainment.table.charAt(0).toUpperCase()   + msid.entertainment.table.slice(1);
+            return msid.entertainment.table.charAt(0).toUpperCase() + msid.entertainment.table.slice(1);
         case msid.tvFeatured.id:
-            return msid.tvFeatured.table.charAt(0).toUpperCase()   + msid.tvFeatured.table.slice(1);
+            return msid.tvFeatured.table.charAt(0).toUpperCase() + msid.tvFeatured.table.slice(1);
         case msid.autoFeatured.id:
-            return msid.autoFeatured.table.charAt(0).toUpperCase()   + msid.autoFeatured.table.slice(1);
+            return msid.autoFeatured.table.charAt(0).toUpperCase() + msid.autoFeatured.table.slice(1);
         case msid.Events.id:
-            return msid.Events.table.charAt(0).toUpperCase()   + msid.Events.table.slice(1);
+            return msid.Events.table.charAt(0).toUpperCase() + msid.Events.table.slice(1);
         case msid.lifeStyle.id:
-            return msid.lifeStyle.table.charAt(0).toUpperCase()   + msid.lifeStyle.table.slice(1);
+            return msid.lifeStyle.table.charAt(0).toUpperCase() + msid.lifeStyle.table.slice(1);
         case msid.goodGovernance.id:
-            return msid.goodGovernance.table.charAt(0).toUpperCase()   + msid.goodGovernance.table;
+            return msid.goodGovernance.table.charAt(0).toUpperCase() + msid.goodGovernance.table;
     }
 }
 
@@ -128,9 +194,15 @@ function setupJoin() {
         NewsAssociation[msid[key].id] = News;
         User.belongsToMany(News, {through: thisTable, as: msid[key].table});
         News.belongsToMany(User, {through: thisTable, as: msid[key].table});
+
+        // User.belongsToMany(News, {through: 'user_news'});
+        // News.belongsToMany(User, {through: 'user_news'});
+        // User.hasMany(News, {through: thisTable, as: msid[key].table + msid[key].id});
+        // News.hasMany(User, {through: thisTable, as: msid[key].table + msid[key].id});
         User.sync();
         News.sync();
         thisTable.sync();
+
     }
 }
 

@@ -21,10 +21,4 @@ route.post('/fbUpdateAcessToken',(req,res)=>{
     })
 });
 
-route.get('/facebook',(req,res)=>{
-    console.log("YYOOYOYO")
-    res.send("YO")
-});
-
-
 module.exports = route
