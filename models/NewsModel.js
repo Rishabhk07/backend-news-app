@@ -54,6 +54,8 @@ let db = {
     }
 };
 function getTable(tableName,sequelize) {
-    return sequelize.define(tableName,db)
+    let NewsSchema = sequelize.define(tableName,db)
+    NewsSchema.sync();
+    return NewsSchema;
 }
 module.exports = getTable;

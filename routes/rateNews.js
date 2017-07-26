@@ -8,6 +8,7 @@ const Sequelize = require('sequelize');
 const userNews = require('../models/userNews');
 const msid = require('../msid/newsMsid');
 const newsModel = require('../models/NewsModel');
+
 const sequelize = new Sequelize({
     host: 'localhost',
     username: 'rishabh',
@@ -71,6 +72,7 @@ route.post('/dislike', (req, res) => {
             // here with the help of closure user will be available in inner function
             let foo = "add" + table;
             user[foo](news, {through: {rating: 0}});
+            news.addUser(user);
             res.send({success: true})
         }).catch(err => {
             res.send({success: false})
@@ -84,24 +86,41 @@ route.post('/dislike', (req, res) => {
 
 
 route.post('/getNews', (req, res) => {
-    let params = req.body.user_id;
-    console.log(req.query);
+    // let params = req.body.user_id;
+    // console.log(req.query);
 
-    let requestId = req.query.msid.split(',');
-    // res.send(requestId);
-    // User.findAndCountAll({
-    //     where: {facebook_user_id: params.user_id},
+
+    // News.findAndCountAll({
     //     include: [{all:true,required:false,limit:null}],
     //     required:false,
     //     limit: null
     // }).then(function (body) {
-    //
     //         res.send(body)
     //     }).catch(function (err) {
     //     throw err
-    // })
-    //
-    //entertainment
+    // });
+    let thisRating = req.body;
+    console.log("LOG");
+    console.log(req.body.user_id)
+    let News = NewsAssociation['1081479906'];
+    News.findAll({
+        include: [{all:true,required:false,limit:null}]
+    }).then(function (news) {
+        // console.log(News.associations);
+        // News.findAndCountAll({
+        //         include: 'User',
+        //         required:false}).then(function (news) {
+        //     // here with the help of closure user will be available in inner function
+        //     // let foo = "add" + table;
+        //     // user[foo](news, {through: {rating: 1}});
+        //
+        //     res.send(news)
+
+        res.send(news)
+        }).catch(err => {
+            res.send({success: false})
+            throw err;
+        })
 
 
 
@@ -191,14 +210,16 @@ function setupJoin() {
         console.log(msid[key].table);
         let thisTable = userNews(msid[key].table);
         let News = newsModel(msid[key].table, sequelize);
-        NewsAssociation[msid[key].id] = News;
-        User.belongsToMany(News, {through: thisTable, as: msid[key].table});
-        News.belongsToMany(User, {through: thisTable, as: msid[key].table});
 
+        User.belongsToMany(News, {through: thisTable});
+        News.belongsToMany(User, {through: thisTable})
+        console.log("ASSOCIATION");
+
+        NewsAssociation[msid[key].id] = News;
         // User.belongsToMany(News, {through: 'user_news'});
         // News.belongsToMany(User, {through: 'user_news'});
         // User.hasMany(News, {through: thisTable, as: msid[key].table + msid[key].id});
-        // News.hasMany(User, {through: thisTable, as: msid[key].table + msid[key].id});
+        console.log(News.associations)
         User.sync();
         News.sync();
         thisTable.sync();

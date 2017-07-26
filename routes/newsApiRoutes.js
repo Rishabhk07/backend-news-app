@@ -22,18 +22,18 @@ route.get('/save',(req, res)=>{
         res.send("Table saved succesfully");
     })
 });
+
 route.get('/fetch/:msid',(req,res)=>{
     sequelize.allNewsFromDb(function (body) {
         res.send(body);
     },req.params.msid)
 });
 
+route.post('/fetch/:msid/:offset?',(req,res)=>{
 
-route.get('/fetch/:msid/:offset?',(req,res)=>{
     sequelize.newsFromDb(function (body) {
         res.send(body);
-    },req.params.msid,req.params.offset)
+    },req.params.msid,req.params.offset,req.body)
 });
-
 
 module.exports = route;
