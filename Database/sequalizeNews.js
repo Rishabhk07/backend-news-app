@@ -38,8 +38,10 @@ function createTable() {
 
 function newsFromDb(callback, msid, offset, body) {
     // const db = sequelize.define(msid,modelDB);
-    console.log(body);
-    if (body.user_id === "null" || body.user_id) {
+    console.log(body.user_id);
+
+    if (body.user_id === "null" ) {
+        console.log("not auth")
         const db = modelNews(msid, sequelize);
         db.findAll({
             limit: 10,
@@ -59,6 +61,7 @@ function newsFromDb(callback, msid, offset, body) {
 
 function newsAuthFromDb(callback, msid, offset, body) {
     // const db = sequelize.define(msid,modelDB);
+    console.log("Authenticated news");
     const db = modelNews(msid, sequelize);
     let thisTable = userNews(msid);
     User.belongsToMany(db, {through: thisTable});
@@ -69,7 +72,7 @@ function newsAuthFromDb(callback, msid, offset, body) {
         order: [
             ['createdAt', 'DESC']
         ],
-        include: [{model: User, where: {facebook_user_id: body.user_id}}]
+        include: [{model: User, where: {facebook_user_id: body.user_id}, required: false}]
     }).then(function (body) {
 
         callback(body);
