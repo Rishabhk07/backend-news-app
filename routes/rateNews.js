@@ -39,9 +39,12 @@ route.post('/like', (req, res) => {
             where: {id: thisRating.news_id}
         }).then(function (news) {
             // here with the help of closure user will be available in inner function
+            let likes = news.like;
             let foo = "add" + table;
-            user[foo](news, {through: {rating: 1}});
-
+            user[foo](news, {through: {rating: 1}}).then(function (response) {
+                news.increment('likes',{by:1})
+            });
+            news.addUser(user);
             res.send({success: true})
         }).catch(err => {
             res.send({success: false})
@@ -70,12 +73,18 @@ route.post('/dislike', (req, res) => {
             where: {id: thisRating.news_id}
         }).then(function (news) {
             // here with the help of closure user will be available in inner function
+
+
             let foo = "add" + table;
-            user[foo](news, {through: {rating: 0}});
+            user[foo](news, {through: {rating: 0}}).then(function (response) {
+                news.decrement('dislikes',{by:1})
+            });
             news.addUser(user);
+
             res.send({success: true})
+
         }).catch(err => {
-            res.send({success: false})
+            res.send({success: false});
             throw err;
         })
     }).catch(err => {

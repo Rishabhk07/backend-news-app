@@ -25,10 +25,11 @@ module.exports = {
                                 email : response.data.email,
                                 name: response.data.name
                                 });
-                            user.save().then(function () {
+                            user.save().then(function (user) {
                                     let body = {
                                         success: true,
                                         signup: true,
+                                        user: user
                                     };
                                     callback(body);
                                 }).catch(function (err) {

@@ -72,7 +72,7 @@ function newsAuthFromDb(callback, msid, offset, body) {
         order: [
             ['createdAt', 'DESC']
         ],
-        include: [{model: User, where: {facebook_user_id: body.user_id}, required: false}]
+        include: [{model: User, where: {facebook_user_id: body.user_id}, required: false, limit: null}]
     }).then(function (body) {
 
         callback(body);

@@ -51,6 +51,14 @@ let db = {
     photoStory: {
         type:Sequelize.JSON,
         field: 'photo_story'
+    },
+    likes:{
+        type: Sequelize.DataTypes.INTEGER,
+        defaultValue:0
+    },
+    dislikes: {
+        type: Sequelize.DataTypes.INTEGER,
+        defaultValue:0
     }
 };
 function getTable(tableName,sequelize) {
