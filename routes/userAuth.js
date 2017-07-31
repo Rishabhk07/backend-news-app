@@ -8,8 +8,7 @@ const stratergy = require('../Authentication/Stratergies');
 
 route.post('/facebook',(req, res)=>{
     console.log(req.body);
-    stratergy.facebookAuth(req.body.access_token,
-        req.body.user_id, function (user) {
+    stratergy.facebookAuth(req.body, function (user) {
             res.send(user)
         })
 });
@@ -20,5 +19,12 @@ route.post('/fbUpdateAcessToken',(req,res)=>{
         res.send(body)
     })
 });
+
+route.post('/updateFcmToken',(req,res)=>{
+    console.log(req.body);
+    stratergy.updateFcmToken(req.body,function (body) {
+        res.send(body)
+    })
+})
 
 module.exports = route

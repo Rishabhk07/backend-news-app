@@ -28,7 +28,8 @@ let userSchema = db.define('user',{
     via: sequelize.DataTypes.STRING,
     google_ser_id: sequelize.DataTypes.STRING,
     google_access_token : sequelize.DataTypes.STRING,
-    google_refresh_token: sequelize.DataTypes.STRING
+    google_refresh_token: sequelize.DataTypes.STRING,
+    fcm_token: sequelize.DataTypes.STRING
 });
 userSchema.sync();
 module.exports = userSchema;

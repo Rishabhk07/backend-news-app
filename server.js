@@ -2,6 +2,12 @@ const  express = require('express');
 const request = require('request');
 const app = express();
 const bodyParser = require('body-parser');
+const admin = require('firebase-admin');
+
+let serviceAccount = require("./serviceAccountKey.json");
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+    });
 
 function requestNewsJson(msid) {
 

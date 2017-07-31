@@ -7,8 +7,8 @@ const passport = require('passport')
     ,axios = require('axios');
 
 module.exports = {
-    facebookAuth(token, userId, callback) {
-        User.findOne({where: {facebook_user_id: userId}})
+    facebookAuth(req, callback) {
+        User.findOne({where: {facebook_user_id: req.user_id}})
             .then(function (user) {
                 if(user){
                     body = {
@@ -17,13 +17,14 @@ module.exports = {
                     };
                     callback(body)
                 }else{
-                    axios.get('https://graph.facebook.com/v2.6/'+ userId +'?fields=email,name&access_token=' + token)
+                    axios.get('https://graph.facebook.com/v2.6/'+ req.user_id +'?fields=email,name&access_token=' + req.access_token)
                         .then(function (response) {
                             const user = User.build({
-                                facebook_user_id: userId,
-                                facebook_access_token: token,
+                                facebook_user_id: req.user_id,
+                                facebook_access_token: req.access_token,
                                 email : response.data.email,
-                                name: response.data.name
+                                name: response.data.name,
+                                fcm_token: req.firebase_token
                                 });
                             user.save().then(function (user) {
                                     let body = {
@@ -33,12 +34,12 @@ module.exports = {
                                     };
                                     callback(body);
                                 }).catch(function (err) {
-                                throw err
+                                throw err.message
                             })
                         })
                 }
             }).catch(function (err) {
-                throw err;
+                throw err.message;
             callback(err)
         })
     }
@@ -79,6 +80,17 @@ module.exports = {
             throw err;
             callback(err)
         })
+    },
+    updateFcmToken(req,callback){
+        User.findOne({where: {facebook_user_id: req.user_id}})
+            .then(function (user) {
+                user.updateAttributes({
+                    fcm_token: req.token
+                }).then(function (response) {
+                    console.log("FCM token updates successfully")
+                    callback({success:true,user:user})
+                })
+            })
     }
 };
 
