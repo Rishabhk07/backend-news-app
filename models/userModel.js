@@ -29,7 +29,9 @@ let userSchema = db.define('user',{
     google_ser_id: sequelize.DataTypes.STRING,
     google_access_token : sequelize.DataTypes.STRING,
     google_refresh_token: sequelize.DataTypes.STRING,
-    fcm_token: sequelize.DataTypes.STRING
+    fcm_token: sequelize.DataTypes.STRING,
+    notification_for: sequelize.DataTypes.BOOLEAN,
+    topics: sequelize.DataTypes.JSON
 });
-userSchema.sync();
+userSchema.sync({alter: true});
 module.exports = userSchema;

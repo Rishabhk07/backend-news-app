@@ -63,7 +63,7 @@ let db = {
 };
 function getTable(tableName,sequelize) {
     let NewsSchema = sequelize.define(tableName,db)
-    NewsSchema.sync();
+    NewsSchema.sync({});
     return NewsSchema;
 }
 module.exports = getTable;

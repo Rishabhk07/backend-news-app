@@ -91,6 +91,17 @@ module.exports = {
                     callback({success:true,user:user})
                 })
             })
+    },
+    updateUserTopics(req,callback){
+        User.findOne({where: {facebook_user_id: req.user_id}})
+            .then(function (user) {
+                user.updateAttributes({
+                    topics: req.user_topics
+                }).then(function (reponse) {
+                    console.log("Topics updated ");
+                    callback({success: true, user: user})
+                })
+            })
     }
 };
 

@@ -27,4 +27,11 @@ route.post('/updateFcmToken',(req,res)=>{
     })
 })
 
+route.post('/updateTopics',(req,res)=>{
+    console.log(req.body);
+    stratergy.updateUserTopics(req.body,function (body) {
+        res.send(body)
+    })
+})
+
 module.exports = route
