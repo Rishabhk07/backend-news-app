@@ -108,6 +108,7 @@ var saveNewsToDb = (model, msid) => {
         }
     );
 
+
 };
 
 module.exports = {checkDbConnection, saveNewsToDb, createTable, newsFromDb, allNewsFromDb};
