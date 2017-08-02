@@ -33,5 +33,5 @@ let userSchema = db.define('user',{
     notification_for: sequelize.DataTypes.BOOLEAN,
     topics: sequelize.DataTypes.JSON
 });
-userSchema.sync({alter: true});
+userSchema.sync();
 module.exports = userSchema;

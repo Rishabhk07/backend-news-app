@@ -33,8 +33,10 @@ User.findAll().then(function (response) {
                     console.log(response.syn);
                     let payload = {
                         data: {
+                            news_id: thisTopic.key,
                             title: response.hl,
-                            image: response.imageid
+                            image: response.imageid,
+                            detail: response.syn
                         }
                     };
 
