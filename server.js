@@ -3,6 +3,9 @@ const request = require('request');
 const app = express();
 const bodyParser = require('body-parser');
 const admin = require('firebase-admin');
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
 
 let serviceAccount = require("./serviceAccountKey.json");
 admin.initializeApp({
@@ -31,6 +34,10 @@ app.use('/test', routes.sequelize);
 app.use('/auth',routes.auth);
 
 app.use('/rate',routes.rate);
+
+
+
+
 
 app.listen(9890 , ()=> {
     console.log("magic happens at " + port);
