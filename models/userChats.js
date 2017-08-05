@@ -35,7 +35,8 @@ let chatSchema = {
 };
 
 function getTable(tableName) {
-    let chat = db.define(tableName,chatSchema);
+    let name = "Chat_" + tableName;
+    let chat = db.define(name,chatSchema);
     chat.sync();
     return chat;
 }

@@ -7,6 +7,7 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const Sequelize = require('sequelize');
+const chatTable = require('../models/userChats');
 const sequelize = new Sequelize({
     host: 'localhost',
     username: 'rishabh',
@@ -53,17 +54,46 @@ function getTableName(msid) {
 
 }
 
-
-route.get('/', (req, res) => {
-    console.log("requested to the server");
-});
 io.on('connection', (socket) => {
     console.log("Socket evoked")
+
+    socket.on('join_room',function (msg) {
+        let chatRoom  = JSON.parse(msg);
+        socket.join(chatRoom.news_id);
+        console.log("user joined room " + chatRoom.news_id )
+        console.log("socket id : " + socket.id);
+    });
+
+    socket.on('leave_group',function (msg) {
+        let chatRoom = JSON.parse(msg)
+        socket.leave(chatRoom.news_id,function () {
+            console.log("banda is left the group ")
+
+        });
+        console.log("user leaved the group " + chatRoom.news_id)
+        console.log("socket id " + socket.id);
+    })
+
     socket.on('new_message', function (msg) {
-        let json = JSON.parse(msg)
-        console.log(json.msid)
-        console.log(json.news_id);
+        console.log("socket id : " + socket.id)
+        let json = JSON.parse(msg);
+        // socket.join(json.news_id);
+        let news_table = getTableName(json.msid)
         console.log(getTableName(json.msid))
+        let Chats = chatTable(news_table);
+        Chats.build({
+            message: json.message,
+            news_type:news_table,
+            msid: json.msid,
+            news_id: json.news_id,
+            from: json.user_id
+        }).save().then(function (response) {
+            console.log("saved the user chat successfully")
+            console.log(response)
+            console.log("Socket id to return : " + socket.id);
+            console.log(io.sockets.adapter.rooms[json.news_id]);
+            io.sockets.in(json.news_id).emit('from_server',response )
+        })
     });
     socket.on('disconnect', function () {
         console.log('user disconnected');
