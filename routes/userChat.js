@@ -81,13 +81,14 @@ io.on('connection', (socket) => {
         // socket.join(json.news_id);
         let news_table = getTableName(json.msid)
         console.log(getTableName(json.msid))
+        console.log(msg)
         let Chats = chatTable(news_table);
         Chats.build({
             message: json.message,
             news_type:news_table,
             msid: json.msid,
             news_id: json.news_id,
-            from: json.user_id
+            from: json.from
         }).save().then(function (response) {
             console.log("saved the user chat successfully")
             console.log(response)
@@ -111,7 +112,10 @@ app.post('/getChats',(req,res)=>{
     let Chats = chatTable(newsTableName);
     Chats.findAll({
         where: {news_id: req.body.news_id},
-        limit: 10
+        limit: 10,
+        order: [
+            ['createdAt', 'DESC']
+        ]
     }).then(function (response) {
         res.send(response)
     }).catch(function (err){
