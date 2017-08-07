@@ -8,6 +8,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const Sequelize = require('sequelize');
 const chatTable = require('../models/userChats');
+const bodyParser = require('body-parser');
 const sequelize = new Sequelize({
     host: 'localhost',
     username: 'rishabh',
@@ -15,7 +16,7 @@ const sequelize = new Sequelize({
     password: 'beyblade',
     dialect: 'mysql'
 });
-
+app.use(bodyParser.urlencoded({extended: false}));
 function getTableName(msid) {
     switch (msid) {
         case "48986328":
@@ -67,7 +68,7 @@ io.on('connection', (socket) => {
     socket.on('leave_group',function (msg) {
         let chatRoom = JSON.parse(msg)
         socket.leave(chatRoom.news_id,function () {
-            console.log("banda is left the group ")
+            console.log("banda has left the group ")
 
         });
         console.log("user leaved the group " + chatRoom.news_id)
@@ -100,7 +101,23 @@ io.on('connection', (socket) => {
     })
 });
 
+app.post('/getChats',(req,res)=>{
+    console.log("request at getChats newsId: ");
+    console.log(req.body.news_id)
+    console.log("msid: ")
+    console.log(req.body.msid);
+    let newsTableName = getTableName(req.body.msid);
 
+    let Chats = chatTable(newsTableName);
+    Chats.findAll({
+        where: {news_id: req.body.news_id},
+        limit: 10
+    }).then(function (response) {
+        res.send(response)
+    }).catch(function (err){
+        res.send({success: false})
+    })
+});
 module.exports = route;
 
 http.listen('9999', () => {
