@@ -59,6 +59,10 @@ let db = {
     dislikes: {
         type: Sequelize.DataTypes.INTEGER,
         defaultValue:0
+    },
+    chats: {
+        type: Sequelize.DataTypes.INTEGER,
+        defaultValue: 0
     }
 };
 function getTable(tableName,sequelize) {

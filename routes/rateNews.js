@@ -14,7 +14,10 @@ const sequelize = new Sequelize({
     username: 'rishabh',
     database: 'newsapp',
     password: 'beyblade',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    dialectOptions: {
+        charset: 'utf8mb4'
+    }
 });
 let NewsAssociation = {};
 setupJoin();
@@ -174,6 +177,9 @@ route.post('/getNews', (req, res) => {
     //     res.send(response);
     // })
 });
+
+
+
 
 module.exports = route;
 

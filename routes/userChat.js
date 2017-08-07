@@ -9,12 +9,16 @@ const io = require('socket.io')(http);
 const Sequelize = require('sequelize');
 const chatTable = require('../models/userChats');
 const bodyParser = require('body-parser');
+
 const sequelize = new Sequelize({
     host: 'localhost',
     username: 'rishabh',
     database: 'newsapp',
     password: 'beyblade',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    dialectOptions: {
+        charset: 'utf8mb4'
+    }
 });
 app.use(bodyParser.urlencoded({extended: false}));
 function getTableName(msid) {
@@ -117,7 +121,7 @@ app.post('/getChats',(req,res)=>{
             ['createdAt', 'DESC']
         ]
     }).then(function (response) {
-        res.send(response)
+        res.send(response.reverse())
     }).catch(function (err){
         res.send({success: false})
     })
@@ -126,4 +130,4 @@ module.exports = route;
 
 http.listen('9999', () => {
     console.log("Socket server started at 9999")
-})
+});

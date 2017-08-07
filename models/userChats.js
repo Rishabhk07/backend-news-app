@@ -8,7 +8,10 @@ const db = new sequelize({
     username: 'rishabh',
     database: 'newsapp',
     password: 'beyblade',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    dialectOptions: {
+        charset: 'utf8mb4'
+    }
 });
 
 let chatSchema = {
@@ -36,7 +39,7 @@ let chatSchema = {
 
 function getTable(tableName) {
     let name = "Chat_" + tableName;
-    let chat = db.define(name,chatSchema);
+    let chat = db.define(name,chatSchema,{charset: 'utf8mb4'});
     chat.sync();
     return chat;
 }
