@@ -82,6 +82,7 @@ io.on('connection', (socket) => {
     socket.on('new_message', function (msg) {
         console.log("socket id : " + socket.id)
         let json = JSON.parse(msg);
+        console.log(msg);
         // socket.join(json.news_id);
         let news_table = getTableName(json.msid)
         console.log(getTableName(json.msid))
@@ -92,7 +93,8 @@ io.on('connection', (socket) => {
             news_type:news_table,
             msid: json.msid,
             news_id: json.news_id,
-            from: json.from
+            from: json.from,
+            anonym: json.anonym
         }).save().then(function (response) {
             console.log("saved the user chat successfully")
             console.log(response)

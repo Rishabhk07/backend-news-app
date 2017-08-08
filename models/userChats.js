@@ -34,6 +34,9 @@ let chatSchema = {
     },
     from: {
         type: sequelize.DataTypes.STRING
+    },
+    anonym:{
+        type: sequelize.DataTypes.BOOLEAN
     }
 };
 
