@@ -97,6 +97,19 @@ route.post('/dislike', (req, res) => {
 });
 
 
+route.post('/getRatedNews',(req,res)=>{
+    console.log(req.body.user_id);
+    let user_id = req.body.user_id;
+    let user_rating = req.body.user_rating;
+    User.findOne({
+        include: [{all: true,required:false,limit: null}],
+        where: {facebook_user_id: user_id}
+    }).then(function (response) {
+        res.send(response);
+    })
+
+})
+
 route.post('/getNews', (req, res) => {
     // let params = req.body.user_id;
     // console.log(req.query);
