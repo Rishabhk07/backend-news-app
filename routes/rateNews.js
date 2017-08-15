@@ -33,40 +33,121 @@ route.post('/like', (req, res) => {
     console.log(table);
     let News = NewsAssociation[req.body.news_msid];
     console.log(NewsAssociation[req.body.news_msid])
-
+    console.log("Rating");
+    console.log(thisRating.rating);
     // console.log(User.associations);
     // console.log(News.associations);
-    User.findOne({
-        where: {facebook_user_id: thisRating.user_id}
-    }).then(function (user) {
+    console.log(thisRating.rating === '1');
+    if(thisRating.rating === '1'){
+        console.log("here entered 1")
+        User.findOne({
+            where: {facebook_user_id: thisRating.user_id}
+        }).then(function (user) {
 
-        News.findOne({
-            where: {id: thisRating.news_id},
-            include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
-        }).then(function (news) {
-            // here with the help of closure user will be available in inner function
-            let likes = news.like;
-            console.log(table);
-            let foo = "add" + table;
-            user[foo](news, {through: {rating: 1}}).then(function (response) {
-                if(response !== undefined && response[0] !== undefined && response[0][0] !== undefined && response[0][0].rating === 1 ){
-                    console.log("Rating on like");
-                    console.log(response[0]);
-                    console.log(response[0])
-                    news.increment('likes', {by: 1})
-                }
-                res.send(news)
+            News.findOne({
+                where: {id: thisRating.news_id},
+                include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
+            }).then(function (news) {
+                // here with the help of closure user will be available in inner function
+                let likes = news.like;
+                console.log(table);
+                let foo = "remove" + table;
+                user[foo](news, {through: {rating: 1}}).then(function (response) {
+                    console.log("removed user from news");
+                    console.log(response)
+                    if(response > 0 ){
+                        console.log("Rating on like");
+                        console.log(response[0]);
+                        console.log(response[0])
+                        news.decrement('likes', {by: 1}).then(function (response) {
+                            res.send(response)
+                        })
+                    }else {
+                        res.send(news)
+                    }
 
-            });
+                });
 
+            }).catch(err => {
+                res.send({success: false})
+                throw err;
+            })
         }).catch(err => {
-            res.send({success: false})
+            res.send({success: false});
             throw err;
         })
-    }).catch(err => {
-        res.send({success: false});
-        throw err;
-    })
+    }else if(thisRating.rating === '0'){
+
+        console.log("here entered 0")
+        User.findOne({
+            where: {facebook_user_id: thisRating.user_id}
+        }).then(function (user) {
+
+            News.findOne({
+                where: {id: thisRating.news_id},
+                include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
+            }).then(function (news) {
+                // here with the help of closure user will be available in inner function
+                let likes = news.like;
+                console.log(table);
+                let foo = "add" + table;
+                user[foo](news, {through: {rating: 1}}).then(function (response) {
+                    console.log("removed user from news");
+                    console.log(response)
+                    if(response > 0) {
+                        console.log("Rating on like");
+                        console.log(response);
+                        news.increment('likes', {by: 1});
+                        news.decrement('dislikes', {by: 1});
+                    }
+                });
+
+                res.send(news)
+
+            }).catch(err => {
+                res.send({success: false})
+                throw err;
+            })
+        }).catch(err => {
+            res.send({success: false});
+            throw err;
+        })
+
+
+    } else{
+        User.findOne({
+            where: {facebook_user_id: thisRating.user_id}
+        }).then(function (user) {
+
+            News.findOne({
+                where: {id: thisRating.news_id},
+                include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
+            }).then(function (news) {
+                // here with the help of closure user will be available in inner function
+                let likes = news.like;
+                console.log(table);
+                let foo = "add" + table;
+                user[foo](news, {through: {rating: 1}}).then(function (response) {
+                    if(response !== undefined && response[0] !== undefined && response[0][0] !== undefined && response[0][0].rating === 1 ){
+                        console.log("Rating on like");
+                        console.log(response[0]);
+                        console.log(response[0])
+                        news.increment('likes', {by: 1})
+                    }
+                    res.send(news)
+
+                });
+
+            }).catch(err => {
+                res.send({success: false})
+                throw err;
+            })
+        }).catch(err => {
+            res.send({success: false});
+            throw err;
+        })
+    }
+
 
 });
 
@@ -78,42 +159,112 @@ route.post('/dislike', (req, res) => {
     let News = NewsAssociation[req.body.news_msid];
     console.log(User.associations);
     console.log(News.associations);
-    User.findOne({
-        where: {facebook_user_id: thisRating.user_id}
-    }).then(function (user) {
+    console.log(thisRating.rating)
+    console.log(thisRating.rating === '0')
+    if(thisRating.rating === '0'){
 
-        News.findOne({
-            where: {id: thisRating.news_id},
-            include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
-        }).then(function (news) {
-            // here with the help of closure user will be available in inner function
+        User.findOne({
+            where: {facebook_user_id: thisRating.user_id}
+        }).then(function (user) {
 
-
-            let foo = "add" + table;
-            user[foo](news, {through: {rating: 0}}).then(function (response) {
-
-
-                if(response !== undefined  && response[0] !== undefined && response[0][0] !== undefined && response[0][0].rating ===  0) {
-                    console.log("Response after adding new ");
-                    console.log(response);
-                    news.increment('dislikes', {by: 1})
-                }
-
-                res.send(news)
-
-            });
+            News.findOne({
+                where: {id: thisRating.news_id},
+                include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
+            }).then(function (news) {
+                // here with the help of closure user will be available in inner function
 
 
-            // res.send(news)
+                let foo = "remove" + table;
+                user[foo](news, {through: {rating: 0}}).then(function (response) {
 
+
+                    if(response > 0) {
+                        console.log("Response after adding new ");
+                        console.log(response);
+                        news.decrement('dislikes', {by: 1})
+                    }
+                    res.send(news)
+                });
+                // res.send(news)
+            }).catch(err => {
+                res.send({success: false});
+                throw err;
+            })
         }).catch(err => {
             res.send({success: false});
             throw err;
         })
-    }).catch(err => {
-        res.send({success: false});
-        throw err;
-    })
+
+    }else if(thisRating.rating === '1'){
+        User.findOne({
+            where: {facebook_user_id: thisRating.user_id}
+        }).then(function (user) {
+
+            News.findOne({
+                where: {id: thisRating.news_id},
+                include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
+            }).then(function (news) {
+                // here with the help of closure user will be available in inner function
+
+
+                let foo = "add" + table;
+                user[foo](news, {through: {rating: 0}}).then(function (response) {
+
+                    console.log(response);
+                    if(response > 0) {
+                        console.log("Response after adding new ");
+                        console.log(response);
+                        news.increment('dislikes', {by: 1})
+                        news.decrement('likes',{by: 1})
+                    }
+                    res.send(news)
+                });
+                // res.send(news)
+            }).catch(err => {
+                res.send({success: false});
+                throw err;
+            })
+        }).catch(err => {
+            res.send({success: false});
+            throw err;
+        })
+    } else{
+
+        User.findOne({
+            where: {facebook_user_id: thisRating.user_id}
+        }).then(function (user) {
+
+            News.findOne({
+                where: {id: thisRating.news_id},
+                include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
+            }).then(function (news) {
+                // here with the help of closure user will be available in inner function
+
+
+                let foo = "add" + table;
+                user[foo](news, {through: {rating: 0}}).then(function (response) {
+
+
+                    if(response !== undefined  && response[0] !== undefined && response[0][0] !== undefined && response[0][0].rating ===  0) {
+                        console.log("Response after adding new ");
+                        console.log(response);
+                        news.increment('dislikes', {by: 1})
+                    }
+
+                    res.send(news)
+
+                });
+                // res.send(news)
+            }).catch(err => {
+                res.send({success: false});
+                throw err;
+            })
+        }).catch(err => {
+            res.send({success: false});
+            throw err;
+        })
+    }
+
 });
 
 route.post('/getChattedNews', async (req, res) => {
