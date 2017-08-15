@@ -59,9 +59,8 @@ route.post('/like', (req, res) => {
                         console.log("Rating on like");
                         console.log(response[0]);
                         console.log(response[0])
-                        news.decrement('likes', {by: 1}).then(function (response) {
-                            res.send(response)
-                        })
+                        news.decrement('likes', {by: 1})
+                        res.send(news)
                     }else {
                         res.send(news)
                     }
@@ -214,7 +213,7 @@ route.post('/dislike', (req, res) => {
                     if(response > 0) {
                         console.log("Response after adding new ");
                         console.log(response);
-                        news.increment('dislikes', {by: 1})
+                        news.increment('dislikes', {by: 1}).then()
                         news.decrement('likes',{by: 1})
                     }
                     res.send(news)
