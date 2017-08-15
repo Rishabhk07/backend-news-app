@@ -41,15 +41,24 @@ route.post('/like', (req, res) => {
     }).then(function (user) {
 
         News.findOne({
-            where: {id: thisRating.news_id}
+            where: {id: thisRating.news_id},
+            include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
         }).then(function (news) {
             // here with the help of closure user will be available in inner function
             let likes = news.like;
+            console.log(table);
             let foo = "add" + table;
             user[foo](news, {through: {rating: 1}}).then(function (response) {
-                news.increment('likes', {by: 1})
+                if(response !== undefined && response[0] !== undefined && response[0][0] !== undefined && response[0][0].rating === 1 ){
+                    console.log("Rating on like");
+                    console.log(response[0]);
+                    console.log(response[0])
+                    news.increment('likes', {by: 1})
+                }
+                res.send(news)
+
             });
-            res.send({success: true})
+
         }).catch(err => {
             res.send({success: false})
             throw err;
@@ -74,18 +83,28 @@ route.post('/dislike', (req, res) => {
     }).then(function (user) {
 
         News.findOne({
-            where: {id: thisRating.news_id}
+            where: {id: thisRating.news_id},
+            include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
         }).then(function (news) {
             // here with the help of closure user will be available in inner function
 
 
             let foo = "add" + table;
             user[foo](news, {through: {rating: 0}}).then(function (response) {
-                news.increment('dislikes', {by: 1})
+
+
+                if(response !== undefined  && response[0] !== undefined && response[0][0] !== undefined && response[0][0].rating ===  0) {
+                    console.log("Response after adding new ");
+                    console.log(response);
+                    news.increment('dislikes', {by: 1})
+                }
+
+                res.send(news)
+
             });
 
 
-            res.send({success: true})
+            // res.send(news)
 
         }).catch(err => {
             res.send({success: false});
@@ -209,7 +228,7 @@ function selectTable(news_id) {
         case msid.lifeStyle.id:
             return msid.lifeStyle.table.charAt(0).toUpperCase() + msid.lifeStyle.table.slice(1);
         case msid.goodGovernance.id:
-            return msid.goodGovernance.table.charAt(0).toUpperCase() + msid.goodGovernance.table;
+            return msid.goodGovernance.table.charAt(0).toUpperCase() + msid.goodGovernance.table.slice(1);
     }
 }
 
