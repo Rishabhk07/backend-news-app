@@ -9,6 +9,7 @@ const io = require('socket.io')(http);
 const Sequelize = require('sequelize');
 const chatTable = require('../models/userChats');
 const bodyParser = require('body-parser');
+const newsModel = require('../models/NewsModel');
 
 const sequelize = new Sequelize({
     host: 'localhost',
@@ -85,6 +86,7 @@ io.on('connection', (socket) => {
         console.log(msg);
         // socket.join(json.news_id);
         let news_table = getTableName(json.msid)
+
         console.log(getTableName(json.msid))
         console.log(msg)
         let Chats = chatTable(news_table);
@@ -101,6 +103,16 @@ io.on('connection', (socket) => {
             console.log("Socket id to return : " + socket.id);
             console.log(io.sockets.adapter.rooms[json.news_id]);
             io.sockets.in(json.news_id).emit('from_server',response )
+            let NewsTable = newsModel(news_table, sequelize);
+            NewsTable.findOne({
+                where:{id: json.news_id}
+            }).then(function (news) {
+                news.increment('chats',{by: 1})
+            }).catch(function (err) {
+                console.log(err)
+                console.log("cannot increment chat message");
+            })
+
         })
     });
     socket.on('disconnect', function () {
@@ -123,11 +135,14 @@ app.post('/getChats',(req,res)=>{
             ['createdAt', 'DESC']
         ]
     }).then(function (response) {
+
         res.send(response.reverse())
     }).catch(function (err){
         res.send({success: false})
     })
 });
+
+
 module.exports = route;
 
 http.listen('9999', () => {
