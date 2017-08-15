@@ -22,6 +22,7 @@ const sequelize = new Sequelize({
 });
 let NewsAssociation = {};
 setupJoin();
+
 console.log("YO Calling from inside");
 
 route.post('/like', (req, res) => {
@@ -46,9 +47,8 @@ route.post('/like', (req, res) => {
             let likes = news.like;
             let foo = "add" + table;
             user[foo](news, {through: {rating: 1}}).then(function (response) {
-                news.increment('likes',{by:1})
+                news.increment('likes', {by: 1})
             });
-            news.addUser(user);
             res.send({success: true})
         }).catch(err => {
             res.send({success: false})
@@ -81,9 +81,9 @@ route.post('/dislike', (req, res) => {
 
             let foo = "add" + table;
             user[foo](news, {through: {rating: 0}}).then(function (response) {
-                news.increment('dislikes',{by:1})
+                news.increment('dislikes', {by: 1})
             });
-            news.addUser(user);
+
 
             res.send({success: true})
 
@@ -97,11 +97,11 @@ route.post('/dislike', (req, res) => {
     })
 });
 
-route.post('/getChattedNews',async (req, res) => {
+route.post('/getChattedNews', async (req, res) => {
     let user_id = req.body.user_id;
     let chattedList = [];
     for (let key in msid) {
-       await userChats(msid[key].table).findAll({
+        await userChats(msid[key].table).findAll({
             where: {from: user_id}
         }).then(function (response) {
             chattedList.push(response)
@@ -113,19 +113,37 @@ route.post('/getChattedNews',async (req, res) => {
 
 });
 
-route.post('/getRatedNews',(req,res)=>{
+route.post('/getRatedNews', (req, res) => {
     console.log(req.body.user_id);
     let user_id = req.body.user_id;
     let user_rating = req.body.user_rating;
     console.log(user_rating);
+    // User.findOne({
+    //     include: [{all: true,required: false}],
+    //     where: {facebook_user_id: user_id}
+    // }).then(function (response) {
+    //     console.log(response);
+    //     res.send(response);
+    // }).catch(function (err) {
+    //     console.log(err);
+    //     console.log(err.message)
+    // })
+    let Briefs  = newsModel('briefs', sequelize);
+    console.log(User.associations);
     User.findOne({
-        include: [{all: true,required:false,limit: null, through: {
-            where: {rating: user_rating}
-        }}],
-        where: {facebook_user_id: user_id}
+        where: {facebook_user_id: user_id},
+        include: [{
+            model: Briefs, required: false, limit: null, through: {
+                where: {rating: user_rating}
+            }
+        }]
     }).then(function (response) {
-        res.send(response);
+        console.log(response)
+        res.send(response)
+    }).catch(function (response) {
+        console.log(response);
     })
+
 })
 
 route.post('/getNews', (req, res) => {
@@ -143,7 +161,7 @@ route.post('/getNews', (req, res) => {
                 return thisNews.users.length === 0;
             })
             sendBack.push(n);
-            if (msid[key].id === '47082088'){
+            if (msid[key].id === '47082088') {
                 res.send(sendBack)
             }
 
@@ -154,8 +172,6 @@ route.post('/getNews', (req, res) => {
 
     }
 });
-
-
 
 
 module.exports = route;
@@ -204,7 +220,7 @@ function setupJoin() {
         let News = newsModel(msid[key].table, sequelize);
 
         User.belongsToMany(News, {through: thisTable});
-        News.belongsToMany(User, {through: thisTable})
+        News.belongsToMany(User, {through: thisTable});
         console.log("ASSOCIATION");
 
         NewsAssociation[msid[key].id] = News;
