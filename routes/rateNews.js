@@ -81,7 +81,7 @@ route.post('/dislike', (req, res) => {
 
             let foo = "add" + table;
             user[foo](news, {through: {rating: 0}}).then(function (response) {
-                news.decrement('dislikes',{by:1})
+                news.increment('dislikes',{by:1})
             });
             news.addUser(user);
 
