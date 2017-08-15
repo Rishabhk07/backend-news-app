@@ -8,6 +8,7 @@ const Sequelize = require('sequelize');
 const userNews = require('../models/userNews');
 const msid = require('../msid/newsMsid');
 const newsModel = require('../models/NewsModel');
+const userChats = require('../models/userChats');
 
 const sequelize = new Sequelize({
     host: 'localhost',
@@ -96,99 +97,62 @@ route.post('/dislike', (req, res) => {
     })
 });
 
+route.post('/getChattedNews',async (req, res) => {
+    let user_id = req.body.user_id;
+    let chattedList = [];
+    for (let key in msid) {
+       await userChats(msid[key].table).findAll({
+            where: {from: user_id}
+        }).then(function (response) {
+            chattedList.push(response)
+        }).catch(function (err) {
+            console.log(err.message)
+        })
+    }
+    res.send(chattedList);
+
+});
 
 route.post('/getRatedNews',(req,res)=>{
     console.log(req.body.user_id);
     let user_id = req.body.user_id;
     let user_rating = req.body.user_rating;
+    console.log(user_rating);
     User.findOne({
-        include: [{all: true,required:false,limit: null}],
+        include: [{all: true,required:false,limit: null, through: {
+            where: {rating: user_rating}
+        }}],
         where: {facebook_user_id: user_id}
     }).then(function (response) {
         res.send(response);
     })
-
 })
 
 route.post('/getNews', (req, res) => {
-    // let params = req.body.user_id;
-    // console.log(req.query);
 
-
-    // News.findAndCountAll({
-    //     include: [{all:true,required:false,limit:null}],
-    //     required:false,
-    //     limit: null
-    // }).then(function (body) {
-    //         res.send(body)
-    //     }).catch(function (err) {
-    //     throw err
-    // });
-    let thisRating = req.body;
     console.log("LOG");
-    console.log(req.body.user_id)
-    let News = NewsAssociation['1081479906'];
-    News.findAll({
-        include: [{all:true,required:false,limit:null}]
-    }).then(function (news) {
-        // console.log(News.associations);
-        // News.findAndCountAll({
-        //         include: 'User',
-        //         required:false}).then(function (news) {
-        //     // here with the help of closure user will be available in inner function
-        //     // let foo = "add" + table;
-        //     // user[foo](news, {through: {rating: 1}});
-        //
-        //     res.send(news)
+    let user_id = req.body.user_id;
+    let sendBack = [];
+    for (let key in msid) {
+        let News = NewsAssociation[msid[key].id];
+        News.findAll({
+            include: [{all: true, required: false, limit: null, where: {facebook_user_id: user_id}}],
+            limit: 10
+        }).then(function (news) {
+            let n = news.filter(function (thisNews) {
+                return thisNews.users.length === 0;
+            })
+            sendBack.push(n);
+            if (msid[key].id === '47082088'){
+                res.send(sendBack)
+            }
 
-        res.send(news)
         }).catch(err => {
             res.send({success: false})
             throw err;
         })
 
-
-
-    // let responseNews = [];
-    // for(let i in msid){
-    // console.log(msid[i].table);
-    // console.log(requestId);
-    //     if(requestId.includes(msid[i].table)) {
-    //         console.log(msid[i].table);
-    //         sequelize.query('select * from user' + msid[i].table + 's A RIGHT JOIN '+ msid[i].table +'s B on A.'+ msid[i].table +'Id = B.id ' +
-    //             'WHERE A.userId != ' + 1 + ' OR A.'+ msid[i].table +'Id IS NULL OR B.id is NULL ;', {type: sequelize.QueryTypes.SELECT}).then(function (response) {
-    //             responseNews.push(JSON.stringify(response))
-    //         })
-    //     }
-    // }
-
-
-
-    //
-    // sequelize.query('select * from userentertainments A RIGHT JOIN entertainments B on A.entertainmentId = B.id ' +
-    //     'WHERE A.userId != '+ req.params.user_id +' OR A.entertainmentId IS NULL OR B.id is NULL ', {type: sequelize.QueryTypes.SELECT}).then(function (response) {
-    //     res.send(response);
-    // })
-    //
-    // sequelize.query('select * from userentertainments A RIGHT JOIN entertainments B on A.entertainmentId = B.id ' +
-    //     'WHERE A.userId != '+ req.params.user_id +' OR A.entertainmentId IS NULL OR B.id is NULL ', {type: sequelize.QueryTypes.SELECT}).then(function (response) {
-    //     res.send(response);
-    // })
-    //
-    // sequelize.query('select * from userentertainments A RIGHT JOIN entertainments B on A.entertainmentId = B.id ' +
-    //     'WHERE A.userId != '+ req.params.user_id +' OR A.entertainmentId IS NULL OR B.id is NULL ', {type: sequelize.QueryTypes.SELECT}).then(function (response) {
-    //     res.send(response);
-    // })
-    //
-    // sequelize.query('select * from userentertainments A RIGHT JOIN entertainments B on A.entertainmentId = B.id ' +
-    //     'WHERE A.userId != '+ req.params.user_id +' OR A.entertainmentId IS NULL OR B.id is NULL ', {type: sequelize.QueryTypes.SELECT}).then(function (response) {
-    //     res.send(response);
-    // })
-    //
-    // sequelize.query('select * from userentertainments A RIGHT JOIN entertainments B on A.entertainmentId = B.id ' +
-    //     'WHERE A.userId != '+ req.params.user_id +' OR A.entertainmentId IS NULL OR B.id is NULL ', {type: sequelize.QueryTypes.SELECT}).then(function (response) {
-    //     res.send(response);
-    // })
+    }
 });
 
 
