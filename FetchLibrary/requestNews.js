@@ -1,7 +1,6 @@
 /**
  * Created by rishabhkhanna on 06/01/17.
  */
-const request = require('request');
 const axios = require('axios');
 const model = require('../models/NewsModel');
 const sequelize = require('../Database/sequalizeNews');
@@ -24,6 +23,9 @@ module.exports = {
                     let json = response.data.items;
                     for (let i = 0; i < json.length; i++) {
                         if (json[i].tn === "brieflistAd" || json[i].hl == "") {
+                            json.splice(i, 1);
+                        }
+                        if( json[i].tn === "html" || json[i].imageid === null){
                             json.splice(i, 1);
                         }
 
