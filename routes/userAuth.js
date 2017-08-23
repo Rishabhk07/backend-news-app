@@ -35,4 +35,10 @@ route.post('/updateTopics',(req,res)=>{
     })
 })
 
+route.post('/updateNotification',(req,res)=>{
+    stratergy.updateNotification(req.body,function (body) {
+        res.send(body);
+    })
+})
+
 module.exports = route
