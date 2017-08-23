@@ -11,6 +11,9 @@ module.exports = {
         User.findOne({where: {facebook_user_id: req.user_id}})
             .then(function (user) {
                 if(user){
+                    user.updateAttributes({
+                       fcm_token: req.firebase_token
+                    });
                     body = {
                         success: true,
                         user: user
@@ -115,6 +118,7 @@ module.exports = {
                     callback({success: false})
                 })
             })
-    }
+    },
+
 };
 
