@@ -102,6 +102,19 @@ module.exports = {
                     callback({success: true, user: user})
                 })
             })
+    },
+    updateNotification(req,callback){
+        console.log("Notification changed");
+        User.findOne({where: {facebook_user_id: req.user_id}})
+            .then(function (user) {
+                user.updateAttributes({
+                    notification: req.notification
+                }).then(function (response) {
+                    callback({success: true, user});
+                }).catch(function (err) {
+                    callback({success: false})
+                })
+            })
     }
 };
 
