@@ -1,7 +1,7 @@
 /**
  * Created by rishabhkhanna on 18/07/17.
  */
-const sequelize  = require('sequelize');
+const sequelize = require('sequelize');
 
 const db = new sequelize({
     host: 'localhost',
@@ -11,7 +11,7 @@ const db = new sequelize({
     dialect: 'mysql'
 });
 
-let userSchema = db.define('user',{
+let userSchema = db.define('user', {
     email: {
         type: sequelize.DataTypes.STRING,
         unique: true
@@ -27,11 +27,15 @@ let userSchema = db.define('user',{
     name: sequelize.DataTypes.STRING,
     via: sequelize.DataTypes.STRING,
     google_ser_id: sequelize.DataTypes.STRING,
-    google_access_token : sequelize.DataTypes.STRING,
+    google_access_token: sequelize.DataTypes.STRING,
     google_refresh_token: sequelize.DataTypes.STRING,
     fcm_token: sequelize.DataTypes.STRING,
     notification_for: sequelize.DataTypes.BOOLEAN,
-    topics: sequelize.DataTypes.JSON
+    topics: sequelize.DataTypes.JSON,
+    notification: {
+        type: sequelize.DataTypes.BOOLEAN,
+        defaultValue: true
+    }
 });
 userSchema.sync();
 module.exports = userSchema;
