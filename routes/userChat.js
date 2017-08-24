@@ -62,6 +62,15 @@ function getTableName(msid) {
 
 io.on('connection', (socket) => {
     console.log("Socket evoked")
+    setTimeout(sendHearbeat,25000);
+    socket.on('pong',function (msg) {
+        console.log(msg)
+    })
+
+    function sendHearbeat() {
+        setTimeout(sendHeartbeat, 25000);
+        socket.emit('ping', { beat : 1 });
+    }
 
     socket.on('join_room',function (msg) {
         let chatRoom  = JSON.parse(msg);
@@ -115,6 +124,7 @@ io.on('connection', (socket) => {
 
         })
     });
+
     socket.on('disconnect', function () {
         console.log('user disconnected');
     })
