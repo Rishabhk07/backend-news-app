@@ -69,7 +69,7 @@ io.on('connection', (socket) => {
 
     function sendHearbeat() {
         setTimeout(sendHearbeat, 2500);
-        socket.emit('ping', { beat : 1 });
+        io.sockets.emit('ping', { beat : 1 });
     }
 
     socket.on('join_room',function (msg) {
