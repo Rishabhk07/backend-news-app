@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5d443510-3413-45b5-987a-e11b84979ac9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/userChat.js" afterPath="$PROJECT_DIR$/routes/userChat.js" />
     </list>
     <ignored path="newsapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -666,12 +665,12 @@
       <workItem from="1502878239846" duration="6058000" />
       <workItem from="1503217478754" duration="196000" />
       <workItem from="1503316141351" duration="1269000" />
-      <workItem from="1503486941497" duration="8087000" />
+      <workItem from="1503486941497" duration="8415000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="325270000" />
+    <option name="totallyTimeSpent" value="325598000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

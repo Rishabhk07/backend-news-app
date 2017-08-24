@@ -62,7 +62,7 @@ function getTableName(msid) {
 
 io.on('connection', (socket) => {
     console.log("Socket evoked")
-    setTimeout(sendHearbeat,25000);
+    setTimeout(sendHearbeat,2500);
     socket.on('pong',function (msg) {
         console.log(msg)
     })
