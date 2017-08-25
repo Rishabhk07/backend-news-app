@@ -2,7 +2,212 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d443510-3413-45b5-987a-e11b84979ac9" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cronScripts/notification.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cronScripts/notificationCronScript.js" afterPath="$PROJECT_DIR$/cronScripts/notificationCronScript.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/CHANGELOG.md" afterPath="$PROJECT_DIR$/node_modules/moment/CHANGELOG.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/af.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/af.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/az.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/az.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/be.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/be.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/bg.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/bg.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/br.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/br.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/bs.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/bs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/ca.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/ca.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/cs.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/cs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/cv.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/cv.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/cy.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/cy.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/da.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/da.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/de-at.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/de-at.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/de.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/de.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/el.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/el.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/en-au.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/en-au.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/en-ca.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/en-ca.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/en-gb.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/en-gb.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/en-ie.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/en-ie.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/en-nz.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/en-nz.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/eo.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/eo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/es-do.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/es-do.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/es.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/es.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/et.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/et.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/eu.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/eu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/fa.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/fa.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/fi.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/fi.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/fo.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/fo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/fr-ca.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/fr-ca.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/fr-ch.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/fr-ch.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/fr.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/fr.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/fy.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/fy.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/gd.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/gd.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/gl.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/gl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/hr.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/hr.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/hu.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/hu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/hy-am.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/hy-am.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/is.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/is.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/it.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/it.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/ja.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/ja.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/ka.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/ka.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/kk.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/kk.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/ko.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/ko.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/ky.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/ky.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/lb.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/lb.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/lo.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/lo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/lt.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/lt.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/lv.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/lv.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/me.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/me.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/mi.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/mi.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/mk.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/mk.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/nb.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/nb.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/nl-be.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/nl-be.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/nl.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/nl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/nn.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/nn.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/pl.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/pl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/pt-br.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/pt-br.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/pt.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/pt.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/ru.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/ru.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/se.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/se.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/si.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/si.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/sk.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/sk.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/sl.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/sl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/sq.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/sq.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/sr-cyrl.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/sr-cyrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/sr.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/sr.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/ss.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/ss.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/sv.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/sv.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/ta.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/ta.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/te.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/te.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/tet.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/tet.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/th.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/th.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/tl-ph.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/tl-ph.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/tlh.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/tlh.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/tr.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/tr.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/tzl.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/tzl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/uk.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/uk.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/vi.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/vi.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/x-pseudo.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/x-pseudo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/yo.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/yo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/zh-cn.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/zh-cn.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/zh-hk.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/zh-hk.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/locale/zh-tw.js" afterPath="$PROJECT_DIR$/node_modules/moment/locale/zh-tw.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/min/locales.js" afterPath="$PROJECT_DIR$/node_modules/moment/min/locales.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/min/locales.min.js" afterPath="$PROJECT_DIR$/node_modules/moment/min/locales.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/min/moment-with-locales.js" afterPath="$PROJECT_DIR$/node_modules/moment/min/moment-with-locales.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/min/moment-with-locales.min.js" afterPath="$PROJECT_DIR$/node_modules/moment/min/moment-with-locales.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/min/moment.min.js" afterPath="$PROJECT_DIR$/node_modules/moment/min/moment.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/moment.d.ts" afterPath="$PROJECT_DIR$/node_modules/moment/moment.d.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/moment.js" afterPath="$PROJECT_DIR$/node_modules/moment/moment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/package.json" afterPath="$PROJECT_DIR$/node_modules/moment/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/create/date-from-array.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/create/date-from-array.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/create/from-anything.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/create/from-anything.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/create/from-array.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/create/from-array.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/create/from-string-and-format.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/create/from-string-and-format.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/create/from-string.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/create/from-string.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/create/parsing-flags.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/create/parsing-flags.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/as.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/as.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/constructor.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/constructor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/create.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/create.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/get.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/get.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/humanize.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/humanize.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/iso-string.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/iso-string.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/prototype.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/duration/prototype.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/format/format.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/format/format.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/locale/base-config.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/locale/base-config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/locale/en.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/locale/en.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/locale/ordinal.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/locale/ordinal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/locale/relative.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/locale/relative.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/locale/set.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/locale/set.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/moment/constructor.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/moment/constructor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/moment/format.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/moment/format.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/units/day-of-month.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/units/day-of-month.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/units/day-of-week.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/units/day-of-week.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/units/hour.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/units/hour.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/units/month.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/units/month.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/units/offset.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/units/offset.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/lib/units/week-calendar-utils.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/lib/units/week-calendar-utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/af.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/af.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/az.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/az.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/be.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/be.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/bg.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/bg.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/br.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/br.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/bs.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/bs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/ca.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/ca.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/cs.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/cs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/cv.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/cv.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/cy.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/cy.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/da.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/da.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/de-at.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/de-at.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/de.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/de.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/el.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/el.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/en-au.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/en-au.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/en-ca.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/en-ca.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/en-gb.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/en-gb.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/en-ie.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/en-ie.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/en-nz.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/en-nz.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/eo.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/eo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/es-do.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/es-do.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/es.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/es.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/et.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/et.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/eu.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/eu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/fa.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/fa.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/fi.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/fi.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/fo.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/fo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/fr-ca.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/fr-ca.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/fr-ch.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/fr-ch.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/fr.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/fr.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/fy.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/fy.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/gd.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/gd.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/gl.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/gl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/hr.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/hr.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/hu.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/hu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/hy-am.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/hy-am.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/is.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/is.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/it.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/it.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/ja.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/ja.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/ka.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/ka.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/kk.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/kk.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/ko.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/ko.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/ky.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/ky.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/lb.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/lb.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/lo.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/lo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/lt.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/lt.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/lv.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/lv.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/me.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/me.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/mi.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/mi.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/mk.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/mk.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/nb.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/nb.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/nl-be.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/nl-be.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/nl.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/nl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/nn.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/nn.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/pl.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/pl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/pt-br.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/pt-br.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/pt.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/pt.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/ru.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/ru.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/se.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/se.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/si.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/si.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/sk.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/sk.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/sl.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/sl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/sq.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/sq.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/sr-cyrl.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/sr-cyrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/sr.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/sr.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/ss.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/ss.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/sv.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/sv.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/ta.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/ta.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/te.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/te.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/tet.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/tet.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/th.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/th.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/tl-ph.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/tl-ph.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/tlh.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/tlh.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/tr.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/tr.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/tzl.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/tzl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/uk.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/uk.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/vi.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/vi.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/x-pseudo.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/x-pseudo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/yo.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/yo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/zh-cn.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/zh-cn.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/zh-hk.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/zh-hk.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/locale/zh-tw.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/locale/zh-tw.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/moment/src/moment.js" afterPath="$PROJECT_DIR$/node_modules/moment/src/moment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="newsapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,18 +238,6 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="userChats.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/models/userChats.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="828">
-                  <caret line="38" column="41" lean-forward="false" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
-                  <folding>
-                    <element signature="e#0#48#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="scrapeApi.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/cronScripts/scrapeApi.js">
               <provider selected="true" editor-type-id="text-editor">
@@ -65,14 +258,34 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="notificationCronScript.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="notificationCronScript.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cronScripts/notificationCronScript.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="367">
-                  <caret line="37" column="44" lean-forward="false" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+                <state relative-caret-position="176">
+                  <caret line="37" column="33" lean-forward="false" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
                   <folding>
                     <element signature="e#0#48#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="cronjob-script.sh" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/cronScripts/cronjob-script.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="notification.sh" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/cronScripts/notification.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="23">
+                  <caret line="1" column="64" lean-forward="false" selection-start-line="1" selection-start-column="64" selection-end-line="1" selection-end-column="64" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -82,16 +295,6 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="480">
                   <caret line="69" column="20" lean-forward="false" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="userNews.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/models/userNews.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -123,17 +326,17 @@
             <entry file="file://$PROJECT_DIR$/server.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="434">
-                  <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+                  <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="userChat.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="userChat.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/userChat.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="237">
-                  <caret line="71" column="18" lean-forward="false" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
+                <state relative-caret-position="108">
+                  <caret line="64" column="32" lean-forward="false" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
                   <folding />
                 </state>
               </provider>
@@ -167,7 +370,7 @@
             <entry file="file://$PROJECT_DIR$/package.json">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="271">
-                  <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+                  <caret line="19" column="25" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
                   <folding />
                 </state>
               </provider>
@@ -193,7 +396,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="requestNews.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="requestNews.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/FetchLibrary/requestNews.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="207">
@@ -233,11 +436,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="newsNotifications.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="newsNotifications.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cronScripts/newsNotifications.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="369">
-                  <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+                <state relative-caret-position="361">
+                  <caret line="23" column="43" lean-forward="false" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
                   <folding />
                 </state>
               </provider>
@@ -276,7 +479,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/model/s.js" />
         <option value="$PROJECT_DIR$/api_end_points" />
         <option value="$PROJECT_DIR$/model/linking.js" />
         <option value="$PROJECT_DIR$/model/sequalize.js" />
@@ -322,11 +524,12 @@
         <option value="$PROJECT_DIR$/FetchLibrary/requestNews.js" />
         <option value="$PROJECT_DIR$/routes/userAuth.js" />
         <option value="$PROJECT_DIR$/models/userModel.js" />
-        <option value="$PROJECT_DIR$/cronScripts/notificationCronScript.js" />
         <option value="$PROJECT_DIR$/Authentication/Stratergies.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/models/NewsModel.js" />
         <option value="$PROJECT_DIR$/routes/userChat.js" />
+        <option value="$PROJECT_DIR$/cronScripts/notification.sh" />
+        <option value="$PROJECT_DIR$/cronScripts/notificationCronScript.js" />
       </list>
     </option>
   </component>
@@ -340,9 +543,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1280" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="width" value="1280" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -665,12 +867,12 @@
       <workItem from="1502878239846" duration="6058000" />
       <workItem from="1503217478754" duration="196000" />
       <workItem from="1503316141351" duration="1269000" />
-      <workItem from="1503486941497" duration="8415000" />
+      <workItem from="1503486941497" duration="13638000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="325598000" />
+    <option name="totallyTimeSpent" value="330821000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -682,15 +884,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.106371775" sideWeight="0.49452055" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1604448" sideWeight="0.49452055" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36438355" sideWeight="0.5250199" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871288" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32739726" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.65049505" sideWeight="0.47498015" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4958904" sideWeight="0.47498015" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23034154" sideWeight="0.50547945" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -747,20 +950,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/sequelize/lib/utils/inherits.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Database/scratchModel.js" />
     <entry file="file://$PROJECT_DIR$/Database/testDb.js" />
     <entry file="file://$PROJECT_DIR$/logs/parse-server.info.2017-03-12">
@@ -974,16 +1163,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cronScripts/notificationCronScript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="37" column="44" lean-forward="false" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#48#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Authentication/Stratergies.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -999,14 +1178,6 @@
           <folding>
             <element signature="e#0#48#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cronScripts/newsNotifications.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1029,7 +1200,7 @@
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="434">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1045,15 +1216,7 @@
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
-          <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FetchLibrary/requestNews.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <caret line="19" column="25" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -1068,9 +1231,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/userChat.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="71" column="18" lean-forward="false" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
+        <state relative-caret-position="108">
+          <caret line="64" column="32" lean-forward="false" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cronScripts/cronjob-script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FetchLibrary/requestNews.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cronScripts/notification.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="64" lean-forward="false" selection-start-line="1" selection-start-column="64" selection-end-line="1" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cronScripts/newsNotifications.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="23" column="43" lean-forward="false" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cronScripts/notificationCronScript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="37" column="33" lean-forward="false" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#48#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

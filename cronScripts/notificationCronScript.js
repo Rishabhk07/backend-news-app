@@ -3,6 +3,7 @@
  */
 const admin = require('firebase-admin');
 Sequelize = require('sequelize');
+const moment = require('moment');
 let sequelize = new Sequelize({
     host: 'localhost',
     username: 'rishabh',
@@ -25,24 +26,39 @@ User.findAll().then(function (response) {
             thisNews.findOne({
                 order: [['createdAt', 'DESC']]
             }).then(function (response) {
-                console.log(response.hl)
-                let payload = {
-                    data: {
-                        news_id: "briefs",
-                        title: response.hl,
-                        image: response.imageid,
-                        detail: response.syn
-                    }
-                };
-                console.log("TOKEN")
-                console.log(user.fcm_token);
-                admin.messaging().sendToDevice(user.fcm_token, payload)
-                    .then(function (response) {
-                        console.log("successfully send message on brief");
-                        console.log(response.results)
-                    }).catch(function (err) {
-                    console.log("Error in sending message " + err);
-                })
+                let d = new Date();
+                console.log(moment().format());
+
+                console.log(new Date(response.createdAt));
+                console.log(new Date(response.createdAt) - Date.now());
+                let startDate = moment(response.createdAt, 'YYYY-M-DD HH:mm:ss')
+                let endDate = moment(new Date(Date.now()), 'YYYY-M-DD HH:mm:ss')
+                let timeElapsed = moment(endDate).diff(startDate, 'hours');
+                console.log(moment(endDate).diff(startDate, 'hours'));
+                if (timeElapsed < 2) {
+
+                    console.log(startDate)
+                    console.log(endDate)
+
+                    console.log(response.hl)
+                    let payload = {
+                        data: {
+                            news_id: "briefs",
+                            title: response.hl,
+                            image: response.imageid,
+                            detail: response.syn
+                        }
+                    };
+                    console.log("TOKEN")
+                    console.log(user.fcm_token);
+                    admin.messaging().sendToDevice(user.fcm_token, payload)
+                        .then(function (response) {
+                            console.log("successfully send message on brief");
+                            console.log(response.results)
+                        }).catch(function (err) {
+                        console.log("Error in sending message " + err);
+                    })
+                }
             })
             //end
         } else {
