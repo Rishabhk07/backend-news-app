@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5d443510-3413-45b5-987a-e11b84979ac9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cronScripts/requestNotification.js" afterPath="$PROJECT_DIR$/cronScripts/requestNotification.js" />
     </list>
     <ignored path="newsapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,11 +64,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="requestNotification.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="requestNotification.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cronScripts/requestNotification.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="69">
-                  <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+                <state relative-caret-position="184">
+                  <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
                   <folding>
                     <element signature="e#0#48#0" expanded="false" />
                   </folding>
@@ -107,7 +108,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="notification.sh" pinned="false" current-in-tab="true">
+          <file leaf-file-name="notification.sh" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/cronScripts/notification.sh">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="23">
@@ -323,8 +324,8 @@
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/cronScripts/notificationCronScript.js" />
         <option value="$PROJECT_DIR$/routes/notification.js" />
-        <option value="$PROJECT_DIR$/cronScripts/requestNotification.js" />
         <option value="$PROJECT_DIR$/cronScripts/notification.sh" />
+        <option value="$PROJECT_DIR$/cronScripts/requestNotification.js" />
       </list>
     </option>
   </component>
@@ -663,12 +664,12 @@
       <workItem from="1502878239846" duration="6058000" />
       <workItem from="1503217478754" duration="196000" />
       <workItem from="1503316141351" duration="1269000" />
-      <workItem from="1503486941497" duration="16892000" />
+      <workItem from="1503486941497" duration="16965000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="334075000" />
+    <option name="totallyTimeSpent" value="334148000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1073,21 +1074,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cronScripts/requestNotification.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#48#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cronScripts/notification.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="1" column="61" lean-forward="false" selection-start-line="1" selection-start-column="61" selection-end-line="1" selection-end-column="61" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cronScripts/requestNotification.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#48#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
