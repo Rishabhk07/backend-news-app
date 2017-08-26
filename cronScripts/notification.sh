@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-node newsapp/backend-news-app/cronScripts/notificationCronScript.js
+node newsapp/backend-news-app/cronScripts/requestNotification.js
