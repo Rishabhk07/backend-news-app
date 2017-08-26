@@ -64,8 +64,25 @@ function newsAuthFromDb(callback, msid, offset, body) {
     console.log("Authenticated news");
     const db = modelNews(msid, sequelize);
     let thisTable = userNews(msid);
-    User.belongsToMany(db, {through: thisTable});
-    db.belongsToMany(User, {through: thisTable});
+    User.belongsToMany(db, {through: thisTable}).then(function (response) {
+        console.log("user belong to many")
+        console.log(response)
+    }).catch(function (err) {
+        console.log("user belong to many")
+        console.log(err)
+        console.log(err.message)
+
+    });
+
+    db.belongsToMany(User, {through: thisTable}).then(function (response) {
+        console.log("DB belong to many")
+        console.log(response)
+    }).catch(function (err) {
+        console.log("DB belong to many")
+        console.log(err)
+        console.log(err.message)
+
+    });
     db.findAll({
         limit: 10,
         offset: 10 * offset,
@@ -76,6 +93,10 @@ function newsAuthFromDb(callback, msid, offset, body) {
     }).then(function (body) {
 
         callback(body);
+    }).catch(function (err) {
+        console.log("cannot fetch news ")
+        console.log(err)
+        console.log(err.message)
     })
 }
 

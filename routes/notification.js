@@ -21,11 +21,12 @@ admin.initializeApp({
 },"second");
 
 route.get('/notify', (req, res) => {
-
+console.log("request to notificatoin log")
     User.findAll().then(function (response) {
         for (let user of response) {
             if (user.notification === true) {
                 //sending notification fo rbrief only
+                console.log("ntification : user found ");
                 let thisNews = getNewsTable("briefs", sequelize);
                 thisNews.findOne({
                     order: [['createdAt', 'DESC']]
