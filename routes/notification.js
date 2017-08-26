@@ -150,6 +150,6 @@ route.get('/notify', (req, res) => {
         }
     })
 
-})
+});
 
 module.exports = route;
