@@ -52,6 +52,9 @@ function newsFromDb(callback, msid, offset, body) {
         }).then(function (body) {
 
             callback(body);
+        }).catch(function (err) {
+            console.log(err)
+            console.log("db find All error");
         })
     } else {
         newsAuthFromDb(callback, msid, offset, body);
@@ -94,6 +97,8 @@ function allNewsFromDb(callback, msid, offset) {
     }).then(function (body) {
         console.log(body);
         callback(body);
+    }).catch(function (err) {
+        console.log(err)
     })
 }
 

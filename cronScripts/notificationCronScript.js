@@ -59,6 +59,9 @@ User.findAll().then(function (response) {
                         console.log("Error in sending message " + err);
                     })
                 }
+            }).catch(function (err) {
+                console.log(err)
+                console.log("thisNews find one")
             })
             //end
         } else {
@@ -90,10 +93,16 @@ User.findAll().then(function (response) {
                             }).catch(function (err) {
                             console.log("Error in sending message" + err);
                         })
+                    }).catch(function (err) {
+                        console.log(err)
+                        console.log("this news cannot find")
                     })
                 }
             }
 // end
         }
     }
+}).catch(function (err) {
+    console.log(err)
+    console.log("User cannot find error")
 })
