@@ -24,7 +24,8 @@ const routes = {
     news: require('./routes/newsApiTest'),
     sequelize : require('./routes/newsApiRoutes'),
     auth : require('./routes/userAuth'),
-    rate: require('./routes/rateNews')
+    rate: require('./routes/rateNews'),
+    notification: require('./routes/notification')
 };
 
 app.use('/news' , routes.news);
@@ -35,9 +36,7 @@ app.use('/auth',routes.auth);
 
 app.use('/rate',routes.rate);
 
-
-
-
+app.use('/notification',routes.notification)
 
 app.listen(9890 , ()=> {
     console.log("magic happens at " + port);
