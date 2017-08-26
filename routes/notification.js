@@ -66,6 +66,8 @@ console.log("request to notificatoin log")
                             res.send({success: false})
                         })
                     }
+                }).catch(function (err) {
+                    console.log(err)
                 })
                 //end
             } else {
@@ -99,6 +101,8 @@ console.log("request to notificatoin log")
                                 }).catch(function (err) {
                                 console.log("Error in sending message" + err);
                             })
+                        }).catch(function (err) {
+                            console.log(err)
                         })
                     }
                 }
@@ -142,6 +146,8 @@ console.log("request to notificatoin log")
                                 console.log("Error in sending message " + err);
                             })
                         }
+                    }).catch(function (err) {
+                        console.log(err)
                     })
                     //end
                 }
@@ -149,6 +155,8 @@ console.log("request to notificatoin log")
 // end
             }
         }
+    }).catch(function (err) {
+        console.log(err)
     })
 
 });
