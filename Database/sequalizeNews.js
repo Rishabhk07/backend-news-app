@@ -7,7 +7,12 @@ var sequelize = new Sequelize({
     username: 'rishabh',
     database: 'newsapp',
     password: 'beyblade',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    pool: {
+        max: 50,
+        min: 0,
+        idle: 10000
+    }
 });
 var modelNews = require('../models/NewsModel');
 const userNews = require('../models/userNews');

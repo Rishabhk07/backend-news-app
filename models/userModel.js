@@ -11,6 +11,11 @@ const db = new sequelize({
     dialect: 'mysql',
     dialectOptions: {
         charset: 'utf8mb4'
+    },
+    pool: {
+        max: 50,
+        min: 0,
+        idle: 10000
     }
 });
 

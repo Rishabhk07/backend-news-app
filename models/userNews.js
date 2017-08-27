@@ -7,7 +7,12 @@ const db = new sequelize({
     username: 'rishabh',
     database: 'newsapp',
     password: 'beyblade',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    pool: {
+        max: 50,
+        min: 0,
+        idle: 10000
+    }
 });
 
 const userNews = function (table) {
