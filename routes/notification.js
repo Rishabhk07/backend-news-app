@@ -23,6 +23,8 @@ admin.initializeApp({
 route.get('/notify', (req, res) => {
 console.log("request to notificatoin log")
     User.findAll().then(function (response) {
+        console.log("user found");
+        console.log(response);
         for (let user of response) {
             if (user.notification === true) {
                 //sending notification fo rbrief only
@@ -72,9 +74,11 @@ console.log("request to notificatoin log")
                 //end
             } else {
                 // getting to all the topic selected by user and sending  notification to that only
+                console.log("user in topic selected");
                 let anyTure = true;
                 for (let thisTopic of user.topics) {
                     if (thisTopic.value === true) {
+                        console.log("itertaing topic")
                         anyTure = false;
                         console.log(thisTopic.key);
                         let thisNews = getNewsTable(thisTopic.key, sequelize);
