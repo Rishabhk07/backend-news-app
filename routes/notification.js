@@ -13,7 +13,10 @@ let sequelize = new Sequelize({
     username: 'rishabh',
     database: 'newsapp',
     password: 'beyblade',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    dialectOptions: {
+        charset: 'utf8mb4'
+    }
 });
 let serviceAccount = require('../serviceAccountKey.json');
 admin.initializeApp({
