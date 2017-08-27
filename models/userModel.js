@@ -8,7 +8,10 @@ const db = new sequelize({
     username: 'rishabh',
     database: 'newsapp',
     password: 'beyblade',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    dialectOptions: {
+        charset: 'utf8mb4'
+    }
 });
 
 let userSchema = db.define('user', {
