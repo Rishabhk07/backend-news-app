@@ -96,6 +96,9 @@ io.on('connection', (socket) => {
             console.log(response)
             console.log("Socket id to return : " + socket.id);
             console.log(io.sockets.adapter.rooms[json.news_id]);
+            if(json.news_id.anonym === true){
+                json.from = "anonym"
+            }
             io.sockets.in(json.news_id).emit('from_server',response )
             let NewsTable = newsModel(news_table, seq.db);
             NewsTable.findOne({

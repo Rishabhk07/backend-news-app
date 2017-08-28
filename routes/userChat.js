@@ -64,7 +64,6 @@ route.post('/getChats',(req,res)=>{
             ['createdAt', 'DESC']
         ]
     }).then(function (response) {
-
         res.send(response.reverse())
     }).catch(function (err){
         res.send({success: false})
