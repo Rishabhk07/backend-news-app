@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d443510-3413-45b5-987a-e11b84979ac9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cronScripts/abTakStory.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/sequalizeNews.js" afterPath="$PROJECT_DIR$/Database/sequalizeNews.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cronScripts/newsNotifications.js" afterPath="$PROJECT_DIR$/cronScripts/newsNotifications.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cronScripts/notificationCronScript.js" afterPath="$PROJECT_DIR$/cronScripts/notificationCronScript.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/notification.js" afterPath="$PROJECT_DIR$/routes/notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/rateNews.js" afterPath="$PROJECT_DIR$/routes/rateNews.js" />
     </list>
     <ignored path="newsapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -587,12 +579,12 @@
       <workItem from="1503217478754" duration="196000" />
       <workItem from="1503316141351" duration="1269000" />
       <workItem from="1503486941497" duration="27067000" />
-      <workItem from="1503901409789" duration="6923000" />
+      <workItem from="1503901409789" duration="6982000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="351173000" />
+    <option name="totallyTimeSpent" value="351232000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
