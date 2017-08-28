@@ -1,7 +1,8 @@
 /**
  * Created by rishabhkhanna on 14/01/17.
  */
-var Sequelize = require('sequelize');
+let Sequelize = require('sequelize');
+const seq = require('../models/sequelizeConnection');
 var sequelize = new Sequelize({
     host: 'localhost',
     username: 'rishabh',
@@ -24,7 +25,7 @@ const User = require('../models/userModel');
 
 
 function checkDbConnection(cb) {
-    sequelize
+    seq.db
         .authenticate()
         .then(function (test) {
             console.log('Connection has been established successfully.');
@@ -47,7 +48,7 @@ function newsFromDb(callback, msid, offset, body) {
 
     if (body.user_id === "null" ) {
         console.log("not auth")
-        const db = modelNews(msid, sequelize);
+        const db = modelNews(msid, seq.db);
         db.findAll({
             limit: 10,
             offset: 10 * offset,
@@ -70,7 +71,7 @@ function newsFromDb(callback, msid, offset, body) {
 function newsAuthFromDb(callback, msid, offset, body) {
     // const db = sequelize.define(msid,modelDB);
     console.log("Authenticated news");
-    const db = modelNews(msid, sequelize);
+    const db = modelNews(msid, seq.db);
     let thisTable = userNews(msid);
     User.belongsToMany(db, {through: thisTable});
     console.log("User belong to many")
@@ -94,7 +95,7 @@ function newsAuthFromDb(callback, msid, offset, body) {
 }
 
 function allNewsFromDb(callback, msid, offset) {
-    const db = modelNews(msid, sequelize);
+    const db = modelNews(msid, seq.db);
     db.findAll({
         order: [
             ['id', 'DESC']
@@ -111,7 +112,7 @@ function allNewsFromDb(callback, msid, offset) {
 var saveNewsToDb = (model, msid) => {
     console.log(msid.table);
     //create Table
-    const News = modelNews(msid.table, sequelize);
+    const News = modelNews(msid.table, seq.db);
     News.sync().then(function (body) {
             console.log("Promise Body : " + body);
             News.create(model).then(function (task) {
