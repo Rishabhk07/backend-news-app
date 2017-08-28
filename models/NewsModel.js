@@ -1,67 +1,67 @@
 /**
  * Created by rishabhkhanna on 07/07/17.
  */
-const Sequelize = require('sequelize');
+const Sequelize = require('./sequelizeConnection');
 let db = {
     st: {
-        type: Sequelize.STRING
+        type: Sequelize.Sequelize.DataTypes.STRING
     },
     uid: {
-        type: Sequelize.STRING
+        type: Sequelize.Sequelize.DataTypes.STRING
     },
     dl: {
-        type: Sequelize.STRING
+        type: Sequelize.Sequelize.DataTypes.STRING
     },
     hl: {
-        type: Sequelize.TEXT,
+        type: Sequelize.Sequelize.DataTypes.TEXT,
         field: 'news_heading'
     },
     imageid: {
-        type: Sequelize.STRING
+        type: Sequelize.Sequelize.DataTypes.STRING
     },
     syn: {
-        type: Sequelize.TEXT,
+        type: Sequelize.Sequelize.DataTypes.TEXT,
         field: 'news_detailed'
     },
     id:{
-        type:Sequelize.INTEGER,
+        type:Sequelize.Sequelize.DataTypes.INTEGER,
         primaryKey:true,
         autoIncrement:true
     },
     dm:{
-        type:Sequelize.STRING
+        type:Sequelize.Sequelize.DataTypes.STRING
     },
     tn:{
-        type:Sequelize.STRING
+        type:Sequelize.Sequelize.DataTypes.STRING
     },
     su:{
-        type:Sequelize.STRING
+        type:Sequelize.Sequelize.DataTypes.STRING
     },
     key:{
-        type:Sequelize.STRING,
+        type:Sequelize.Sequelize.DataTypes.STRING,
         unique:true
     },
     msid:{
-        type:Sequelize.STRING
+        type:Sequelize.Sequelize.DataTypes.STRING
     },
     story:{
-        type:Sequelize.TEXT,
+        type:Sequelize.Sequelize.DataTypes.TEXT,
         field: 'news_story'
     },
     photoStory: {
-        type:Sequelize.JSON,
+        type:Sequelize.Sequelize.DataTypes.JSON,
         field: 'photo_story'
     },
     likes:{
-        type: Sequelize.DataTypes.INTEGER,
+        type: Sequelize.Sequelize.DataTypes.INTEGER,
         defaultValue:0
     },
     dislikes: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: Sequelize.Sequelize.DataTypes.INTEGER,
         defaultValue:0
     },
     chats: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: Sequelize.Sequelize.DataTypes.INTEGER,
         defaultValue: 0
     }
 };
