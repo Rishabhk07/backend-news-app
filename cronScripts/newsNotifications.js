@@ -2,14 +2,7 @@
  * Created by rishabhkhanna on 01/08/17.
  */
 const admin = require('firebase-admin');
-const Sequelize = require('sequelize');
-var sequelize = new Sequelize({
-    host: 'localhost',
-    username: 'rishabh',
-    database: 'newsapp',
-    password: 'beyblade',
-    dialect: 'mysql'
-});
+const seq = require('../models/sequelizeConnection');
 let serviceAccount = require("../serviceAccountKey.json");
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -23,7 +16,7 @@ User.findAll().then(function (response) {
         for (let thisTopic of user.topics) {
             if (thisTopic.value === true) {
                 console.log(thisTopic.key);
-                let thisNews = getNewsTable(thisTopic.key, sequelize);
+                let thisNews = getNewsTable(thisTopic.key, seq.db);
                 thisNews.findOne({
                     order: [['createdAt', 'DESC']]
                 }).then(function (response) {

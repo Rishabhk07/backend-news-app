@@ -2,15 +2,8 @@
  * Created by rishabhkhanna on 22/08/17.
  */
 const admin = require('firebase-admin');
-Sequelize = require('sequelize');
 const moment = require('moment');
-let sequelize = new Sequelize({
-    host: 'localhost',
-    username: 'rishabh',
-    database: 'newsapp',
-    password: 'beyblade',
-    dialect: 'mysql'
-});
+const seq = require('../models/sequelizeConnection');
 let serviceAccount = require('../serviceAccountKey.json');
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -22,7 +15,7 @@ User.findAll().then(function (response) {
     for (let user of response) {
         if (user.notification === true) {
             //sending notification fo rbrief only
-            let thisNews = getNewsTable("briefs", sequelize);
+            let thisNews = getNewsTable("briefs", seq.db);
             thisNews.findOne({
                 order: [['createdAt', 'DESC']]
             }).then(function (response) {
@@ -69,7 +62,7 @@ User.findAll().then(function (response) {
             for (let thisTopic of user.topics) {
                 if (thisTopic.value === true) {
                     console.log(thisTopic.key);
-                    let thisNews = getNewsTable(thisTopic.key, sequelize);
+                    let thisNews = getNewsTable(thisTopic.key, seq.db);
                     thisNews.findOne({
                         order: [['createdAt', 'DESC']]
                     }).then(function (response) {
