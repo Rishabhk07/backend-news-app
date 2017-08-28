@@ -7,7 +7,7 @@ const db = new Sequelize({
     username: 'rishabh',
     database: 'newsapp',
     password: 'beyblade',
-    dialect: 'mysql',
+    dialect: 'postgres',
     dialectOptions: {
         charset: 'utf8mb4'
     },
