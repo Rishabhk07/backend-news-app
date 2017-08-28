@@ -4,27 +4,12 @@
 const express = require('express');
 const route = express.Router();
 const User = require('../models/userModel');
-const Sequelize = require('sequelize');
 const userNews = require('../models/userNews');
 const msid = require('../msid/newsMsid');
 const newsModel = require('../models/NewsModel');
 const userChats = require('../models/userChats');
+const seq = require('../models/sequelizeConnection');
 
-const sequelize = new Sequelize({
-    host: 'localhost',
-    username: 'rishabh',
-    database: 'newsapp',
-    password: 'beyblade',
-    dialect: 'mysql',
-    dialectOptions: {
-        charset: 'utf8mb4'
-    },
-    pool: {
-        max: 50,
-        min: 0,
-        idle: 10000
-    }
-});
 let NewsAssociation = {};
 setupJoin();
 
@@ -302,7 +287,7 @@ route.post('/getRatedNews', (req, res) => {
     //     console.log(err);
     //     console.log(err.message)
     // })
-    let Briefs  = newsModel('briefs', sequelize);
+    let Briefs  = newsModel('briefs', seq.db);
     console.log(User.associations);
     User.findOne({
         where: {facebook_user_id: user_id},
@@ -391,7 +376,7 @@ function setupJoin() {
     for (let key in msid) {
         console.log(msid[key].table);
         let thisTable = userNews(msid[key].table);
-        let News = newsModel(msid[key].table, sequelize);
+        let News = newsModel(msid[key].table, seq.db);
 
         User.belongsToMany(News, {through: thisTable});
         News.belongsToMany(User, {through: thisTable});

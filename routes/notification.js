@@ -4,25 +4,11 @@
 const express = require('express');
 const route = express.Router();
 const admin = require('firebase-admin');
-const Sequelize = require('sequelize');
 const moment = require('moment');
 const User = require('../models/userModel');
 const getNewsTable = require('../models/NewsModel');
-let sequelize = new Sequelize({
-    host: 'localhost',
-    username: 'rishabh',
-    database: 'newsapp',
-    password: 'beyblade',
-    dialect: 'mysql',
-    dialectOptions: {
-        charset: 'utf8mb4'
-    },
-    pool: {
-        max: 50,
-        min: 0,
-        idle: 10000
-    }
-});
+const seq = require('../models/sequelizeConnection');
+
 let serviceAccount = require('../serviceAccountKey.json');
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -37,7 +23,7 @@ console.log("request to notificatoin log")
             if (user.notification === true) {
                 //sending notification fo rbrief only
                 console.log("ntification : user found ");
-                let thisNews = getNewsTable("briefs", sequelize);
+                let thisNews = getNewsTable("briefs", seq.db);
                 thisNews.findOne({
                     order: [['createdAt', 'DESC']]
                 }).then(function (response) {
@@ -89,7 +75,7 @@ console.log("request to notificatoin log")
                         console.log("itertaing topic")
                         anyTure = false;
                         console.log(thisTopic.key);
-                        let thisNews = getNewsTable(thisTopic.key, sequelize);
+                        let thisNews = getNewsTable(thisTopic.key, seq.db);
                         thisNews.findOne({
                             order: [['createdAt', 'DESC']]
                         }).then(function (response) {
@@ -121,7 +107,7 @@ console.log("request to notificatoin log")
 
                 if (anyTure) {
                     //sending notification fo rbrief only
-                    let thisNews = getNewsTable("briefs", sequelize);
+                    let thisNews = getNewsTable("briefs", seq.db);
                     thisNews.findOne({
                         order: [['createdAt', 'DESC']]
                     }).then(function (response) {
