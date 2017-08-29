@@ -7,7 +7,6 @@ for(let key in newsCategory){
     console.log(newsCategory[key]);
         requestNews.fetchNews(newsCategory[key],function (body) {
             console.log("counter: " + counter);
-            process.exit(-1)
     })
 }
 
