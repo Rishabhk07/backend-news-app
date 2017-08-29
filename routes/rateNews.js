@@ -203,7 +203,7 @@ route.post('/dislike', (req, res) => {
                     if(response > 0) {
                         console.log("Response after adding new ");
                         console.log(response);
-                        news.increment('dislikes', {by: 1}).then()
+                        news.increment('dislikes', {by: 1})
                         news.decrement('likes',{by: 1})
                     }
                     res.send(news)
