@@ -2,6 +2,8 @@
  * Created by rishabhkhanna on 07/07/17.
  */
 const Sequelize = require('./sequelizeConnection');
+const msid = require('../msid/newsMsid');
+let newsList = [];
 let db = {
     st: {
         type: Sequelize.Sequelize.DataTypes.STRING
@@ -65,9 +67,16 @@ let db = {
         defaultValue: 0
     }
 };
+
+(function defineTables() {
+    for(let key in msid){
+        newsList[msid[key].table] = Sequelize.db.define(msid[key].table,db)
+        newsList[msid[key].table].sync()
+    }
+})();
 function getTable(tableName) {
-    let NewsSchema = Sequelize.db.define(tableName,db)
-    NewsSchema.sync();
-    return NewsSchema;
+   if(newsList[tableName] !== undefined){
+    return newsList[tableName]
+   }
 }
 module.exports = getTable;

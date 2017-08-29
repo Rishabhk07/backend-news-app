@@ -18,6 +18,6 @@ const db = new Sequelize({
     },
     log: true
 });
-module.exports = {Sequelize,db}
+module.exports = {Sequelize, db}
 
 console.log("RISHABH KHANNA")

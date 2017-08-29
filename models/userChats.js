@@ -2,8 +2,8 @@
  * Created by rishabhkhanna on 04/08/17.
  */
 const sequelize = require('./sequelizeConnection');
-
-
+const msid = require('../msid/newsMsid');
+let userChats = [];
 let chatSchema = {
     id: {
         type: sequelize.Sequelize.DataTypes.INTEGER,
@@ -29,12 +29,15 @@ let chatSchema = {
         type: sequelize.Sequelize.DataTypes.BOOLEAN
     }
 };
-
+(function defineChatTables() {
+    for (let key in msid){
+        let name = "Chat_" + msid[key].table;
+        userChats[msid[key].table] = sequelize.db.define(name,chatSchema,{charset: 'utf8mb4'});
+        userChats[msid[key].table].sync();
+    }
+})();
 function getTable(tableName) {
-    let name = "Chat_" + tableName;
-    let chat = sequelize.db.define(name,chatSchema,{charset: 'utf8mb4'});
-    chat.sync();
-    return chat;
+    return userChats[tableName];
 }
 
 module.exports  = getTable;
