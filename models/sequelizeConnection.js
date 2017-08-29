@@ -14,7 +14,8 @@ const db = new Sequelize({
     pool: {
         max: 50,
         min: 0,
-        idle: 1000
+        idle: 1000,
+        evict: 1000
     },
     log: true
 });
