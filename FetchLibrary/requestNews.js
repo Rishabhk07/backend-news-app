@@ -42,9 +42,9 @@ module.exports = {
                                 photoStory.fetchPhotoStory(json[i], function (body) {
                                 sequelize.saveNewsToDb(body, msid);
                                 newData.push(body);
-                                // if(i == json.length - 1){
-                                //     calllback(newData)
-                                // }
+                                if(i == json.length - 1){
+                                    calllback(newData)
+                                }
                             });
                         } else {
                             console.log("briefs");
@@ -53,9 +53,9 @@ module.exports = {
                                 sequelize.saveNewsToDb(body,msid);
 
                                 newData.push(body);
-                                // if(i == json.length - 1){
-                                //     calllback(newData)
-                                // }
+                                if(i == json.length - 1){
+                                    calllback(newData)
+                                }
                             });
                         }
                     }
