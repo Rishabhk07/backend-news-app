@@ -65,8 +65,8 @@ let db = {
         defaultValue: 0
     }
 };
-function getTable(tableName,sequelize) {
-    let NewsSchema = sequelize.define(tableName,db)
+function getTable(tableName) {
+    let NewsSchema = Sequelize.db.define(tableName,db)
     NewsSchema.sync();
     return NewsSchema;
 }

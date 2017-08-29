@@ -1,20 +1,7 @@
 /**
  * Created by rishabhkhanna on 14/01/17.
  */
-let Sequelize = require('sequelize');
-const seq = require('../models/sequelizeConnection');
-var sequelize = new Sequelize({
-    host: 'localhost',
-    username: 'rishabh',
-    database: 'newsapp',
-    password: 'beyblade',
-    dialect: 'mysql',
-    pool: {
-        max: 50,
-        min: 0,
-        idle: 10000
-    }
-});
+const seq = require('../models/sequelizeConnection')
 var modelNews = require('../models/NewsModel');
 const userNews = require('../models/userNews');
 const User = require('../models/userModel');
@@ -37,7 +24,7 @@ function checkDbConnection(cb) {
 
 
 function createTable() {
-    db.sync({force: true}).then(function () {
+    seq.db.sync({force: true}).then(function () {
         console.log("Table created succesfully");
     })
 }
@@ -71,7 +58,7 @@ function newsFromDb(callback, msid, offset, body) {
 function newsAuthFromDb(callback, msid, offset, body) {
     // const db = sequelize.define(msid,modelDB);
     console.log("Authenticated news");
-    const db = modelNews(msid, seq.db);
+    const db = modelNews(msid);
     let thisTable = userNews(msid);
     User.belongsToMany(db, {through: thisTable});
     console.log("User belong to many")
@@ -95,7 +82,7 @@ function newsAuthFromDb(callback, msid, offset, body) {
 }
 
 function allNewsFromDb(callback, msid, offset) {
-    const db = modelNews(msid, seq.db);
+    const db = modelNews(msid);
     db.findAll({
         order: [
             ['id', 'DESC']
@@ -112,7 +99,7 @@ function allNewsFromDb(callback, msid, offset) {
 var saveNewsToDb = (model, msid) => {
     console.log(msid.table);
     //create Table
-    const News = modelNews(msid.table, seq.db);
+    const News = modelNews(msid.table);
     News.sync().then(function (body) {
             console.log("Promise Body : " + body);
             News.create(model).then(function (task) {
