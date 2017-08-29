@@ -100,7 +100,7 @@ var saveNewsToDb = (model, msid) => {
     console.log(msid.table);
     //create Table
     const News = modelNews(msid.table);
-    News.sync().then(function (body) {
+    News.then(function (body) {
             console.log("Promise Body : " + body);
             News.create(model).then(function (task) {
                 User.addWorlds(task);
