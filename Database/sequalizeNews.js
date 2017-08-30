@@ -60,9 +60,7 @@ function newsAuthFromDb(callback, msid, offset, body) {
     console.log("Authenticated news");
     const db = modelNews(msid);
     let thisTable = userNews(msid);
-    User.belongsToMany(db, {through: thisTable});
     console.log("User belong to many")
-    db.belongsToMany(User, {through: thisTable})
     console.log("DB belong to many")
     db.findAll({
         limit: 10,
@@ -100,19 +98,12 @@ var saveNewsToDb = (model, msid) => {
     console.log(msid.table);
     //create Table
     const News = modelNews(msid.table);
-    News.then(function (body) {
-            console.log("Promise Body : " + body);
             News.create(model).then(function (task) {
-                User.addWorlds(task);
                 console.log("successfully saved the news with id" + task.id);
                 console.log(task);
             }).catch((err) => {
                 console.log(err);
             })
-        }
-    );
-
-
 };
 
 module.exports = {checkDbConnection, saveNewsToDb, createTable, newsFromDb, allNewsFromDb};
