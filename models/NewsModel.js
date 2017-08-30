@@ -3,6 +3,8 @@
  */
 const Sequelize = require('./sequelizeConnection');
 const msid = require('../msid/newsMsid');
+const getThroughTable = require('./userNews');
+const user = require('./userModel');
 let newsList = [];
 let db = {
     st: {
@@ -72,11 +74,11 @@ let db = {
     for(let key in msid){
         newsList[msid[key].table] = Sequelize.db.define(msid[key].table,db)
         newsList[msid[key].table].sync()
+        user.belongsToMany(newsList[msid[key].table],{through: getThroughTable(msid[key].table)});
+        newsList[msid[key].table].belongsToMany(user,{through: getThroughTable(msid[key].table)});
     }
 })();
 function getTable(tableName) {
-   if(newsList[tableName] !== undefined){
     return newsList[tableName]
-   }
 }
 module.exports = getTable;
