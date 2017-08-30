@@ -9,11 +9,7 @@ const msid = require('../msid/newsMsid');
 const newsModel = require('../models/NewsModel');
 const userChats = require('../models/userChats');
 const seq = require('../models/sequelizeConnection');
-
-let NewsAssociation = {};
-setupJoin();
-
-console.log("YO Calling from inside");
+const getTableFromMsid = require('../routes/userChat');
 
 route.post('/like', (req, res) => {
 
@@ -21,14 +17,15 @@ route.post('/like', (req, res) => {
     console.log("LOG" + req.body.news_msid);
     let table = selectTable(req.body.news_msid);
     console.log(table);
-    let News = NewsAssociation[req.body.news_msid];
-    console.log(NewsAssociation[req.body.news_msid])
+    let News = newsModel(getTableFromMsid.getTableName(req.body.news_msid));
+
     console.log("Rating");
     console.log(thisRating.rating);
     // console.log(User.associations);
     // console.log(News.associations);
     console.log(thisRating.rating === '1');
     if(thisRating.rating === '1'){
+        console.log(News.associations);
         console.log("here entered 1")
         User.findOne({
             where: {facebook_user_id: thisRating.user_id}
@@ -45,14 +42,20 @@ route.post('/like', (req, res) => {
                 user[foo](news, {through: {rating: 1}}).then(function (response) {
                     console.log("removed user from news");
                     console.log(response)
-                    if(response > 0 ){
+                    if(response > 0 ) {
                         console.log("Rating on like");
                         console.log(response[0]);
-                        console.log(response[0])
-                        news.decrement('likes', {by: 1})
-                        res.send(news)
-                    }else {
-                        res.send(news)
+                        console.log(response[0]);
+                        news.decrement('likes');
+                        News.findOne({
+                            where: {id: thisRating.news_id},
+                            include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
+                        }).then(function (news) {
+                            res.send(news)
+                        }).catch(function (err) {
+                            res.send({success: false})
+                        })
+
                     }
 
                 });
@@ -86,12 +89,18 @@ route.post('/like', (req, res) => {
                     if(response > 0) {
                         console.log("Rating on like");
                         console.log(response);
-                        news.increment('likes', {by: 1});
-                        news.decrement('dislikes', {by: 1});
+                        news.increment('likes');
+                        news.decrement('dislikes');
+                        News.findOne({
+                            where: {id: thisRating.news_id},
+                            include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
+                        }).then(function (news) {
+                            res.send(news)
+                        }).catch(function (err) {
+                            res.send({success: false})
+                        })
                     }
                 });
-
-                res.send(news)
 
             }).catch(err => {
                 res.send({success: false})
@@ -121,10 +130,16 @@ route.post('/like', (req, res) => {
                         console.log("Rating on like");
                         console.log(response[0]);
                         console.log(response[0])
-                        news.increment('likes', {by: 1})
+                        news.increment('likes')
+                        News.findOne({
+                            where: {id: thisRating.news_id},
+                            include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
+                        }).then(function (news) {
+                            res.send(news)
+                        }).catch(function (err) {
+                            res.send({success: false})
+                        })
                     }
-                    res.send(news)
-
                 });
 
             }).catch(err => {
@@ -145,10 +160,11 @@ route.post('/dislike', (req, res) => {
     console.log("LOG" + req.body.news_msid);
     let table = selectTable(req.body.news_msid);
     console.log(table);
-    let News = NewsAssociation[req.body.news_msid];
+    let News = newsModel(getTableFromMsid.getTableName(req.body.news_msid));
     console.log(User.associations);
     console.log(News.associations);
-    console.log(thisRating.rating)
+    console.log(thisRating.rating);
+    console.log(thisRating.user_id);
     console.log(thisRating.rating === '0')
     if(thisRating.rating === '0'){
 
@@ -170,9 +186,16 @@ route.post('/dislike', (req, res) => {
                     if(response > 0) {
                         console.log("Response after adding new ");
                         console.log(response);
-                        news.decrement('dislikes', {by: 1})
+                        news.decrement('dislikes')
                     }
-                    res.send(news)
+                    News.findOne({
+                        where: {id: thisRating.news_id},
+                        include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
+                    }).then(function (news) {
+                        res.send(news)
+                    }).catch(function (err) {
+                        res.send({success: false})
+                    })
                 });
                 // res.send(news)
             }).catch(err => {
@@ -203,10 +226,17 @@ route.post('/dislike', (req, res) => {
                     if(response > 0) {
                         console.log("Response after adding new ");
                         console.log(response);
-                        news.increment('dislikes', {by: 1})
-                        news.decrement('likes',{by: 1})
+                        news.increment('dislikes');
+                        news.decrement('likes')
                     }
-                    res.send(news)
+                    News.findOne({
+                        where: {id: thisRating.news_id},
+                        include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
+                    }).then(function (news) {
+                        res.send(news)
+                    }).catch(function (err) {
+                        res.send({success: false})
+                    })
                 });
                 // res.send(news)
             }).catch(err => {
@@ -232,17 +262,23 @@ route.post('/dislike', (req, res) => {
 
                 let foo = "add" + table;
                 user[foo](news, {through: {rating: 0}}).then(function (response) {
-
-
                     if(response !== undefined  && response[0] !== undefined && response[0][0] !== undefined && response[0][0].rating ===  0) {
                         console.log("Response after adding new ");
                         console.log(response);
-                        news.increment('dislikes', {by: 1})
+                        news.increment('dislikes')
+                        News.findOne({
+                            where: {id: thisRating.news_id},
+                            include: [{model: User, where: {facebook_user_id: thisRating.user_id}, required: false, limit: null}]
+                        }).then(function (news) {
+                            res.send(news)
+                        }).catch(function (err) {
+                            res.send({success: false})
+                        })
                     }
-
-                    res.send(news)
-
                 });
+
+
+
                 // res.send(news)
             }).catch(err => {
                 res.send({success: false});
@@ -311,7 +347,7 @@ route.post('/getNews', (req, res) => {
     let user_id = req.body.user_id;
     let sendBack = [];
     for (let key in msid) {
-        let News = NewsAssociation[msid[key].id];
+        let News = newsModel(msid[key].table);
         News.findAll({
             include: [{all: true, required: false, limit: null, where: {facebook_user_id: user_id}}],
             limit: 10
@@ -372,25 +408,4 @@ function selectTable(news_id) {
     }
 }
 
-function setupJoin() {
-    for (let key in msid) {
-        console.log(msid[key].table);
-        let thisTable = userNews(msid[key].table);
-        let News = newsModel(msid[key].table, seq.db);
-
-        User.belongsToMany(News, {through: thisTable});
-        News.belongsToMany(User, {through: thisTable});
-        console.log("ASSOCIATION");
-
-        NewsAssociation[msid[key].id] = News;
-        // User.belongsToMany(News, {through: 'user_news'});
-        // News.belongsToMany(User, {through: 'user_news'});
-        // User.hasMany(News, {through: thisTable, as: msid[key].table + msid[key].id});
-        console.log(News.associations)
-        User.sync();
-        News.sync();
-        thisTable.sync();
-
-    }
-}
 
