@@ -118,6 +118,7 @@ console.log("request to notificatoin log")
 // end
             }
         }
+        getCurrentBriefs();
     }).catch(function (err) {
         console.log(err)
     })
@@ -136,7 +137,7 @@ function sendToDevices() {
     })
 }
 
-function getCurrentBriefs(){
+function getCurrentBriefs() {
     let thisNews = getNewsTable("briefs", seq.db);
     thisNews.findOne({
         order: [['createdAt', 'DESC']]
@@ -172,6 +173,7 @@ function getCurrentBriefs(){
         console.log(err);
         console.log("thisNews find one")
     })
+}
 
 
 
