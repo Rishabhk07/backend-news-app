@@ -151,7 +151,7 @@ function getCurrentBriefs() {
         let endDate = moment(new Date(Date.now()), 'YYYY-M-DD HH:mm:ss')
         let timeElapsed = moment(endDate).diff(startDate, 'hours');
         console.log(moment(endDate).diff(startDate, 'hours'));
-        // if (timeElapsed < 2) {
+        if (timeElapsed < 2) {
 
         console.log(startDate)
         console.log(endDate)
@@ -168,7 +168,7 @@ function getCurrentBriefs() {
         sendToDevices();
         console.log("TOKEN")
 
-        // }
+        }
     }).catch(function (err) {
         console.log(err);
         console.log("thisNews find one")
