@@ -51,9 +51,13 @@ console.log("request to notificatoin log")
                             let payload = {
                                 data: {
                                     news_id: thisTopic.key,
-                                    title: response.hl,
-                                    image: response.imageid,
-                                    detail: response.syn
+                                    hl: response.hl,
+                                    imageid: response.imageid,
+                                    syn: response.syn,
+                                    story: response.story,
+                                    photoStory: response.photoStory,
+                                    tn: response.tn,
+                                    id: response.id
                                 }
                             };
 
@@ -85,6 +89,7 @@ console.log("request to notificatoin log")
                         let endDate = moment(new Date(Date.now()), 'YYYY-M-DD HH:mm:ss')
                         let timeElapsed = moment(endDate).diff(startDate, 'hours');
                         console.log(moment(endDate).diff(startDate, 'hours'));
+
                         if (timeElapsed < 2) {
 
                             console.log(startDate)
@@ -93,10 +98,11 @@ console.log("request to notificatoin log")
                             console.log(response.hl)
                             let payload = {
                                 data: {
-                                    news_id: "briefs",
+                                    table_key: "briefs",
                                     title: response.hl,
                                     image: response.imageid,
-                                    detail: response.syn
+                                    detail: response.syn,
+                                    news_id: JSON.stringify(response.id)
                                 }
                             };
                             console.log("TOKEN")
@@ -151,24 +157,25 @@ function getCurrentBriefs() {
         let endDate = moment(new Date(Date.now()), 'YYYY-M-DD HH:mm:ss')
         let timeElapsed = moment(endDate).diff(startDate, 'hours');
         console.log(moment(endDate).diff(startDate, 'hours'));
-        if (timeElapsed < 2) {
+        // if (timeElapsed < 2) {
 
         console.log(startDate)
         console.log(endDate)
-
+        console.log(response.id);
         console.log(response.hl)
         currentBreifs = {
             data: {
-                news_id: "briefs",
+                table_key: "briefs",
                 title: response.hl,
                 image: response.imageid,
                 detail: response.syn,
+                news_id: JSON.stringify(response.id)
             }
         };
         sendToDevices();
         console.log("TOKEN")
 
-        }
+        // }
     }).catch(function (err) {
         console.log(err);
         console.log("thisNews find one")
