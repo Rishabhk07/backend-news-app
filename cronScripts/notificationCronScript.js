@@ -76,6 +76,8 @@ User.findAll().then(function (response) {
 })
 
 function sendToDevices() {
+    console.log("USERS: ")
+    console.log(userFcmToken);
         admin.messaging().sendToDevice(userFcmToken, currentBreifs)
             .then(function (response) {
                 console.log("successfully send message on brief");
@@ -99,7 +101,7 @@ function getCurrentBriefs(){
             let endDate = moment(new Date(Date.now()), 'YYYY-M-DD HH:mm:ss')
             let timeElapsed = moment(endDate).diff(startDate, 'hours');
             console.log(moment(endDate).diff(startDate, 'hours'));
-            if (timeElapsed < 2) {
+            // if (timeElapsed < 2) {
 
                 console.log(startDate)
                 console.log(endDate)
@@ -110,13 +112,13 @@ function getCurrentBriefs(){
                         news_id: "briefs",
                         title: response.hl,
                         image: response.imageid,
-                        detail: response.syn
+                        detail: response.syn,
                     }
                 };
                 sendToDevices();
                 console.log("TOKEN")
 
-            }
+            // }
         }).catch(function (err) {
             console.log(err);
             console.log("thisNews find one")
