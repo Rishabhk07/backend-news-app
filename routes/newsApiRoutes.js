@@ -36,4 +36,9 @@ route.post('/fetch/:msid/:offset?',(req,res)=>{
     },req.params.msid,req.params.offset,req.body)
 });
 
+route.get('/fetch/:msid/:id',(req,res)=>{
+    sequelize.getThisNews(function (body) {
+        res.send(body)
+    }, req.params)
+});
 module.exports = route;
