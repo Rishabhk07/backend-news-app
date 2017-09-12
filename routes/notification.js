@@ -26,7 +26,7 @@ console.log("request to notificatoin log")
             if (response[key].notification === true) {
                 //sending notification for briefs only
                 console.log("inside IF")
-                if(userFcmToken.indexOf(response[key].fcm_token) === -1){
+                if(userFcmToken.indexOf(response[key].fcm_token) === -1 && response[key].fcm_token !== null){
                     userFcmToken.push(response[key].fcm_token)
                 }
 
