@@ -93,6 +93,17 @@ function allNewsFromDb(callback, msid, offset) {
     })
 }
 
+function getThisNews(callback, params) {
+    let db = modelNews(params.msid);
+    db.findOne({
+        where: {id: params.id}
+    }).then(function (response) {
+      callback(response)
+    }).catch(function (err) {
+        console.log(err)
+    })
+}
+
 
 var saveNewsToDb = (model, msid) => {
     console.log(msid.table);
@@ -106,4 +117,4 @@ var saveNewsToDb = (model, msid) => {
             })
 };
 
-module.exports = {checkDbConnection, saveNewsToDb, createTable, newsFromDb, allNewsFromDb};
+module.exports = {checkDbConnection, saveNewsToDb, createTable, newsFromDb, allNewsFromDb,getThisNews};
