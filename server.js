@@ -28,7 +28,8 @@ const routes = {
     auth : require('./routes/userAuth'),
     rate: require('./routes/rateNews'),
     notification: require('./routes/notification'),
-    chats: require('./routes/userChat')
+    chats: require('./routes/userChat'),
+    cron : require('./routes/cronNews')
 };
 
 app.use('/news' , routes.news);
@@ -39,9 +40,11 @@ app.use('/auth',routes.auth);
 
 app.use('/rate',routes.rate);
 
-app.use('/notification',routes.notification)
+app.use('/notification',routes.notification);
 
-app.use('/chat',routes.chats.route)
+app.use('/chat',routes.chats.route);
+
+app.use('/cron',routes.cron);
 
 // Socket IO here
 
