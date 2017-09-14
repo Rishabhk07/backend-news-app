@@ -1,14 +1,15 @@
 /**
  * Created by rishabhkhanna on 07/07/17.
  */
-const newsCategory = require("../msid/newsMsid");
-const requestNews = require("../FetchLibrary/requestNews");
-for(let key in newsCategory){
-    console.log(newsCategory[key]);
-        requestNews.fetchNews(newsCategory[key],function (body) {
-            console.log("counter: " + counter);
-    })
-}
+const axios = require('axios');
+
+axios.get('http://0.0.0.0:9890/cron/cronAllNews').then(function (response) {
+    console.log("successfully fetched news")
+    console.log(response)
+}).catch(function (err) {
+    console.log("err in fetching news")
+    console.log(err)
+})
 
 
 
