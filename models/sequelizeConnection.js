@@ -21,5 +21,4 @@ const db = new Sequelize({
     acquire: 20000
 });
 module.exports = {Sequelize, db}
-
 console.log("RISHABH KHANNA")
