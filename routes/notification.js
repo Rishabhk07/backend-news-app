@@ -50,14 +50,11 @@ console.log("request to notificatoin log")
                             console.log(newsBody.syn);
                             let payload = {
                                 data: {
-                                    news_id: thisTopic.key,
-                                    hl: newsBody.hl,
-                                    imageid: newsBody.imageid,
-                                    syn: newsBody.syn,
-                                    story: newsBody.story,
-                                    photoStory: newsBody.photoStory,
-                                    tn: newsBody.tn,
-                                    id: newsBody.id
+                                    table_key: thisTopic.key,
+                                    title: response.hl,
+                                    image: response.imageid,
+                                    detail: response.syn,
+                                    news_id: JSON.stringify(response.id)
                                 }
                             };
 
