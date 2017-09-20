@@ -43,21 +43,21 @@ console.log("request to notificatoin log")
                         let thisNews = getNewsTable(thisTopic.key, seq.db);
                         thisNews.findOne({
                             order: [['createdAt', 'DESC']]
-                        }).then(function (response) {
+                        }).then(function (newsBody) {
                             console.log("News Response");
-                            console.log(response.uid)
+                            console.log(newsBody.uid)
                             console.log(" Details: ")
-                            console.log(response.syn);
+                            console.log(newsBody.syn);
                             let payload = {
                                 data: {
                                     news_id: thisTopic.key,
-                                    hl: response.hl,
-                                    imageid: response.imageid,
-                                    syn: response.syn,
-                                    story: response.story,
-                                    photoStory: response.photoStory,
-                                    tn: response.tn,
-                                    id: response.id
+                                    hl: newsBody.hl,
+                                    imageid: newsBody.imageid,
+                                    syn: newsBody.syn,
+                                    story: newsBody.story,
+                                    photoStory: newsBody.photoStory,
+                                    tn: newsBody.tn,
+                                    id: newsBody.id
                                 }
                             };
 
@@ -75,52 +75,12 @@ console.log("request to notificatoin log")
                 }
 
                 if (anyTure) {
-                    //sending notification fo rbrief only
-                    let thisNews = getNewsTable("briefs", seq.db);
-                    thisNews.findOne({
-                        order: [['createdAt', 'DESC']]
-                    }).then(function (response) {
-                        let d = new Date();
-                        console.log(moment().format());
-
-                        console.log(new Date(response.createdAt));
-                        console.log(new Date(response.createdAt) - Date.now());
-                        let startDate = moment(response.createdAt, 'YYYY-M-DD HH:mm:ss')
-                        let endDate = moment(new Date(Date.now()), 'YYYY-M-DD HH:mm:ss')
-                        let timeElapsed = moment(endDate).diff(startDate, 'hours');
-                        console.log(moment(endDate).diff(startDate, 'hours'));
-
-                        if (timeElapsed < 2) {
-
-                            console.log(startDate)
-                            console.log(endDate)
-
-                            console.log(response.hl)
-                            let payload = {
-                                data: {
-                                    table_key: "briefs",
-                                    title: response.hl,
-                                    image: response.imageid,
-                                    detail: response.syn,
-                                    news_id: JSON.stringify(response.id)
-                                }
-                            };
-                            console.log("TOKEN")
-                            console.log(response[key].fcm_token);
-                            admin.messaging().sendToDevice(response[key].fcm_token, payload)
-                                .then(function (response) {
-                                    console.log("successfully send message on brief");
-                                    console.log(response.results)
-                                }).catch(function (err) {
-                                console.log("Error in sending message " + err);
-                            })
-                        }
-                    }).catch(function (err) {
-                        console.log(err)
-                    })
+                    //sending notification for brief only
+                    // if user has not selected any topic
+                    sendToDevices();
                     //end
                 }
-                res.send({multiple: true})
+                res.send({success: true})
 // end
             }
         }
