@@ -46,6 +46,10 @@ app.use('/chat',routes.chats.route);
 
 app.use('/cron',routes.cron);
 
+app.get('/loaderio-2d28a82b955b86667af7db93d051f8a1',(req,res)=>{
+    res.sendfile(__dirname + '/public/loaderio-2d28a82b955b86667af7db93d051f8a1.txt');
+})
+
 // Socket IO here
 
 io.on('connection', (socket) => {
