@@ -48,22 +48,27 @@ console.log("request to notificatoin log")
                             console.log(newsBody.uid)
                             console.log(" Details: ")
                             console.log(newsBody.syn);
-                            let payload = {
-                                data: {
-                                    table_key: thisTopic.key,
-                                    title: newsBody.hl,
-                                    image: newsBody.imageid,
-                                    news_id: JSON.stringify(newsBody.id)
-                                }
-                            };
+                            let startDate = moment(response.createdAt, 'YYYY-M-DD HH:mm:ss')
+                            let endDate = moment(new Date(Date.now()), 'YYYY-M-DD HH:mm:ss')
+                            let timeElapsed = moment(endDate).diff(startDate, 'hours')
+                            if(timeElapsed < 2) {
+                                let payload = {
+                                    data: {
+                                        table_key: thisTopic.key,
+                                        title: newsBody.hl,
+                                        image: newsBody.imageid,
+                                        news_id: JSON.stringify(newsBody.id)
+                                    }
+                                };
 
-                            admin.messaging().sendToDevice(response[key].fcm_token, payload)
-                                .then(function (response) {
-                                    console.log("Successfully send message");
-                                    console.log(response)
-                                }).catch(function (err) {
-                                console.log("Error in sending message" + err);
-                            })
+                                admin.messaging().sendToDevice(response[key].fcm_token, payload)
+                                    .then(function (response) {
+                                        console.log("Successfully send message");
+                                        console.log(response)
+                                    }).catch(function (err) {
+                                    console.log("Error in sending message" + err);
+                                })
+                            }
                         }).catch(function (err) {
                             console.log(err)
                         })
@@ -107,8 +112,7 @@ function getCurrentBriefs() {
         let d = new Date();
         console.log(moment().format());
 
-        console.log(new Date(response.createdAt));
-        console.log(new Date(response.createdAt) - Date.now());
+
         let startDate = moment(response.createdAt, 'YYYY-M-DD HH:mm:ss')
         let endDate = moment(new Date(Date.now()), 'YYYY-M-DD HH:mm:ss')
         let timeElapsed = moment(endDate).diff(startDate, 'hours');
