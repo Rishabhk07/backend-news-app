@@ -39,15 +39,15 @@ console.log("request to notificatoin log")
                     if (thisTopic.value === true) {
                         console.log("itertaing topic")
                         anyTure = false;
-                        console.log(thisTopic.key);
+                        // console.log(thisTopic.key);
                         let thisNews = getNewsTable(thisTopic.key, seq.db);
                         thisNews.findOne({
                             order: [['createdAt', 'DESC']]
                         }).then(function (newsBody) {
-                            console.log("News Response");
-                            console.log(newsBody.uid)
-                            console.log(" Details: ")
-                            console.log(newsBody.syn);
+                            // console.log("News Response");
+                            // console.log(newsBody.uid)
+                            // console.log(" Details: ")
+                            // console.log(newsBody.syn);
                             let startDate = moment(response.createdAt, 'YYYY-M-DD HH:mm:ss')
                             let endDate = moment(new Date(Date.now()), 'YYYY-M-DD HH:mm:ss')
                             let timeElapsed = moment(endDate).diff(startDate, 'hours')
@@ -93,7 +93,7 @@ console.log("request to notificatoin log")
 
 function sendToDevices() {
     console.log("USERS: ")
-    console.log(userFcmToken);
+    // console.log(userFcmToken);
     admin.messaging().sendToDevice(userFcmToken, currentBreifs)
         .then(function (response) {
             console.log("successfully send message on brief");
@@ -108,7 +108,7 @@ function getCurrentBriefs() {
         order: [['createdAt', 'DESC']]
     }).then(function (response) {
         let d = new Date();
-        console.log(moment().format());
+        // console.log(moment().format());
 
 
         let startDate = moment(response.createdAt, 'YYYY-M-DD HH:mm:ss')

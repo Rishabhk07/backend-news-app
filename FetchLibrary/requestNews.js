@@ -40,7 +40,7 @@ module.exports = {
                                 photoStory.fetchPhotoStory(json[i], function (body) {
                                 sequelize.saveNewsToDb(body, msid);
                                 newData.push(body);
-                                if(i == json.length - 1){
+                                if(i === json.length - 1){
                                     calllback(newData)
                                 }
                             });

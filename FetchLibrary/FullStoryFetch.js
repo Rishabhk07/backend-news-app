@@ -5,7 +5,7 @@ const axios = require('axios');
 const photoStory = require('./photoStoryFetch');
 function fetchFullStory(briefModel, callback) {
     // console.log(briefModel);
-    console.log(briefModel.key);
+    // console.log(briefModel.key);
     axios.get('http://timesofindia.indiatimes.com' +
         '/feeds/showfeed.cms?feedtype=sjson&version=v4&tag=news&msid=' + briefModel.key)
         .then(function (response) {

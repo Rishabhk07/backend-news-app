@@ -110,7 +110,6 @@ var saveNewsToDb = (model, msid) => {
             News.create(model).then(function (task) {
                 console.log("successfully saved the news with id");
             }).catch((err) => {
-                console.log(err);
             })
 };
 
