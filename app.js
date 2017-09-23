@@ -20,9 +20,10 @@ function requestNewsJson(msid) {
 }
 
 var port = process.env.PORT || 9890;
+app.use(compression());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use('/' , express.static(__dirname + "/public"));
-app.use(compression());
+
 
 const routes = {
     news: require('./routes/newsApiTest'),
