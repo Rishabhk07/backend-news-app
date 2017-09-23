@@ -8,11 +8,12 @@ const requestNews = require('../FetchLibrary/requestNews');
 
 route.get('/cronAllNews',function (req,res) {
     for (let key in newsCategory){
-        // console.log(newsCategory[key]);
+        let count = 0;
         requestNews.fetchNews(newsCategory[key],function (body) {
-            res.send({success: true})
+            console.log("done")
         })
     }
+    res.send({success: true})
 });
 
 module.exports = route;
