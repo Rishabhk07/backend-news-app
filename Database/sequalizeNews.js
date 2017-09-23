@@ -31,7 +31,7 @@ function createTable() {
 
 function newsFromDb(callback, msid, offset, body) {
     // const db = sequelize.define(msid,modelDB);
-    console.log(body.user_id);
+    // console.log(body.user_id);
 
     if (body.user_id === "null" ) {
         console.log("not auth")
@@ -51,17 +51,17 @@ function newsFromDb(callback, msid, offset, body) {
         })
     } else {
         newsAuthFromDb(callback, msid, offset, body);
-        console.log("Here is not null condition")
+        // console.log("Here is not null condition")
     }
 }
 
 function newsAuthFromDb(callback, msid, offset, body) {
     // const db = sequelize.define(msid,modelDB);
-    console.log("Authenticated news");
+    // console.log("Authenticated news");
     const db = modelNews(msid);
     let thisTable = userNews(msid);
-    console.log("User belong to many")
-    console.log("DB belong to many")
+    // console.log("User belong to many")
+    // console.log("DB belong to many")
     db.findAll({
         limit: 10,
         offset: 10 * offset,
@@ -86,7 +86,6 @@ function allNewsFromDb(callback, msid, offset) {
             ['id', 'DESC']
         ]
     }).then(function (body) {
-        console.log(body);
         callback(body);
     }).catch(function (err) {
         console.log(err)
@@ -106,12 +105,10 @@ function getThisNews(callback, params) {
 
 
 var saveNewsToDb = (model, msid) => {
-    console.log(msid.table);
-    //create Table
+
     const News = modelNews(msid.table);
             News.create(model).then(function (task) {
-                console.log("successfully saved the news with id" + task.id);
-                console.log(task);
+                console.log("successfully saved the news with id");
             }).catch((err) => {
                 console.log(err);
             })
