@@ -43,9 +43,9 @@ route.post('/like', (req, res) => {
                     console.log("removed user from news");
                     console.log(response)
                     if(response > 0 ) {
-                        console.log("Rating on like");
-                        console.log(response[0]);
-                        console.log(response[0]);
+                        // console.log("Rating on like");
+                        // console.log(response[0]);
+                        // console.log(response[0]);
                         news.decrement('likes');
                         News.findOne({
                             where: {id: thisRating.news_id},
@@ -81,14 +81,14 @@ route.post('/like', (req, res) => {
             }).then(function (news) {
                 // here with the help of closure user will be available in inner function
                 let likes = news.like;
-                console.log(table);
+                // console.log(table);
                 let foo = "add" + table;
                 user[foo](news, {through: {rating: 1}}).then(function (response) {
                     console.log("removed user from news");
-                    console.log(response)
+                    // console.log(response)
                     if(response > 0) {
                         console.log("Rating on like");
-                        console.log(response);
+                        // console.log(response);
                         news.increment('likes');
                         news.decrement('dislikes');
                         News.findOne({
@@ -123,13 +123,13 @@ route.post('/like', (req, res) => {
             }).then(function (news) {
                 // here with the help of closure user will be available in inner function
                 let likes = news.like;
-                console.log(table);
+                // console.log(table);
                 let foo = "add" + table;
                 user[foo](news, {through: {rating: 1}}).then(function (response) {
                     if(response !== undefined && response[0] !== undefined && response[0][0] !== undefined && response[0][0].rating === 1 ){
                         console.log("Rating on like");
-                        console.log(response[0]);
-                        console.log(response[0])
+                        // console.log(response[0]);
+                        // console.log(response[0])
                         news.increment('likes')
                         News.findOne({
                             where: {id: thisRating.news_id},
@@ -157,15 +157,15 @@ route.post('/like', (req, res) => {
 
 route.post('/dislike', (req, res) => {
     let thisRating = req.body;
-    console.log("LOG" + req.body.news_msid);
+    // console.log("LOG" + req.body.news_msid);
     let table = selectTable(req.body.news_msid);
-    console.log(table);
+    // console.log(table);
     let News = newsModel(getTableFromMsid.getTableName(req.body.news_msid));
-    console.log(User.associations);
-    console.log(News.associations);
-    console.log(thisRating.rating);
-    console.log(thisRating.user_id);
-    console.log(thisRating.rating === '0')
+    // console.log(User.associations);
+    // console.log(News.associations);
+    // console.log(thisRating.rating);
+    // console.log(thisRating.user_id);
+    // console.log(thisRating.rating === '0')
     if(thisRating.rating === '0'){
 
         User.findOne({
@@ -185,7 +185,7 @@ route.post('/dislike', (req, res) => {
 
                     if(response > 0) {
                         console.log("Response after adding new ");
-                        console.log(response);
+                        // console.log(response);
                         news.decrement('dislikes')
                     }
                     News.findOne({
@@ -225,7 +225,7 @@ route.post('/dislike', (req, res) => {
                     console.log(response);
                     if(response > 0) {
                         console.log("Response after adding new ");
-                        console.log(response);
+                        // console.log(response);
                         news.increment('dislikes');
                         news.decrement('likes')
                     }
@@ -264,7 +264,7 @@ route.post('/dislike', (req, res) => {
                 user[foo](news, {through: {rating: 0}}).then(function (response) {
                     if(response !== undefined  && response[0] !== undefined && response[0][0] !== undefined && response[0][0].rating ===  0) {
                         console.log("Response after adding new ");
-                        console.log(response);
+                        // console.log(response);
                         news.increment('dislikes')
                         News.findOne({
                             where: {id: thisRating.news_id},
@@ -333,7 +333,7 @@ route.post('/getRatedNews', (req, res) => {
             }
         }]
     }).then(function (response) {
-        console.log(response)
+        // console.log(response)
         res.send(response)
     }).catch(function (response) {
         console.log(response);

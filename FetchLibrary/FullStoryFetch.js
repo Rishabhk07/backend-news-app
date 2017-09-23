@@ -9,7 +9,7 @@ function fetchFullStory(briefModel, callback) {
     axios.get('http://timesofindia.indiatimes.com' +
         '/feeds/showfeed.cms?feedtype=sjson&version=v4&tag=news&msid=' + briefModel.key)
         .then(function (response) {
-            if (response.status == 200) {
+            if (response.status === 200) {
                 let json = response.data.it
                 briefModel.story = json.Story
                 if(briefModel.syn){

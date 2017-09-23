@@ -8,7 +8,6 @@ function fetchPhotoStory(briefModel, callback) {
         '?feedtype=sjson&version=v4&tag=pssl&perpage=20&msid=' + briefModel.key)
         .then(function (response) {
             if (response.status === 200) {
-                console.log(response.data.it.items);
                 briefModel.photoStory = response.data.it.items;
                 callback(briefModel)
             }

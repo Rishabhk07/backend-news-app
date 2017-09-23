@@ -17,7 +17,7 @@ const db = new Sequelize({
         idle: 1000,
         evict: 1000
     },
-    logging: true,
+    logging: false,
     acquire: 20000
 });
 module.exports = {Sequelize, db}

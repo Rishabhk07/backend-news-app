@@ -64,7 +64,6 @@ console.log("request to notificatoin log")
                                 admin.messaging().sendToDevice(response[key].fcm_token, payload)
                                     .then(function (response) {
                                         console.log("Successfully send message");
-                                        console.log(response)
                                     }).catch(function (err) {
                                     console.log("Error in sending message" + err);
                                 })
@@ -98,7 +97,6 @@ function sendToDevices() {
     admin.messaging().sendToDevice(userFcmToken, currentBreifs)
         .then(function (response) {
             console.log("successfully send message on brief");
-            console.log(response.results)
         }).catch(function (err) {
         console.log("Error in sending message " + err);
     })
@@ -116,13 +114,8 @@ function getCurrentBriefs() {
         let startDate = moment(response.createdAt, 'YYYY-M-DD HH:mm:ss')
         let endDate = moment(new Date(Date.now()), 'YYYY-M-DD HH:mm:ss')
         let timeElapsed = moment(endDate).diff(startDate, 'hours');
-        console.log(moment(endDate).diff(startDate, 'hours'));
+        // console.log(moment(endDate).diff(startDate, 'hours'));
         if (timeElapsed < 2) {
-
-        console.log(startDate)
-        console.log(endDate)
-        console.log(response.id);
-        console.log(response.hl)
         currentBreifs = {
             data: {
                 table_key: "briefs",
