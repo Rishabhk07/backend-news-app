@@ -8,7 +8,7 @@ const io = require('socket.io')(http);
 const chatTable = require('./models/userChats');
 const newsModel = require('./models/NewsModel');
 const seq = require('./models/sequelizeConnection');
-
+const logging = false;
 let serviceAccount = require("./serviceAccountKey.json");
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -61,34 +61,41 @@ io.on('connection', (socket) => {
 
     function sendHearbeat() {
         setTimeout(sendHearbeat, 2500);
+        if(logging)
         io.sockets.emit('ping', { beat : 1 });
     }
 
     socket.on('join_room',function (msg) {
         let chatRoom  = JSON.parse(msg);
         socket.join(chatRoom.news_id);
-        console.log("user joined room " + chatRoom.news_id )
-        console.log("socket id : " + socket.id);
+        if(logging) {
+            console.log("user joined room " + chatRoom.news_id)
+            console.log("socket id : " + socket.id);
+        }
     });
 
     socket.on('leave_group',function (msg) {
         let chatRoom = JSON.parse(msg)
         socket.leave(chatRoom.news_id,function () {
+            if(logging)
             console.log("banda has left the group ")
 
         });
-        console.log("user leaved the group " + chatRoom.news_id)
-        console.log("socket id " + socket.id);
+        if(logging) {
+            // console.log("user leaved the group " + chatRoom.news_id)
+            // console.log("socket id " + socket.id);
+        }
     })
 
     socket.on('new_message', function (msg) {
+        if(logging)
         console.log("socket id : " + socket.id)
         let json = JSON.parse(msg);
-        console.log(msg);
         // socket.join(json.news_id);
         let news_table = routes.chats.getTableName(json.msid)
 
         console.log(routes.chats.getTableName(json.msid))
+        if(logging)
         console.log(msg)
         let Chats = chatTable(news_table);
         Chats.build({
@@ -99,10 +106,10 @@ io.on('connection', (socket) => {
             from: json.from,
             anonym: json.anonym
         }).save().then(function (response) {
-            console.log("saved the user chat successfully")
-            console.log(response)
-            console.log("Socket id to return : " + socket.id);
-            console.log(io.sockets.adapter.rooms[json.news_id]);
+            // console.log("saved the user chat successfully")
+            // console.log(response)
+            // console.log("Socket id to return : " + socket.id);
+            // console.log(io.sockets.adapter.rooms[json.news_id]);
             if(json.news_id.anonym === true){
                 json.from = "anonym"
             }
@@ -113,8 +120,10 @@ io.on('connection', (socket) => {
             }).then(function (news) {
                 news.increment('chats',{by: 1})
             }).catch(function (err) {
-                console.log(err)
-                console.log("cannot increment chat message");
+                if(logging) {
+                    console.log(err)
+                    console.log("cannot increment chat message");
+                }
             })
 
         })
