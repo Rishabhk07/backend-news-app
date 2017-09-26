@@ -360,7 +360,6 @@ route.post('/getNews', (req, res) => {
             if(n!== [])
             sendBack.push(n);
             if (msid[key].id === '47082088') {
-                console.log(sendBack);
                 res.send(sendBack)
             }
 
