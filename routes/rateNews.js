@@ -355,7 +355,7 @@ route.post('/getNews', (req, res) => {
             let n = news.filter(function (thisNews) {
                 return thisNews.users.length === 0;
             });
-            console.log(n);
+            if(n!== [])
             sendBack.push(n);
             if (msid[key].id === '47082088') {
                 res.send(sendBack)
