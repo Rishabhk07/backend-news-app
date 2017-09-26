@@ -349,17 +349,19 @@ route.post('/getNews', (req, res) => {
     for (let key in msid) {
         let News = newsModel(msid[key].table);
         News.findAll({
-            include: [{all: true, required: false, limit: null, where: {facebook_user_id: user_id}}],
+            include: [{all: true, required: false, limit: null, where: {facebook_user_id: {$not: user_id}}}],
+            limit: 10,
             order: [
                 ['createdAt', 'DESC']
             ]
         }).then(function (news) {
-            let n = news.filter(function (thisNews) {
-                return thisNews.users.length === 0;
-            });
-            if(n!== [])
-            sendBack.push(n);
+            // let n = news.filter(function (thisNews) {
+            //     return thisNews.users.length === 0;
+            // });
+            // if(n!== [])
+            sendBack.push(news);
             if (msid[key].id === '47082088') {
+                console.log(sendBack);
                 res.send(sendBack)
             }
 
