@@ -350,7 +350,6 @@ route.post('/getNews', (req, res) => {
         let News = newsModel(msid[key].table);
         News.findAll({
             include: [{all: true, required: false, limit: null, where: {facebook_user_id: user_id}}],
-            limit: 10,
             order: [
                 ['createdAt', 'DESC']
             ]
