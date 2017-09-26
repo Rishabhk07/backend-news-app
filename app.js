@@ -49,8 +49,8 @@ app.use('/chat',routes.chats.route);
 
 app.use('/cron',routes.cron);
 
-app.get('/loaderio-2d28a82b955b86667af7db93d051f8a1',(req,res)=>{
-    res.sendfile(__dirname + '/public/loaderio-2d28a82b955b86667af7db93d051f8a1.txt');
+app.get('/loaderio-7b51922f69dc55f58d9916ff0e2cd2d9',(req,res)=>{
+    res.sendfile(__dirname + '/public/loaderio-7b51922f69dc55f58d9916ff0e2cd2d9.txt');
 })
 
 // Socket IO here

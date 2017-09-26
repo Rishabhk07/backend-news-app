@@ -1,5 +1,5 @@
 /model/toiEndpoints.js
 /api_end_points
-/node_modules
+node_modules
 /config
 .idea
