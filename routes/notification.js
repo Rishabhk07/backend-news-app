@@ -129,6 +129,8 @@ function getCurrentBriefs() {
         sendToDevices();
         console.log("TOKEN")
 
+        }else{
+            console.log("not under 2 hours news");
         }
     }).catch(function (err) {
         console.log(err);
