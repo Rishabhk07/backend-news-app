@@ -25,7 +25,6 @@ console.log("request to notificatoin log")
         for (let key in response) {
             if (response[key].notification === true) {
                 //sending notification for briefs only
-                console.log("inside IF")
                 if(userFcmToken.indexOf(response[key].fcm_token) === -1 && response[key].fcm_token !== null){
                     userFcmToken.push(response[key].fcm_token)
                 }
@@ -97,7 +96,8 @@ function sendToDevices() {
     // console.log(userFcmToken);
     admin.messaging().sendToDevice(userFcmToken, currentBreifs)
         .then(function (response) {
-            console.log("successfully send message on brief");
+            console.log(response)
+            console.log("successfully send message on brief" );
         }).catch(function (err) {
         console.log("Error in sending message " + err);
     })
