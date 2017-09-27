@@ -342,29 +342,28 @@ route.post('/getRatedNews', (req, res) => {
 })
 
 route.post('/getNews', (req, res) => {
-
-    console.log("LOG");
+    let offset = req.query.offset;
     let user_id = req.body.user_id;
     let sendBack = [];
     for (let key in msid) {
         let News = newsModel(msid[key].table);
         News.findAll({
-            include: [{all: true, required: false, limit: null, where: {facebook_user_id: {$ne: user_id}}}],
+            include: [{all: true, required: false, limit: null, where: {facebook_user_id: user_id}}],
+            offset: 10 * offset,
             limit: 10,
             order: [
                 ['createdAt', 'DESC']
             ]
         }).then(function (news) {
-            // let n = news.filter(function (thisNews) {
-            //     return thisNews.users.length === 0;
-            // });
-            // if(n!== [])
-            sendBack.push(news);
+            let n = news.filter(function (thisNews) {
+                return thisNews.users.length === 0;
+            });
+            if(n.length !== 0) {
+                sendBack.push(n);
+            }
             if (msid[key].id === '47082088') {
-                console.log(sendBack);
                 res.send(sendBack)
             }
-
         }).catch(err => {
             res.send({success: false})
             throw err;
