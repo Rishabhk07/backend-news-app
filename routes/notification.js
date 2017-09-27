@@ -80,11 +80,12 @@ console.log("request to notificatoin log")
                     sendToDevices();
                     //end
                 }
-                res.send({success: true})
 // end
             }
+
         }
         getCurrentBriefs();
+        res.send({success: true})
     }).catch(function (err) {
         console.log(err)
     })
