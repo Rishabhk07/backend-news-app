@@ -93,7 +93,7 @@ console.log("request to notificatoin log")
 });
 
 function sendToDevices() {
-    console.log("USERS: ")
+
     // console.log(userFcmToken);
     admin.messaging().sendToDevice(userFcmToken, currentBreifs)
         .then(function (response) {
