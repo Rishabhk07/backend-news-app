@@ -4,7 +4,8 @@
 const passport = require('passport')
     , FacebbookStratergy = require('passport-facebook').Strategy
     , User = require('../models/userModel')
-    , axios = require('axios');
+    , axios = require('axios')
+    , fcmKey = require('../models/GcmKeyModel');
 
 module.exports = {
     facebookAuth(req, callback) {
@@ -125,6 +126,14 @@ module.exports = {
             console.log(err)
         })
     },
+    saveFcm(req,callback){
+        const fcm = fcmKey.build({
+            fcm_token: req.fcmToken
+        });
+        fcm.save().then(function (response) {
+            callback(response)
+        })
+    }
 
 };
 
