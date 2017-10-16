@@ -128,7 +128,7 @@ console.log("request to notificatoin log")
             let endDate = moment(new Date(Date.now()), 'YYYY-M-DD HH:mm:ss')
             let timeElapsed = moment(endDate).diff(startDate, 'hours');
             // console.log(moment(endDate).diff(startDate, 'hours'));
-            // if (timeElapsed < 2) {
+            if (timeElapsed < 2) {
             currentBreifs = {
                 data: {
                     table_key: "briefs",
@@ -141,9 +141,9 @@ console.log("request to notificatoin log")
             sendToDevices();
             console.log("TOKEN")
 
-            // }else{
-            //     // console.log("not under 2 hours news");
-            // }
+            }else{
+                // console.log("not under 2 hours news");
+            }
         }).catch(function (err) {
             console.log(err);
             console.log("thisNews find one")
