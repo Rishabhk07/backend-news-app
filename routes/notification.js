@@ -8,7 +8,7 @@ const moment = require('moment');
 const User = require('../models/userModel');
 const getNewsTable = require('../models/NewsModel');
 const seq = require('../models/sequelizeConnection');
-
+const fcmKey = require('../models/GcmKeyModel');
 let serviceAccount = require('../serviceAccountKey.json');
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -83,8 +83,16 @@ console.log("request to notificatoin log")
             }
 
         }
-        getCurrentBriefs();
-        res.send({success: true})
+        fcmKey.findAll().then(function (resp) {
+            for (let key in resp){
+                if(userFcmToken.indexOf(resp[key].fcm_token) === -1 && resp[key].fcm_token !== null){
+                    userFcmToken.push(resp[key].fcm_token)
+                }
+            }
+            getCurrentBriefs();
+            res.send({success: true})
+        })
+
     }).catch(function (err) {
         console.log(err)
     })
