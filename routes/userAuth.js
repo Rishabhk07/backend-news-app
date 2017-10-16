@@ -41,4 +41,10 @@ route.post('/updateNotification',(req,res)=>{
     })
 })
 
+route.post('/saveFcm', (req,res) =>{
+   stratergy.saveFcm(req.body,function (response) {
+       res.send(response);
+   })
+});
+
 module.exports = route
