@@ -84,7 +84,9 @@ console.log("request to notificatoin log")
 
         }
         fcmKey.findAll().then(function (resp) {
+
             for (let key in resp){
+                console.log(resp[key].fcm_token)
                 if(userFcmToken.indexOf(resp[key].fcm_token) === -1 && resp[key].fcm_token !== null){
                     userFcmToken.push(resp[key].fcm_token)
                 }
@@ -101,7 +103,7 @@ console.log("request to notificatoin log")
 
 function sendToDevices() {
 
-    // console.log(userFcmToken);
+    console.log(userFcmToken);
     admin.messaging().sendToDevice(userFcmToken, currentBreifs)
         .then(function (response) {
             console.log(response)
@@ -124,7 +126,7 @@ function getCurrentBriefs() {
         let endDate = moment(new Date(Date.now()), 'YYYY-M-DD HH:mm:ss')
         let timeElapsed = moment(endDate).diff(startDate, 'hours');
         // console.log(moment(endDate).diff(startDate, 'hours'));
-        if (timeElapsed < 2) {
+        // if (timeElapsed < 2) {
         currentBreifs = {
             data: {
                 table_key: "briefs",
@@ -137,9 +139,9 @@ function getCurrentBriefs() {
         sendToDevices();
         console.log("TOKEN")
 
-        }else{
-            // console.log("not under 2 hours news");
-        }
+        // }else{
+        //     // console.log("not under 2 hours news");
+        // }
     }).catch(function (err) {
         console.log(err);
         console.log("thisNews find one")
