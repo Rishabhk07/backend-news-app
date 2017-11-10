@@ -1,4 +1,5 @@
 const  express = require('express');
+const Raven  = require('raven');
 const request = require('request');
 const app = express();
 const bodyParser = require('body-parser');
@@ -15,12 +16,15 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
 
+Raven.config('https://78a55296678a4a888efccc4c2694c373@sentry.io/243296').install();
+app.use(Raven.requestHandler());
 
 let port = process.env.PORT || 9890;
 app.use(compression());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use('/' , express.static(__dirname + "/public"));
 
+app.use(Raven.errorHandler());
 
 const routes = {
     news: require('./routes/newsApiTest'),
