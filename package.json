@@ -16,6 +16,7 @@
     "express": "^4.15.3",
     "firebase-admin": "^5.1.0",
     "moment": "^2.18.1",
+    "newrelic": "^2.3.2",
     "nodemon": "^1.11.0",
     "parse-server": "^2.5.3",
     "passport": "^0.3.2",
